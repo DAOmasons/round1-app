@@ -20,8 +20,8 @@ import { getMesh, ExecuteMeshFn, SubscribeMeshFn, MeshContext as BaseMeshContext
 import { MeshStore, FsStoreStorageAdapter } from '@graphql-mesh/store';
 import { path as pathModule } from '@graphql-mesh/cross-helpers';
 import { ImportFn } from '@graphql-mesh/types';
-import type { GrantShipsTypes } from './sources/grant-ships/types';
 import type { GsVotingTypes } from './sources/gs-voting/types';
+import type { GrantShipsTypes } from './sources/grant-ships/types';
 import * as importedModule$0 from "./sources/grant-ships/introspectionSchema";
 import * as importedModule$1 from "./sources/gs-voting/introspectionSchema";
 export type Maybe<T> = T | null;
@@ -8933,7 +8933,7 @@ const grantShipsHandler = new GraphqlHandler({
             });
 const gsVotingHandler = new GraphqlHandler({
               name: "gs-voting",
-              config: {"endpoint":"https://indexer.bigdevenergy.link/d18cda9/v1/graphql"},
+              config: {"endpoint":"https://indexer.bigdevenergy.link/c8f8ea8/v1/graphql"},
               baseDir,
               cache,
               pubsub,

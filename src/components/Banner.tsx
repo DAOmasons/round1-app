@@ -141,7 +141,7 @@ export const Banner = () => {
           infoBtn={
             <Button
               component="a"
-              href="https://rules.grantships.fun/how-to-play/as-a-voter.html""
+              href="https://rules.grantships.fun/how-to-play/as-a-voter.html"
               variant="transparent"
               rel="noopener noreferrer"
               target="_blank"
@@ -195,7 +195,7 @@ export const Banner = () => {
           infoBtn={
             <Button
               component="a"
-              href="https://rules.grantships.fun/how-to-play/as-a-voter.html""
+              href="https://rules.grantships.fun/how-to-play/as-a-voter.html"
               variant="transparent"
               rel="noopener noreferrer"
               target="_blank"
@@ -234,7 +234,7 @@ export const Banner = () => {
           infoBtn={
             <Button
               component="a"
-              href="https://rules.grantships.fun/how-to-play/as-a-voter.html""
+              href="https://rules.grantships.fun/how-to-play/as-a-voter.html"
               variant="transparent"
               rel="noopener noreferrer"
               target="_blank"
@@ -370,7 +370,7 @@ const VoteCountdown = () => {
       infoBtn={
         <Button
           component="a"
-          href="https://rules.grantships.fun/how-to-play/as-a-voter.html""
+          href="https://rules.grantships.fun/how-to-play/as-a-voter.html"
           variant="transparent"
           rel="noopener noreferrer"
           target="_blank"

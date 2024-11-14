@@ -18,11 +18,655 @@ export type Scalars = {
   Float: number;
   contract_type: any;
   entity_type: any;
-  event_type: any;
-  json: any;
+  jsonb: any;
   numeric: any;
   timestamp: any;
   timestamptz: any;
+};
+
+/** columns and relationships of "Application" */
+export type Application = {
+  amount: Scalars['numeric'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  grant_id: Scalars['String'];
+  id: Scalars['String'];
+  index: Scalars['Int'];
+  metadata_id: Scalars['String'];
+  receivingAddress: Scalars['String'];
+  status: Scalars['Int'];
+  timestamp: Scalars['Int'];
+};
+
+/** order by aggregate values of table "Application" */
+export type Application_aggregate_order_by = {
+  avg?: InputMaybe<Application_avg_order_by>;
+  count?: InputMaybe<order_by>;
+  max?: InputMaybe<Application_max_order_by>;
+  min?: InputMaybe<Application_min_order_by>;
+  stddev?: InputMaybe<Application_stddev_order_by>;
+  stddev_pop?: InputMaybe<Application_stddev_pop_order_by>;
+  stddev_samp?: InputMaybe<Application_stddev_samp_order_by>;
+  sum?: InputMaybe<Application_sum_order_by>;
+  var_pop?: InputMaybe<Application_var_pop_order_by>;
+  var_samp?: InputMaybe<Application_var_samp_order_by>;
+  variance?: InputMaybe<Application_variance_order_by>;
+};
+
+/** order by avg() on columns of table "Application" */
+export type Application_avg_order_by = {
+  amount?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** Boolean expression to filter rows from the table "Application". All fields are combined with a logical 'AND'. */
+export type Application_bool_exp = {
+  _and?: InputMaybe<Array<Application_bool_exp>>;
+  _not?: InputMaybe<Application_bool_exp>;
+  _or?: InputMaybe<Array<Application_bool_exp>>;
+  amount?: InputMaybe<numeric_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  grant?: InputMaybe<Grant_bool_exp>;
+  grant_id?: InputMaybe<String_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  index?: InputMaybe<Int_comparison_exp>;
+  metadata?: InputMaybe<RawMetadata_bool_exp>;
+  metadata_id?: InputMaybe<String_comparison_exp>;
+  receivingAddress?: InputMaybe<String_comparison_exp>;
+  status?: InputMaybe<Int_comparison_exp>;
+  timestamp?: InputMaybe<Int_comparison_exp>;
+};
+
+/** order by max() on columns of table "Application" */
+export type Application_max_order_by = {
+  amount?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  grant_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  metadata_id?: InputMaybe<order_by>;
+  receivingAddress?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by min() on columns of table "Application" */
+export type Application_min_order_by = {
+  amount?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  grant_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  metadata_id?: InputMaybe<order_by>;
+  receivingAddress?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** Ordering options when selecting data from "Application". */
+export type Application_order_by = {
+  amount?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  grant?: InputMaybe<Grant_order_by>;
+  grant_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  metadata?: InputMaybe<RawMetadata_order_by>;
+  metadata_id?: InputMaybe<order_by>;
+  receivingAddress?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** select columns of table "Application" */
+export type Application_select_column =
+  /** column name */
+  | 'amount'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'grant_id'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'index'
+  /** column name */
+  | 'metadata_id'
+  /** column name */
+  | 'receivingAddress'
+  /** column name */
+  | 'status'
+  /** column name */
+  | 'timestamp';
+
+/** order by stddev() on columns of table "Application" */
+export type Application_stddev_order_by = {
+  amount?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by stddev_pop() on columns of table "Application" */
+export type Application_stddev_pop_order_by = {
+  amount?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by stddev_samp() on columns of table "Application" */
+export type Application_stddev_samp_order_by = {
+  amount?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** Streaming cursor of the table "Application" */
+export type Application_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: Application_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Application_stream_cursor_value_input = {
+  amount?: InputMaybe<Scalars['numeric']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  grant_id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  index?: InputMaybe<Scalars['Int']>;
+  metadata_id?: InputMaybe<Scalars['String']>;
+  receivingAddress?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['Int']>;
+  timestamp?: InputMaybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "Application" */
+export type Application_sum_order_by = {
+  amount?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by var_pop() on columns of table "Application" */
+export type Application_var_pop_order_by = {
+  amount?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by var_samp() on columns of table "Application" */
+export type Application_var_samp_order_by = {
+  amount?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by variance() on columns of table "Application" */
+export type Application_variance_order_by = {
+  amount?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** columns and relationships of "Badge" */
+export type Badge = {
+  amount: Scalars['numeric'];
+  dao: Scalars['String'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  reason_id: Scalars['String'];
+  /** An object relationship */
+  template?: Maybe<BadgeTemplate>;
+  template_id: Scalars['String'];
+  /** An object relationship */
+  wearer?: Maybe<BadgeHolder>;
+  wearer_id: Scalars['String'];
+};
+
+/** columns and relationships of "BadgeHolder" */
+export type BadgeHolder = {
+  address: Scalars['String'];
+  badgeBalance: Scalars['numeric'];
+  /** An array relationship */
+  badges: Array<Badge>;
+  dao: Scalars['String'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  /** An object relationship */
+  shaman?: Maybe<ScaffoldShaman>;
+  shaman_id: Scalars['String'];
+};
+
+
+/** columns and relationships of "BadgeHolder" */
+export type BadgeHolderbadgesArgs = {
+  distinct_on?: InputMaybe<Array<Badge_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Badge_order_by>>;
+  where?: InputMaybe<Badge_bool_exp>;
+};
+
+/** Boolean expression to filter rows from the table "BadgeHolder". All fields are combined with a logical 'AND'. */
+export type BadgeHolder_bool_exp = {
+  _and?: InputMaybe<Array<BadgeHolder_bool_exp>>;
+  _not?: InputMaybe<BadgeHolder_bool_exp>;
+  _or?: InputMaybe<Array<BadgeHolder_bool_exp>>;
+  address?: InputMaybe<String_comparison_exp>;
+  badgeBalance?: InputMaybe<numeric_comparison_exp>;
+  badges?: InputMaybe<Badge_bool_exp>;
+  dao?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  shaman?: InputMaybe<ScaffoldShaman_bool_exp>;
+  shaman_id?: InputMaybe<String_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "BadgeHolder". */
+export type BadgeHolder_order_by = {
+  address?: InputMaybe<order_by>;
+  badgeBalance?: InputMaybe<order_by>;
+  badges_aggregate?: InputMaybe<Badge_aggregate_order_by>;
+  dao?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  shaman?: InputMaybe<ScaffoldShaman_order_by>;
+  shaman_id?: InputMaybe<order_by>;
+};
+
+/** select columns of table "BadgeHolder" */
+export type BadgeHolder_select_column =
+  /** column name */
+  | 'address'
+  /** column name */
+  | 'badgeBalance'
+  /** column name */
+  | 'dao'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'shaman_id';
+
+/** Streaming cursor of the table "BadgeHolder" */
+export type BadgeHolder_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: BadgeHolder_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type BadgeHolder_stream_cursor_value_input = {
+  address?: InputMaybe<Scalars['String']>;
+  badgeBalance?: InputMaybe<Scalars['numeric']>;
+  dao?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  shaman_id?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "BadgeTemplate" */
+export type BadgeTemplate = {
+  amount: Scalars['numeric'];
+  badgeId: Scalars['numeric'];
+  /** An array relationship */
+  badges: Array<Badge>;
+  dao: Scalars['String'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  exists: Scalars['Boolean'];
+  hasFixedAmount: Scalars['Boolean'];
+  id: Scalars['String'];
+  isSlash: Scalars['Boolean'];
+  isVotingToken: Scalars['Boolean'];
+  metadata_id: Scalars['String'];
+  name: Scalars['String'];
+  /** An object relationship */
+  shaman?: Maybe<ScaffoldShaman>;
+  shaman_id: Scalars['String'];
+};
+
+
+/** columns and relationships of "BadgeTemplate" */
+export type BadgeTemplatebadgesArgs = {
+  distinct_on?: InputMaybe<Array<Badge_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Badge_order_by>>;
+  where?: InputMaybe<Badge_bool_exp>;
+};
+
+/** order by aggregate values of table "BadgeTemplate" */
+export type BadgeTemplate_aggregate_order_by = {
+  avg?: InputMaybe<BadgeTemplate_avg_order_by>;
+  count?: InputMaybe<order_by>;
+  max?: InputMaybe<BadgeTemplate_max_order_by>;
+  min?: InputMaybe<BadgeTemplate_min_order_by>;
+  stddev?: InputMaybe<BadgeTemplate_stddev_order_by>;
+  stddev_pop?: InputMaybe<BadgeTemplate_stddev_pop_order_by>;
+  stddev_samp?: InputMaybe<BadgeTemplate_stddev_samp_order_by>;
+  sum?: InputMaybe<BadgeTemplate_sum_order_by>;
+  var_pop?: InputMaybe<BadgeTemplate_var_pop_order_by>;
+  var_samp?: InputMaybe<BadgeTemplate_var_samp_order_by>;
+  variance?: InputMaybe<BadgeTemplate_variance_order_by>;
+};
+
+/** order by avg() on columns of table "BadgeTemplate" */
+export type BadgeTemplate_avg_order_by = {
+  amount?: InputMaybe<order_by>;
+  badgeId?: InputMaybe<order_by>;
+};
+
+/** Boolean expression to filter rows from the table "BadgeTemplate". All fields are combined with a logical 'AND'. */
+export type BadgeTemplate_bool_exp = {
+  _and?: InputMaybe<Array<BadgeTemplate_bool_exp>>;
+  _not?: InputMaybe<BadgeTemplate_bool_exp>;
+  _or?: InputMaybe<Array<BadgeTemplate_bool_exp>>;
+  amount?: InputMaybe<numeric_comparison_exp>;
+  badgeId?: InputMaybe<numeric_comparison_exp>;
+  badges?: InputMaybe<Badge_bool_exp>;
+  dao?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  exists?: InputMaybe<Boolean_comparison_exp>;
+  hasFixedAmount?: InputMaybe<Boolean_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  isSlash?: InputMaybe<Boolean_comparison_exp>;
+  isVotingToken?: InputMaybe<Boolean_comparison_exp>;
+  metadata?: InputMaybe<RawMetadata_bool_exp>;
+  metadata_id?: InputMaybe<String_comparison_exp>;
+  name?: InputMaybe<String_comparison_exp>;
+  shaman?: InputMaybe<ScaffoldShaman_bool_exp>;
+  shaman_id?: InputMaybe<String_comparison_exp>;
+};
+
+/** order by max() on columns of table "BadgeTemplate" */
+export type BadgeTemplate_max_order_by = {
+  amount?: InputMaybe<order_by>;
+  badgeId?: InputMaybe<order_by>;
+  dao?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  metadata_id?: InputMaybe<order_by>;
+  name?: InputMaybe<order_by>;
+  shaman_id?: InputMaybe<order_by>;
+};
+
+/** order by min() on columns of table "BadgeTemplate" */
+export type BadgeTemplate_min_order_by = {
+  amount?: InputMaybe<order_by>;
+  badgeId?: InputMaybe<order_by>;
+  dao?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  metadata_id?: InputMaybe<order_by>;
+  name?: InputMaybe<order_by>;
+  shaman_id?: InputMaybe<order_by>;
+};
+
+/** Ordering options when selecting data from "BadgeTemplate". */
+export type BadgeTemplate_order_by = {
+  amount?: InputMaybe<order_by>;
+  badgeId?: InputMaybe<order_by>;
+  badges_aggregate?: InputMaybe<Badge_aggregate_order_by>;
+  dao?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  exists?: InputMaybe<order_by>;
+  hasFixedAmount?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  isSlash?: InputMaybe<order_by>;
+  isVotingToken?: InputMaybe<order_by>;
+  metadata?: InputMaybe<RawMetadata_order_by>;
+  metadata_id?: InputMaybe<order_by>;
+  name?: InputMaybe<order_by>;
+  shaman?: InputMaybe<ScaffoldShaman_order_by>;
+  shaman_id?: InputMaybe<order_by>;
+};
+
+/** select columns of table "BadgeTemplate" */
+export type BadgeTemplate_select_column =
+  /** column name */
+  | 'amount'
+  /** column name */
+  | 'badgeId'
+  /** column name */
+  | 'dao'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'exists'
+  /** column name */
+  | 'hasFixedAmount'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'isSlash'
+  /** column name */
+  | 'isVotingToken'
+  /** column name */
+  | 'metadata_id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'shaman_id';
+
+/** order by stddev() on columns of table "BadgeTemplate" */
+export type BadgeTemplate_stddev_order_by = {
+  amount?: InputMaybe<order_by>;
+  badgeId?: InputMaybe<order_by>;
+};
+
+/** order by stddev_pop() on columns of table "BadgeTemplate" */
+export type BadgeTemplate_stddev_pop_order_by = {
+  amount?: InputMaybe<order_by>;
+  badgeId?: InputMaybe<order_by>;
+};
+
+/** order by stddev_samp() on columns of table "BadgeTemplate" */
+export type BadgeTemplate_stddev_samp_order_by = {
+  amount?: InputMaybe<order_by>;
+  badgeId?: InputMaybe<order_by>;
+};
+
+/** Streaming cursor of the table "BadgeTemplate" */
+export type BadgeTemplate_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: BadgeTemplate_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type BadgeTemplate_stream_cursor_value_input = {
+  amount?: InputMaybe<Scalars['numeric']>;
+  badgeId?: InputMaybe<Scalars['numeric']>;
+  dao?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+  hasFixedAmount?: InputMaybe<Scalars['Boolean']>;
+  id?: InputMaybe<Scalars['String']>;
+  isSlash?: InputMaybe<Scalars['Boolean']>;
+  isVotingToken?: InputMaybe<Scalars['Boolean']>;
+  metadata_id?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  shaman_id?: InputMaybe<Scalars['String']>;
+};
+
+/** order by sum() on columns of table "BadgeTemplate" */
+export type BadgeTemplate_sum_order_by = {
+  amount?: InputMaybe<order_by>;
+  badgeId?: InputMaybe<order_by>;
+};
+
+/** order by var_pop() on columns of table "BadgeTemplate" */
+export type BadgeTemplate_var_pop_order_by = {
+  amount?: InputMaybe<order_by>;
+  badgeId?: InputMaybe<order_by>;
+};
+
+/** order by var_samp() on columns of table "BadgeTemplate" */
+export type BadgeTemplate_var_samp_order_by = {
+  amount?: InputMaybe<order_by>;
+  badgeId?: InputMaybe<order_by>;
+};
+
+/** order by variance() on columns of table "BadgeTemplate" */
+export type BadgeTemplate_variance_order_by = {
+  amount?: InputMaybe<order_by>;
+  badgeId?: InputMaybe<order_by>;
+};
+
+/** order by aggregate values of table "Badge" */
+export type Badge_aggregate_order_by = {
+  avg?: InputMaybe<Badge_avg_order_by>;
+  count?: InputMaybe<order_by>;
+  max?: InputMaybe<Badge_max_order_by>;
+  min?: InputMaybe<Badge_min_order_by>;
+  stddev?: InputMaybe<Badge_stddev_order_by>;
+  stddev_pop?: InputMaybe<Badge_stddev_pop_order_by>;
+  stddev_samp?: InputMaybe<Badge_stddev_samp_order_by>;
+  sum?: InputMaybe<Badge_sum_order_by>;
+  var_pop?: InputMaybe<Badge_var_pop_order_by>;
+  var_samp?: InputMaybe<Badge_var_samp_order_by>;
+  variance?: InputMaybe<Badge_variance_order_by>;
+};
+
+/** order by avg() on columns of table "Badge" */
+export type Badge_avg_order_by = {
+  amount?: InputMaybe<order_by>;
+};
+
+/** Boolean expression to filter rows from the table "Badge". All fields are combined with a logical 'AND'. */
+export type Badge_bool_exp = {
+  _and?: InputMaybe<Array<Badge_bool_exp>>;
+  _not?: InputMaybe<Badge_bool_exp>;
+  _or?: InputMaybe<Array<Badge_bool_exp>>;
+  amount?: InputMaybe<numeric_comparison_exp>;
+  dao?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  reason?: InputMaybe<RawMetadata_bool_exp>;
+  reason_id?: InputMaybe<String_comparison_exp>;
+  template?: InputMaybe<BadgeTemplate_bool_exp>;
+  template_id?: InputMaybe<String_comparison_exp>;
+  wearer?: InputMaybe<BadgeHolder_bool_exp>;
+  wearer_id?: InputMaybe<String_comparison_exp>;
+};
+
+/** order by max() on columns of table "Badge" */
+export type Badge_max_order_by = {
+  amount?: InputMaybe<order_by>;
+  dao?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  reason_id?: InputMaybe<order_by>;
+  template_id?: InputMaybe<order_by>;
+  wearer_id?: InputMaybe<order_by>;
+};
+
+/** order by min() on columns of table "Badge" */
+export type Badge_min_order_by = {
+  amount?: InputMaybe<order_by>;
+  dao?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  reason_id?: InputMaybe<order_by>;
+  template_id?: InputMaybe<order_by>;
+  wearer_id?: InputMaybe<order_by>;
+};
+
+/** Ordering options when selecting data from "Badge". */
+export type Badge_order_by = {
+  amount?: InputMaybe<order_by>;
+  dao?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  reason?: InputMaybe<RawMetadata_order_by>;
+  reason_id?: InputMaybe<order_by>;
+  template?: InputMaybe<BadgeTemplate_order_by>;
+  template_id?: InputMaybe<order_by>;
+  wearer?: InputMaybe<BadgeHolder_order_by>;
+  wearer_id?: InputMaybe<order_by>;
+};
+
+/** select columns of table "Badge" */
+export type Badge_select_column =
+  /** column name */
+  | 'amount'
+  /** column name */
+  | 'dao'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'reason_id'
+  /** column name */
+  | 'template_id'
+  /** column name */
+  | 'wearer_id';
+
+/** order by stddev() on columns of table "Badge" */
+export type Badge_stddev_order_by = {
+  amount?: InputMaybe<order_by>;
+};
+
+/** order by stddev_pop() on columns of table "Badge" */
+export type Badge_stddev_pop_order_by = {
+  amount?: InputMaybe<order_by>;
+};
+
+/** order by stddev_samp() on columns of table "Badge" */
+export type Badge_stddev_samp_order_by = {
+  amount?: InputMaybe<order_by>;
+};
+
+/** Streaming cursor of the table "Badge" */
+export type Badge_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: Badge_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Badge_stream_cursor_value_input = {
+  amount?: InputMaybe<Scalars['numeric']>;
+  dao?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  reason_id?: InputMaybe<Scalars['String']>;
+  template_id?: InputMaybe<Scalars['String']>;
+  wearer_id?: InputMaybe<Scalars['String']>;
+};
+
+/** order by sum() on columns of table "Badge" */
+export type Badge_sum_order_by = {
+  amount?: InputMaybe<order_by>;
+};
+
+/** order by var_pop() on columns of table "Badge" */
+export type Badge_var_pop_order_by = {
+  amount?: InputMaybe<order_by>;
+};
+
+/** order by var_samp() on columns of table "Badge" */
+export type Badge_var_samp_order_by = {
+  amount?: InputMaybe<order_by>;
+};
+
+/** order by variance() on columns of table "Badge" */
+export type Badge_variance_order_by = {
+  amount?: InputMaybe<order_by>;
 };
 
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
@@ -286,6 +930,196 @@ export type Contest_stream_cursor_value_input = {
   isRetractable?: InputMaybe<Scalars['Boolean']>;
   pointsModule_id?: InputMaybe<Scalars['String']>;
   votesModule_id?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "DAOToken" */
+export type DAOToken = {
+  address: Scalars['String'];
+  dao: Scalars['String'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  /** An object relationship */
+  shaman?: Maybe<ScaffoldShaman>;
+  shaman_id: Scalars['String'];
+  symbol: Scalars['String'];
+};
+
+/** Boolean expression to filter rows from the table "DAOToken". All fields are combined with a logical 'AND'. */
+export type DAOToken_bool_exp = {
+  _and?: InputMaybe<Array<DAOToken_bool_exp>>;
+  _not?: InputMaybe<DAOToken_bool_exp>;
+  _or?: InputMaybe<Array<DAOToken_bool_exp>>;
+  address?: InputMaybe<String_comparison_exp>;
+  dao?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  shaman?: InputMaybe<ScaffoldShaman_bool_exp>;
+  shaman_id?: InputMaybe<String_comparison_exp>;
+  symbol?: InputMaybe<String_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "DAOToken". */
+export type DAOToken_order_by = {
+  address?: InputMaybe<order_by>;
+  dao?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  shaman?: InputMaybe<ScaffoldShaman_order_by>;
+  shaman_id?: InputMaybe<order_by>;
+  symbol?: InputMaybe<order_by>;
+};
+
+/** select columns of table "DAOToken" */
+export type DAOToken_select_column =
+  /** column name */
+  | 'address'
+  /** column name */
+  | 'dao'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'shaman_id'
+  /** column name */
+  | 'symbol';
+
+/** Streaming cursor of the table "DAOToken" */
+export type DAOToken_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: DAOToken_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type DAOToken_stream_cursor_value_input = {
+  address?: InputMaybe<Scalars['String']>;
+  dao?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  shaman_id?: InputMaybe<Scalars['String']>;
+  symbol?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "DualTokenPointsParams" */
+export type DualTokenPointsParams = {
+  contextTokenAddress: Scalars['String'];
+  daoTokenAddress: Scalars['String'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  votingCheckpoint: Scalars['numeric'];
+};
+
+/** Boolean expression to filter rows from the table "DualTokenPointsParams". All fields are combined with a logical 'AND'. */
+export type DualTokenPointsParams_bool_exp = {
+  _and?: InputMaybe<Array<DualTokenPointsParams_bool_exp>>;
+  _not?: InputMaybe<DualTokenPointsParams_bool_exp>;
+  _or?: InputMaybe<Array<DualTokenPointsParams_bool_exp>>;
+  contextTokenAddress?: InputMaybe<String_comparison_exp>;
+  daoTokenAddress?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  votingCheckpoint?: InputMaybe<numeric_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "DualTokenPointsParams". */
+export type DualTokenPointsParams_order_by = {
+  contextTokenAddress?: InputMaybe<order_by>;
+  daoTokenAddress?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  votingCheckpoint?: InputMaybe<order_by>;
+};
+
+/** select columns of table "DualTokenPointsParams" */
+export type DualTokenPointsParams_select_column =
+  /** column name */
+  | 'contextTokenAddress'
+  /** column name */
+  | 'daoTokenAddress'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'votingCheckpoint';
+
+/** Streaming cursor of the table "DualTokenPointsParams" */
+export type DualTokenPointsParams_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: DualTokenPointsParams_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type DualTokenPointsParams_stream_cursor_value_input = {
+  contextTokenAddress?: InputMaybe<Scalars['String']>;
+  daoTokenAddress?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  votingCheckpoint?: InputMaybe<Scalars['numeric']>;
+};
+
+/** columns and relationships of "DualTokenTVParams" */
+export type DualTokenTVParams = {
+  contextTokenAddress: Scalars['String'];
+  daoTokenAddress: Scalars['String'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  voteDuration: Scalars['numeric'];
+};
+
+/** Boolean expression to filter rows from the table "DualTokenTVParams". All fields are combined with a logical 'AND'. */
+export type DualTokenTVParams_bool_exp = {
+  _and?: InputMaybe<Array<DualTokenTVParams_bool_exp>>;
+  _not?: InputMaybe<DualTokenTVParams_bool_exp>;
+  _or?: InputMaybe<Array<DualTokenTVParams_bool_exp>>;
+  contextTokenAddress?: InputMaybe<String_comparison_exp>;
+  daoTokenAddress?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  voteDuration?: InputMaybe<numeric_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "DualTokenTVParams". */
+export type DualTokenTVParams_order_by = {
+  contextTokenAddress?: InputMaybe<order_by>;
+  daoTokenAddress?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  voteDuration?: InputMaybe<order_by>;
+};
+
+/** select columns of table "DualTokenTVParams" */
+export type DualTokenTVParams_select_column =
+  /** column name */
+  | 'contextTokenAddress'
+  /** column name */
+  | 'daoTokenAddress'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'voteDuration';
+
+/** Streaming cursor of the table "DualTokenTVParams" */
+export type DualTokenTVParams_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: DualTokenTVParams_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type DualTokenTVParams_stream_cursor_value_input = {
+  contextTokenAddress?: InputMaybe<Scalars['String']>;
+  daoTokenAddress?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  voteDuration?: InputMaybe<Scalars['numeric']>;
 };
 
 /** columns and relationships of "ERCPointParams" */
@@ -653,6 +1487,310 @@ export type FactoryEventsSummary_stream_cursor_value_input = {
   moduleTemplateCount?: InputMaybe<Scalars['numeric']>;
 };
 
+/** columns and relationships of "FeedCard" */
+export type FeedCard = {
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  domain_id?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  embed?: Maybe<FeedItemEmbed>;
+  embed_id?: Maybe<Scalars['String']>;
+  externalLink?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  internalLink?: Maybe<Scalars['String']>;
+  message?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  object?: Maybe<FeedItemEntity>;
+  object_id?: Maybe<Scalars['String']>;
+  richTextContent_id?: Maybe<Scalars['String']>;
+  sender?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  subject?: Maybe<FeedItemEntity>;
+  subjectMetadataPointer: Scalars['String'];
+  subject_id: Scalars['String'];
+  tag: Scalars['String'];
+  timestamp: Scalars['Int'];
+};
+
+/** Boolean expression to filter rows from the table "FeedCard". All fields are combined with a logical 'AND'. */
+export type FeedCard_bool_exp = {
+  _and?: InputMaybe<Array<FeedCard_bool_exp>>;
+  _not?: InputMaybe<FeedCard_bool_exp>;
+  _or?: InputMaybe<Array<FeedCard_bool_exp>>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  domain?: InputMaybe<GameManager_bool_exp>;
+  domain_id?: InputMaybe<String_comparison_exp>;
+  embed?: InputMaybe<FeedItemEmbed_bool_exp>;
+  embed_id?: InputMaybe<String_comparison_exp>;
+  externalLink?: InputMaybe<String_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  internalLink?: InputMaybe<String_comparison_exp>;
+  message?: InputMaybe<String_comparison_exp>;
+  object?: InputMaybe<FeedItemEntity_bool_exp>;
+  object_id?: InputMaybe<String_comparison_exp>;
+  richTextContent?: InputMaybe<RawMetadata_bool_exp>;
+  richTextContent_id?: InputMaybe<String_comparison_exp>;
+  sender?: InputMaybe<String_comparison_exp>;
+  subject?: InputMaybe<FeedItemEntity_bool_exp>;
+  subjectMetadataPointer?: InputMaybe<String_comparison_exp>;
+  subject_id?: InputMaybe<String_comparison_exp>;
+  tag?: InputMaybe<String_comparison_exp>;
+  timestamp?: InputMaybe<Int_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "FeedCard". */
+export type FeedCard_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  domain?: InputMaybe<GameManager_order_by>;
+  domain_id?: InputMaybe<order_by>;
+  embed?: InputMaybe<FeedItemEmbed_order_by>;
+  embed_id?: InputMaybe<order_by>;
+  externalLink?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  internalLink?: InputMaybe<order_by>;
+  message?: InputMaybe<order_by>;
+  object?: InputMaybe<FeedItemEntity_order_by>;
+  object_id?: InputMaybe<order_by>;
+  richTextContent?: InputMaybe<RawMetadata_order_by>;
+  richTextContent_id?: InputMaybe<order_by>;
+  sender?: InputMaybe<order_by>;
+  subject?: InputMaybe<FeedItemEntity_order_by>;
+  subjectMetadataPointer?: InputMaybe<order_by>;
+  subject_id?: InputMaybe<order_by>;
+  tag?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** select columns of table "FeedCard" */
+export type FeedCard_select_column =
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'domain_id'
+  /** column name */
+  | 'embed_id'
+  /** column name */
+  | 'externalLink'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'internalLink'
+  /** column name */
+  | 'message'
+  /** column name */
+  | 'object_id'
+  /** column name */
+  | 'richTextContent_id'
+  /** column name */
+  | 'sender'
+  /** column name */
+  | 'subjectMetadataPointer'
+  /** column name */
+  | 'subject_id'
+  /** column name */
+  | 'tag'
+  /** column name */
+  | 'timestamp';
+
+/** Streaming cursor of the table "FeedCard" */
+export type FeedCard_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: FeedCard_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type FeedCard_stream_cursor_value_input = {
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  domain_id?: InputMaybe<Scalars['String']>;
+  embed_id?: InputMaybe<Scalars['String']>;
+  externalLink?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  internalLink?: InputMaybe<Scalars['String']>;
+  message?: InputMaybe<Scalars['String']>;
+  object_id?: InputMaybe<Scalars['String']>;
+  richTextContent_id?: InputMaybe<Scalars['String']>;
+  sender?: InputMaybe<Scalars['String']>;
+  subjectMetadataPointer?: InputMaybe<Scalars['String']>;
+  subject_id?: InputMaybe<Scalars['String']>;
+  tag?: InputMaybe<Scalars['String']>;
+  timestamp?: InputMaybe<Scalars['Int']>;
+};
+
+/** columns and relationships of "FeedItemEmbed" */
+export type FeedItemEmbed = {
+  content?: Maybe<Scalars['String']>;
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  key?: Maybe<Scalars['String']>;
+  pointer?: Maybe<Scalars['String']>;
+  protocol?: Maybe<Scalars['numeric']>;
+};
+
+/** Boolean expression to filter rows from the table "FeedItemEmbed". All fields are combined with a logical 'AND'. */
+export type FeedItemEmbed_bool_exp = {
+  _and?: InputMaybe<Array<FeedItemEmbed_bool_exp>>;
+  _not?: InputMaybe<FeedItemEmbed_bool_exp>;
+  _or?: InputMaybe<Array<FeedItemEmbed_bool_exp>>;
+  content?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  key?: InputMaybe<String_comparison_exp>;
+  pointer?: InputMaybe<String_comparison_exp>;
+  protocol?: InputMaybe<numeric_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "FeedItemEmbed". */
+export type FeedItemEmbed_order_by = {
+  content?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  key?: InputMaybe<order_by>;
+  pointer?: InputMaybe<order_by>;
+  protocol?: InputMaybe<order_by>;
+};
+
+/** select columns of table "FeedItemEmbed" */
+export type FeedItemEmbed_select_column =
+  /** column name */
+  | 'content'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'key'
+  /** column name */
+  | 'pointer'
+  /** column name */
+  | 'protocol';
+
+/** Streaming cursor of the table "FeedItemEmbed" */
+export type FeedItemEmbed_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: FeedItemEmbed_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type FeedItemEmbed_stream_cursor_value_input = {
+  content?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  key?: InputMaybe<Scalars['String']>;
+  pointer?: InputMaybe<Scalars['String']>;
+  protocol?: InputMaybe<Scalars['numeric']>;
+};
+
+/** columns and relationships of "FeedItemEntity" */
+export type FeedItemEntity = {
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  name: Scalars['String'];
+  playerType: Scalars['Int'];
+};
+
+/** Boolean expression to filter rows from the table "FeedItemEntity". All fields are combined with a logical 'AND'. */
+export type FeedItemEntity_bool_exp = {
+  _and?: InputMaybe<Array<FeedItemEntity_bool_exp>>;
+  _not?: InputMaybe<FeedItemEntity_bool_exp>;
+  _or?: InputMaybe<Array<FeedItemEntity_bool_exp>>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  name?: InputMaybe<String_comparison_exp>;
+  playerType?: InputMaybe<Int_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "FeedItemEntity". */
+export type FeedItemEntity_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  name?: InputMaybe<order_by>;
+  playerType?: InputMaybe<order_by>;
+};
+
+/** select columns of table "FeedItemEntity" */
+export type FeedItemEntity_select_column =
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'playerType';
+
+/** Streaming cursor of the table "FeedItemEntity" */
+export type FeedItemEntity_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: FeedItemEntity_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type FeedItemEntity_stream_cursor_value_input = {
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  playerType?: InputMaybe<Scalars['Int']>;
+};
+
+/** columns and relationships of "GMInitParams" */
+export type GMInitParams = {
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  gameFacilitatorId?: Maybe<Scalars['numeric']>;
+  gmRootAccount?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+};
+
+/** Boolean expression to filter rows from the table "GMInitParams". All fields are combined with a logical 'AND'. */
+export type GMInitParams_bool_exp = {
+  _and?: InputMaybe<Array<GMInitParams_bool_exp>>;
+  _not?: InputMaybe<GMInitParams_bool_exp>;
+  _or?: InputMaybe<Array<GMInitParams_bool_exp>>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  gameFacilitatorId?: InputMaybe<numeric_comparison_exp>;
+  gmRootAccount?: InputMaybe<String_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "GMInitParams". */
+export type GMInitParams_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  gameFacilitatorId?: InputMaybe<order_by>;
+  gmRootAccount?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+};
+
+/** select columns of table "GMInitParams" */
+export type GMInitParams_select_column =
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'gameFacilitatorId'
+  /** column name */
+  | 'gmRootAccount'
+  /** column name */
+  | 'id';
+
+/** Streaming cursor of the table "GMInitParams" */
+export type GMInitParams_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: GMInitParams_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type GMInitParams_stream_cursor_value_input = {
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  gameFacilitatorId?: InputMaybe<Scalars['numeric']>;
+  gmRootAccount?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+};
+
 /** columns and relationships of "GSVoter" */
 export type GSVoter = {
   address: Scalars['String'];
@@ -715,6 +1853,1044 @@ export type GSVoter_stream_cursor_value_input = {
   id?: InputMaybe<Scalars['String']>;
 };
 
+/** columns and relationships of "GameManagerFactory" */
+export type GameManagerFactory = {
+  chainId: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  rootAccount: Scalars['String'];
+};
+
+/** Boolean expression to filter rows from the table "GameManagerFactory". All fields are combined with a logical 'AND'. */
+export type GameManagerFactory_bool_exp = {
+  _and?: InputMaybe<Array<GameManagerFactory_bool_exp>>;
+  _not?: InputMaybe<GameManagerFactory_bool_exp>;
+  _or?: InputMaybe<Array<GameManagerFactory_bool_exp>>;
+  chainId?: InputMaybe<Int_comparison_exp>;
+  createdAt?: InputMaybe<Int_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  rootAccount?: InputMaybe<String_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "GameManagerFactory". */
+export type GameManagerFactory_order_by = {
+  chainId?: InputMaybe<order_by>;
+  createdAt?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  rootAccount?: InputMaybe<order_by>;
+};
+
+/** select columns of table "GameManagerFactory" */
+export type GameManagerFactory_select_column =
+  /** column name */
+  | 'chainId'
+  /** column name */
+  | 'createdAt'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'rootAccount';
+
+/** Streaming cursor of the table "GameManagerFactory" */
+export type GameManagerFactory_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: GameManagerFactory_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type GameManagerFactory_stream_cursor_value_input = {
+  chainId?: InputMaybe<Scalars['Int']>;
+  createdAt?: InputMaybe<Scalars['Int']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  rootAccount?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "GameManagerTemplate" */
+export type GameManagerTemplate = {
+  address: Scalars['String'];
+  chainId: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  name: Scalars['String'];
+};
+
+/** Boolean expression to filter rows from the table "GameManagerTemplate". All fields are combined with a logical 'AND'. */
+export type GameManagerTemplate_bool_exp = {
+  _and?: InputMaybe<Array<GameManagerTemplate_bool_exp>>;
+  _not?: InputMaybe<GameManagerTemplate_bool_exp>;
+  _or?: InputMaybe<Array<GameManagerTemplate_bool_exp>>;
+  address?: InputMaybe<String_comparison_exp>;
+  chainId?: InputMaybe<Int_comparison_exp>;
+  createdAt?: InputMaybe<Int_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  name?: InputMaybe<String_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "GameManagerTemplate". */
+export type GameManagerTemplate_order_by = {
+  address?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  createdAt?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  name?: InputMaybe<order_by>;
+};
+
+/** select columns of table "GameManagerTemplate" */
+export type GameManagerTemplate_select_column =
+  /** column name */
+  | 'address'
+  /** column name */
+  | 'chainId'
+  /** column name */
+  | 'createdAt'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'name';
+
+/** Streaming cursor of the table "GameManagerTemplate" */
+export type GameManagerTemplate_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: GameManagerTemplate_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type GameManagerTemplate_stream_cursor_value_input = {
+  address?: InputMaybe<Scalars['String']>;
+  chainId?: InputMaybe<Scalars['Int']>;
+  createdAt?: InputMaybe<Scalars['Int']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+/** Boolean expression to filter rows from the table "GameManager". All fields are combined with a logical 'AND'. */
+export type GameManager_bool_exp = {
+  _and?: InputMaybe<Array<GameManager_bool_exp>>;
+  _not?: InputMaybe<GameManager_bool_exp>;
+  _or?: InputMaybe<Array<GameManager_bool_exp>>;
+  chainId?: InputMaybe<Int_comparison_exp>;
+  createdAt?: InputMaybe<Int_comparison_exp>;
+  currentRound?: InputMaybe<GameRound_bool_exp>;
+  currentRoundNumber?: InputMaybe<numeric_comparison_exp>;
+  currentRound_id?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  gameFacilitatorId?: InputMaybe<numeric_comparison_exp>;
+  gameRounds?: InputMaybe<GameRound_bool_exp>;
+  gmRootAccount?: InputMaybe<String_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  initData?: InputMaybe<String_comparison_exp>;
+  poolFunds?: InputMaybe<numeric_comparison_exp>;
+  poolId?: InputMaybe<numeric_comparison_exp>;
+  poolMetadataPointer?: InputMaybe<String_comparison_exp>;
+  poolMetadataProtocol?: InputMaybe<numeric_comparison_exp>;
+  profileId?: InputMaybe<String_comparison_exp>;
+  profileMetadataPointer?: InputMaybe<String_comparison_exp>;
+  profileMetadataProtocol?: InputMaybe<numeric_comparison_exp>;
+  template?: InputMaybe<GameManagerTemplate_bool_exp>;
+  template_id?: InputMaybe<String_comparison_exp>;
+  tokenAddress?: InputMaybe<String_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "GameManager". */
+export type GameManager_order_by = {
+  chainId?: InputMaybe<order_by>;
+  createdAt?: InputMaybe<order_by>;
+  currentRound?: InputMaybe<GameRound_order_by>;
+  currentRoundNumber?: InputMaybe<order_by>;
+  currentRound_id?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  gameFacilitatorId?: InputMaybe<order_by>;
+  gameRounds_aggregate?: InputMaybe<GameRound_aggregate_order_by>;
+  gmRootAccount?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  initData?: InputMaybe<order_by>;
+  poolFunds?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  poolMetadataPointer?: InputMaybe<order_by>;
+  poolMetadataProtocol?: InputMaybe<order_by>;
+  profileId?: InputMaybe<order_by>;
+  profileMetadataPointer?: InputMaybe<order_by>;
+  profileMetadataProtocol?: InputMaybe<order_by>;
+  template?: InputMaybe<GameManagerTemplate_order_by>;
+  template_id?: InputMaybe<order_by>;
+  tokenAddress?: InputMaybe<order_by>;
+};
+
+/** select columns of table "GameManager" */
+export type GameManager_select_column =
+  /** column name */
+  | 'chainId'
+  /** column name */
+  | 'createdAt'
+  /** column name */
+  | 'currentRoundNumber'
+  /** column name */
+  | 'currentRound_id'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'gameFacilitatorId'
+  /** column name */
+  | 'gmRootAccount'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'initData'
+  /** column name */
+  | 'poolFunds'
+  /** column name */
+  | 'poolId'
+  /** column name */
+  | 'poolMetadataPointer'
+  /** column name */
+  | 'poolMetadataProtocol'
+  /** column name */
+  | 'profileId'
+  /** column name */
+  | 'profileMetadataPointer'
+  /** column name */
+  | 'profileMetadataProtocol'
+  /** column name */
+  | 'template_id'
+  /** column name */
+  | 'tokenAddress';
+
+/** Streaming cursor of the table "GameManager" */
+export type GameManager_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: GameManager_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type GameManager_stream_cursor_value_input = {
+  chainId?: InputMaybe<Scalars['Int']>;
+  createdAt?: InputMaybe<Scalars['Int']>;
+  currentRoundNumber?: InputMaybe<Scalars['numeric']>;
+  currentRound_id?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  gameFacilitatorId?: InputMaybe<Scalars['numeric']>;
+  gmRootAccount?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  initData?: InputMaybe<Scalars['String']>;
+  poolFunds?: InputMaybe<Scalars['numeric']>;
+  poolId?: InputMaybe<Scalars['numeric']>;
+  poolMetadataPointer?: InputMaybe<Scalars['String']>;
+  poolMetadataProtocol?: InputMaybe<Scalars['numeric']>;
+  profileId?: InputMaybe<Scalars['String']>;
+  profileMetadataPointer?: InputMaybe<Scalars['String']>;
+  profileMetadataProtocol?: InputMaybe<Scalars['numeric']>;
+  template_id?: InputMaybe<Scalars['String']>;
+  tokenAddress?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "GameRound" */
+export type GameRound = {
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  endTime: Scalars['numeric'];
+  gameManager_id: Scalars['String'];
+  gameStatus: Scalars['Int'];
+  id: Scalars['String'];
+  isGameActive: Scalars['Boolean'];
+  realEndTime?: Maybe<Scalars['Int']>;
+  realStartTime?: Maybe<Scalars['Int']>;
+  startTime: Scalars['numeric'];
+  totalAllocatedAmount: Scalars['numeric'];
+  totalDistributedAmount: Scalars['numeric'];
+  totalRoundAmount: Scalars['numeric'];
+};
+
+/** order by aggregate values of table "GameRound" */
+export type GameRound_aggregate_order_by = {
+  avg?: InputMaybe<GameRound_avg_order_by>;
+  count?: InputMaybe<order_by>;
+  max?: InputMaybe<GameRound_max_order_by>;
+  min?: InputMaybe<GameRound_min_order_by>;
+  stddev?: InputMaybe<GameRound_stddev_order_by>;
+  stddev_pop?: InputMaybe<GameRound_stddev_pop_order_by>;
+  stddev_samp?: InputMaybe<GameRound_stddev_samp_order_by>;
+  sum?: InputMaybe<GameRound_sum_order_by>;
+  var_pop?: InputMaybe<GameRound_var_pop_order_by>;
+  var_samp?: InputMaybe<GameRound_var_samp_order_by>;
+  variance?: InputMaybe<GameRound_variance_order_by>;
+};
+
+/** order by avg() on columns of table "GameRound" */
+export type GameRound_avg_order_by = {
+  endTime?: InputMaybe<order_by>;
+  gameStatus?: InputMaybe<order_by>;
+  realEndTime?: InputMaybe<order_by>;
+  realStartTime?: InputMaybe<order_by>;
+  startTime?: InputMaybe<order_by>;
+  totalAllocatedAmount?: InputMaybe<order_by>;
+  totalDistributedAmount?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** Boolean expression to filter rows from the table "GameRound". All fields are combined with a logical 'AND'. */
+export type GameRound_bool_exp = {
+  _and?: InputMaybe<Array<GameRound_bool_exp>>;
+  _not?: InputMaybe<GameRound_bool_exp>;
+  _or?: InputMaybe<Array<GameRound_bool_exp>>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  endTime?: InputMaybe<numeric_comparison_exp>;
+  gameManager?: InputMaybe<GameManager_bool_exp>;
+  gameManager_id?: InputMaybe<String_comparison_exp>;
+  gameStatus?: InputMaybe<Int_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  isGameActive?: InputMaybe<Boolean_comparison_exp>;
+  realEndTime?: InputMaybe<Int_comparison_exp>;
+  realStartTime?: InputMaybe<Int_comparison_exp>;
+  ships?: InputMaybe<GrantShip_bool_exp>;
+  startTime?: InputMaybe<numeric_comparison_exp>;
+  totalAllocatedAmount?: InputMaybe<numeric_comparison_exp>;
+  totalDistributedAmount?: InputMaybe<numeric_comparison_exp>;
+  totalRoundAmount?: InputMaybe<numeric_comparison_exp>;
+};
+
+/** order by max() on columns of table "GameRound" */
+export type GameRound_max_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  endTime?: InputMaybe<order_by>;
+  gameManager_id?: InputMaybe<order_by>;
+  gameStatus?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  realEndTime?: InputMaybe<order_by>;
+  realStartTime?: InputMaybe<order_by>;
+  startTime?: InputMaybe<order_by>;
+  totalAllocatedAmount?: InputMaybe<order_by>;
+  totalDistributedAmount?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by min() on columns of table "GameRound" */
+export type GameRound_min_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  endTime?: InputMaybe<order_by>;
+  gameManager_id?: InputMaybe<order_by>;
+  gameStatus?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  realEndTime?: InputMaybe<order_by>;
+  realStartTime?: InputMaybe<order_by>;
+  startTime?: InputMaybe<order_by>;
+  totalAllocatedAmount?: InputMaybe<order_by>;
+  totalDistributedAmount?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** Ordering options when selecting data from "GameRound". */
+export type GameRound_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  endTime?: InputMaybe<order_by>;
+  gameManager?: InputMaybe<GameManager_order_by>;
+  gameManager_id?: InputMaybe<order_by>;
+  gameStatus?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  isGameActive?: InputMaybe<order_by>;
+  realEndTime?: InputMaybe<order_by>;
+  realStartTime?: InputMaybe<order_by>;
+  ships_aggregate?: InputMaybe<GrantShip_aggregate_order_by>;
+  startTime?: InputMaybe<order_by>;
+  totalAllocatedAmount?: InputMaybe<order_by>;
+  totalDistributedAmount?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** select columns of table "GameRound" */
+export type GameRound_select_column =
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'endTime'
+  /** column name */
+  | 'gameManager_id'
+  /** column name */
+  | 'gameStatus'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'isGameActive'
+  /** column name */
+  | 'realEndTime'
+  /** column name */
+  | 'realStartTime'
+  /** column name */
+  | 'startTime'
+  /** column name */
+  | 'totalAllocatedAmount'
+  /** column name */
+  | 'totalDistributedAmount'
+  /** column name */
+  | 'totalRoundAmount';
+
+/** order by stddev() on columns of table "GameRound" */
+export type GameRound_stddev_order_by = {
+  endTime?: InputMaybe<order_by>;
+  gameStatus?: InputMaybe<order_by>;
+  realEndTime?: InputMaybe<order_by>;
+  realStartTime?: InputMaybe<order_by>;
+  startTime?: InputMaybe<order_by>;
+  totalAllocatedAmount?: InputMaybe<order_by>;
+  totalDistributedAmount?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by stddev_pop() on columns of table "GameRound" */
+export type GameRound_stddev_pop_order_by = {
+  endTime?: InputMaybe<order_by>;
+  gameStatus?: InputMaybe<order_by>;
+  realEndTime?: InputMaybe<order_by>;
+  realStartTime?: InputMaybe<order_by>;
+  startTime?: InputMaybe<order_by>;
+  totalAllocatedAmount?: InputMaybe<order_by>;
+  totalDistributedAmount?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by stddev_samp() on columns of table "GameRound" */
+export type GameRound_stddev_samp_order_by = {
+  endTime?: InputMaybe<order_by>;
+  gameStatus?: InputMaybe<order_by>;
+  realEndTime?: InputMaybe<order_by>;
+  realStartTime?: InputMaybe<order_by>;
+  startTime?: InputMaybe<order_by>;
+  totalAllocatedAmount?: InputMaybe<order_by>;
+  totalDistributedAmount?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** Streaming cursor of the table "GameRound" */
+export type GameRound_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: GameRound_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type GameRound_stream_cursor_value_input = {
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  endTime?: InputMaybe<Scalars['numeric']>;
+  gameManager_id?: InputMaybe<Scalars['String']>;
+  gameStatus?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['String']>;
+  isGameActive?: InputMaybe<Scalars['Boolean']>;
+  realEndTime?: InputMaybe<Scalars['Int']>;
+  realStartTime?: InputMaybe<Scalars['Int']>;
+  startTime?: InputMaybe<Scalars['numeric']>;
+  totalAllocatedAmount?: InputMaybe<Scalars['numeric']>;
+  totalDistributedAmount?: InputMaybe<Scalars['numeric']>;
+  totalRoundAmount?: InputMaybe<Scalars['numeric']>;
+};
+
+/** order by sum() on columns of table "GameRound" */
+export type GameRound_sum_order_by = {
+  endTime?: InputMaybe<order_by>;
+  gameStatus?: InputMaybe<order_by>;
+  realEndTime?: InputMaybe<order_by>;
+  realStartTime?: InputMaybe<order_by>;
+  startTime?: InputMaybe<order_by>;
+  totalAllocatedAmount?: InputMaybe<order_by>;
+  totalDistributedAmount?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by var_pop() on columns of table "GameRound" */
+export type GameRound_var_pop_order_by = {
+  endTime?: InputMaybe<order_by>;
+  gameStatus?: InputMaybe<order_by>;
+  realEndTime?: InputMaybe<order_by>;
+  realStartTime?: InputMaybe<order_by>;
+  startTime?: InputMaybe<order_by>;
+  totalAllocatedAmount?: InputMaybe<order_by>;
+  totalDistributedAmount?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by var_samp() on columns of table "GameRound" */
+export type GameRound_var_samp_order_by = {
+  endTime?: InputMaybe<order_by>;
+  gameStatus?: InputMaybe<order_by>;
+  realEndTime?: InputMaybe<order_by>;
+  realStartTime?: InputMaybe<order_by>;
+  startTime?: InputMaybe<order_by>;
+  totalAllocatedAmount?: InputMaybe<order_by>;
+  totalDistributedAmount?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by variance() on columns of table "GameRound" */
+export type GameRound_variance_order_by = {
+  endTime?: InputMaybe<order_by>;
+  gameStatus?: InputMaybe<order_by>;
+  realEndTime?: InputMaybe<order_by>;
+  realStartTime?: InputMaybe<order_by>;
+  startTime?: InputMaybe<order_by>;
+  totalAllocatedAmount?: InputMaybe<order_by>;
+  totalDistributedAmount?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** columns and relationships of "Gate" */
+export type Gate = {
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  gateId: Scalars['Int'];
+  gateType: Scalars['Int'];
+  hatId: Scalars['numeric'];
+  id: Scalars['String'];
+};
+
+/** Boolean expression to filter rows from the table "Gate". All fields are combined with a logical 'AND'. */
+export type Gate_bool_exp = {
+  _and?: InputMaybe<Array<Gate_bool_exp>>;
+  _not?: InputMaybe<Gate_bool_exp>;
+  _or?: InputMaybe<Array<Gate_bool_exp>>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  gateId?: InputMaybe<Int_comparison_exp>;
+  gateType?: InputMaybe<Int_comparison_exp>;
+  hatId?: InputMaybe<numeric_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "Gate". */
+export type Gate_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  gateId?: InputMaybe<order_by>;
+  gateType?: InputMaybe<order_by>;
+  hatId?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+};
+
+/** select columns of table "Gate" */
+export type Gate_select_column =
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'gateId'
+  /** column name */
+  | 'gateType'
+  /** column name */
+  | 'hatId'
+  /** column name */
+  | 'id';
+
+/** Streaming cursor of the table "Gate" */
+export type Gate_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: Gate_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Gate_stream_cursor_value_input = {
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  gateId?: InputMaybe<Scalars['Int']>;
+  gateType?: InputMaybe<Scalars['Int']>;
+  hatId?: InputMaybe<Scalars['numeric']>;
+  id?: InputMaybe<Scalars['String']>;
+};
+
+/** order by aggregate values of table "GrantShip" */
+export type GrantShip_aggregate_order_by = {
+  avg?: InputMaybe<GrantShip_avg_order_by>;
+  count?: InputMaybe<order_by>;
+  max?: InputMaybe<GrantShip_max_order_by>;
+  min?: InputMaybe<GrantShip_min_order_by>;
+  stddev?: InputMaybe<GrantShip_stddev_order_by>;
+  stddev_pop?: InputMaybe<GrantShip_stddev_pop_order_by>;
+  stddev_samp?: InputMaybe<GrantShip_stddev_samp_order_by>;
+  sum?: InputMaybe<GrantShip_sum_order_by>;
+  var_pop?: InputMaybe<GrantShip_var_pop_order_by>;
+  var_samp?: InputMaybe<GrantShip_var_samp_order_by>;
+  variance?: InputMaybe<GrantShip_variance_order_by>;
+};
+
+/** order by avg() on columns of table "GrantShip" */
+export type GrantShip_avg_order_by = {
+  applicationSubmittedTime?: InputMaybe<order_by>;
+  approvedTime?: InputMaybe<order_by>;
+  balance?: InputMaybe<order_by>;
+  beaconLastUpdated?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  rejectedTime?: InputMaybe<order_by>;
+  shipAllocation?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAllocated?: InputMaybe<order_by>;
+  totalDistributed?: InputMaybe<order_by>;
+  totalFundsReceived?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** Boolean expression to filter rows from the table "GrantShip". All fields are combined with a logical 'AND'. */
+export type GrantShip_bool_exp = {
+  _and?: InputMaybe<Array<GrantShip_bool_exp>>;
+  _not?: InputMaybe<GrantShip_bool_exp>;
+  _or?: InputMaybe<Array<GrantShip_bool_exp>>;
+  alloProfileMembers?: InputMaybe<ProfileMemberGroup_bool_exp>;
+  alloProfileMembers_id?: InputMaybe<String_comparison_exp>;
+  anchor?: InputMaybe<String_comparison_exp>;
+  applicationReviewReason?: InputMaybe<RawMetadata_bool_exp>;
+  applicationReviewReason_id?: InputMaybe<String_comparison_exp>;
+  applicationSubmittedTime?: InputMaybe<Int_comparison_exp>;
+  approvedTime?: InputMaybe<Int_comparison_exp>;
+  balance?: InputMaybe<numeric_comparison_exp>;
+  beaconLastUpdated?: InputMaybe<Int_comparison_exp>;
+  beaconMessage?: InputMaybe<RawMetadata_bool_exp>;
+  beaconMessage_id?: InputMaybe<String_comparison_exp>;
+  chainId?: InputMaybe<Int_comparison_exp>;
+  customApplication?: InputMaybe<RawMetadata_bool_exp>;
+  customApplication_id?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  gameManager?: InputMaybe<GameManager_bool_exp>;
+  gameManager_id?: InputMaybe<String_comparison_exp>;
+  gameRound?: InputMaybe<GameRound_bool_exp>;
+  gameRound_id?: InputMaybe<String_comparison_exp>;
+  grants?: InputMaybe<Grant_bool_exp>;
+  hasEditedProfile?: InputMaybe<Boolean_comparison_exp>;
+  hasSubmittedApplication?: InputMaybe<Boolean_comparison_exp>;
+  hatId?: InputMaybe<String_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  isAllocated?: InputMaybe<Boolean_comparison_exp>;
+  isApproved?: InputMaybe<Boolean_comparison_exp>;
+  isAwaitingApproval?: InputMaybe<Boolean_comparison_exp>;
+  isDistributed?: InputMaybe<Boolean_comparison_exp>;
+  isRejected?: InputMaybe<Boolean_comparison_exp>;
+  name?: InputMaybe<String_comparison_exp>;
+  nonce?: InputMaybe<numeric_comparison_exp>;
+  owner?: InputMaybe<String_comparison_exp>;
+  pastNames?: InputMaybe<String_array_comparison_exp>;
+  pastProfileIds?: InputMaybe<String_array_comparison_exp>;
+  poolActive?: InputMaybe<Boolean_comparison_exp>;
+  poolFunded?: InputMaybe<Boolean_comparison_exp>;
+  poolId?: InputMaybe<numeric_comparison_exp>;
+  profileId?: InputMaybe<String_comparison_exp>;
+  profileMetadata?: InputMaybe<RawMetadata_bool_exp>;
+  profileMetadata_id?: InputMaybe<String_comparison_exp>;
+  rejectedTime?: InputMaybe<Int_comparison_exp>;
+  shipAllocation?: InputMaybe<numeric_comparison_exp>;
+  shipApplicationBytesData?: InputMaybe<String_comparison_exp>;
+  shipContractAddress?: InputMaybe<String_comparison_exp>;
+  shipLaunched?: InputMaybe<Boolean_comparison_exp>;
+  status?: InputMaybe<Int_comparison_exp>;
+  totalAllocated?: InputMaybe<numeric_comparison_exp>;
+  totalDistributed?: InputMaybe<numeric_comparison_exp>;
+  totalFundsReceived?: InputMaybe<numeric_comparison_exp>;
+  totalRoundAmount?: InputMaybe<numeric_comparison_exp>;
+};
+
+/** order by max() on columns of table "GrantShip" */
+export type GrantShip_max_order_by = {
+  alloProfileMembers_id?: InputMaybe<order_by>;
+  anchor?: InputMaybe<order_by>;
+  applicationReviewReason_id?: InputMaybe<order_by>;
+  applicationSubmittedTime?: InputMaybe<order_by>;
+  approvedTime?: InputMaybe<order_by>;
+  balance?: InputMaybe<order_by>;
+  beaconLastUpdated?: InputMaybe<order_by>;
+  beaconMessage_id?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  customApplication_id?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  gameManager_id?: InputMaybe<order_by>;
+  gameRound_id?: InputMaybe<order_by>;
+  hatId?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  name?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  owner?: InputMaybe<order_by>;
+  pastNames?: InputMaybe<order_by>;
+  pastProfileIds?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  profileId?: InputMaybe<order_by>;
+  profileMetadata_id?: InputMaybe<order_by>;
+  rejectedTime?: InputMaybe<order_by>;
+  shipAllocation?: InputMaybe<order_by>;
+  shipApplicationBytesData?: InputMaybe<order_by>;
+  shipContractAddress?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAllocated?: InputMaybe<order_by>;
+  totalDistributed?: InputMaybe<order_by>;
+  totalFundsReceived?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by min() on columns of table "GrantShip" */
+export type GrantShip_min_order_by = {
+  alloProfileMembers_id?: InputMaybe<order_by>;
+  anchor?: InputMaybe<order_by>;
+  applicationReviewReason_id?: InputMaybe<order_by>;
+  applicationSubmittedTime?: InputMaybe<order_by>;
+  approvedTime?: InputMaybe<order_by>;
+  balance?: InputMaybe<order_by>;
+  beaconLastUpdated?: InputMaybe<order_by>;
+  beaconMessage_id?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  customApplication_id?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  gameManager_id?: InputMaybe<order_by>;
+  gameRound_id?: InputMaybe<order_by>;
+  hatId?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  name?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  owner?: InputMaybe<order_by>;
+  pastNames?: InputMaybe<order_by>;
+  pastProfileIds?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  profileId?: InputMaybe<order_by>;
+  profileMetadata_id?: InputMaybe<order_by>;
+  rejectedTime?: InputMaybe<order_by>;
+  shipAllocation?: InputMaybe<order_by>;
+  shipApplicationBytesData?: InputMaybe<order_by>;
+  shipContractAddress?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAllocated?: InputMaybe<order_by>;
+  totalDistributed?: InputMaybe<order_by>;
+  totalFundsReceived?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** Ordering options when selecting data from "GrantShip". */
+export type GrantShip_order_by = {
+  alloProfileMembers?: InputMaybe<ProfileMemberGroup_order_by>;
+  alloProfileMembers_id?: InputMaybe<order_by>;
+  anchor?: InputMaybe<order_by>;
+  applicationReviewReason?: InputMaybe<RawMetadata_order_by>;
+  applicationReviewReason_id?: InputMaybe<order_by>;
+  applicationSubmittedTime?: InputMaybe<order_by>;
+  approvedTime?: InputMaybe<order_by>;
+  balance?: InputMaybe<order_by>;
+  beaconLastUpdated?: InputMaybe<order_by>;
+  beaconMessage?: InputMaybe<RawMetadata_order_by>;
+  beaconMessage_id?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  customApplication?: InputMaybe<RawMetadata_order_by>;
+  customApplication_id?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  gameManager?: InputMaybe<GameManager_order_by>;
+  gameManager_id?: InputMaybe<order_by>;
+  gameRound?: InputMaybe<GameRound_order_by>;
+  gameRound_id?: InputMaybe<order_by>;
+  grants_aggregate?: InputMaybe<Grant_aggregate_order_by>;
+  hasEditedProfile?: InputMaybe<order_by>;
+  hasSubmittedApplication?: InputMaybe<order_by>;
+  hatId?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  isAllocated?: InputMaybe<order_by>;
+  isApproved?: InputMaybe<order_by>;
+  isAwaitingApproval?: InputMaybe<order_by>;
+  isDistributed?: InputMaybe<order_by>;
+  isRejected?: InputMaybe<order_by>;
+  name?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  owner?: InputMaybe<order_by>;
+  pastNames?: InputMaybe<order_by>;
+  pastProfileIds?: InputMaybe<order_by>;
+  poolActive?: InputMaybe<order_by>;
+  poolFunded?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  profileId?: InputMaybe<order_by>;
+  profileMetadata?: InputMaybe<RawMetadata_order_by>;
+  profileMetadata_id?: InputMaybe<order_by>;
+  rejectedTime?: InputMaybe<order_by>;
+  shipAllocation?: InputMaybe<order_by>;
+  shipApplicationBytesData?: InputMaybe<order_by>;
+  shipContractAddress?: InputMaybe<order_by>;
+  shipLaunched?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAllocated?: InputMaybe<order_by>;
+  totalDistributed?: InputMaybe<order_by>;
+  totalFundsReceived?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** select columns of table "GrantShip" */
+export type GrantShip_select_column =
+  /** column name */
+  | 'alloProfileMembers_id'
+  /** column name */
+  | 'anchor'
+  /** column name */
+  | 'applicationReviewReason_id'
+  /** column name */
+  | 'applicationSubmittedTime'
+  /** column name */
+  | 'approvedTime'
+  /** column name */
+  | 'balance'
+  /** column name */
+  | 'beaconLastUpdated'
+  /** column name */
+  | 'beaconMessage_id'
+  /** column name */
+  | 'chainId'
+  /** column name */
+  | 'customApplication_id'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'gameManager_id'
+  /** column name */
+  | 'gameRound_id'
+  /** column name */
+  | 'hasEditedProfile'
+  /** column name */
+  | 'hasSubmittedApplication'
+  /** column name */
+  | 'hatId'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'isAllocated'
+  /** column name */
+  | 'isApproved'
+  /** column name */
+  | 'isAwaitingApproval'
+  /** column name */
+  | 'isDistributed'
+  /** column name */
+  | 'isRejected'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'nonce'
+  /** column name */
+  | 'owner'
+  /** column name */
+  | 'pastNames'
+  /** column name */
+  | 'pastProfileIds'
+  /** column name */
+  | 'poolActive'
+  /** column name */
+  | 'poolFunded'
+  /** column name */
+  | 'poolId'
+  /** column name */
+  | 'profileId'
+  /** column name */
+  | 'profileMetadata_id'
+  /** column name */
+  | 'rejectedTime'
+  /** column name */
+  | 'shipAllocation'
+  /** column name */
+  | 'shipApplicationBytesData'
+  /** column name */
+  | 'shipContractAddress'
+  /** column name */
+  | 'shipLaunched'
+  /** column name */
+  | 'status'
+  /** column name */
+  | 'totalAllocated'
+  /** column name */
+  | 'totalDistributed'
+  /** column name */
+  | 'totalFundsReceived'
+  /** column name */
+  | 'totalRoundAmount';
+
+/** order by stddev() on columns of table "GrantShip" */
+export type GrantShip_stddev_order_by = {
+  applicationSubmittedTime?: InputMaybe<order_by>;
+  approvedTime?: InputMaybe<order_by>;
+  balance?: InputMaybe<order_by>;
+  beaconLastUpdated?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  rejectedTime?: InputMaybe<order_by>;
+  shipAllocation?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAllocated?: InputMaybe<order_by>;
+  totalDistributed?: InputMaybe<order_by>;
+  totalFundsReceived?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by stddev_pop() on columns of table "GrantShip" */
+export type GrantShip_stddev_pop_order_by = {
+  applicationSubmittedTime?: InputMaybe<order_by>;
+  approvedTime?: InputMaybe<order_by>;
+  balance?: InputMaybe<order_by>;
+  beaconLastUpdated?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  rejectedTime?: InputMaybe<order_by>;
+  shipAllocation?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAllocated?: InputMaybe<order_by>;
+  totalDistributed?: InputMaybe<order_by>;
+  totalFundsReceived?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by stddev_samp() on columns of table "GrantShip" */
+export type GrantShip_stddev_samp_order_by = {
+  applicationSubmittedTime?: InputMaybe<order_by>;
+  approvedTime?: InputMaybe<order_by>;
+  balance?: InputMaybe<order_by>;
+  beaconLastUpdated?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  rejectedTime?: InputMaybe<order_by>;
+  shipAllocation?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAllocated?: InputMaybe<order_by>;
+  totalDistributed?: InputMaybe<order_by>;
+  totalFundsReceived?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** Streaming cursor of the table "GrantShip" */
+export type GrantShip_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: GrantShip_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type GrantShip_stream_cursor_value_input = {
+  alloProfileMembers_id?: InputMaybe<Scalars['String']>;
+  anchor?: InputMaybe<Scalars['String']>;
+  applicationReviewReason_id?: InputMaybe<Scalars['String']>;
+  applicationSubmittedTime?: InputMaybe<Scalars['Int']>;
+  approvedTime?: InputMaybe<Scalars['Int']>;
+  balance?: InputMaybe<Scalars['numeric']>;
+  beaconLastUpdated?: InputMaybe<Scalars['Int']>;
+  beaconMessage_id?: InputMaybe<Scalars['String']>;
+  chainId?: InputMaybe<Scalars['Int']>;
+  customApplication_id?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  gameManager_id?: InputMaybe<Scalars['String']>;
+  gameRound_id?: InputMaybe<Scalars['String']>;
+  hasEditedProfile?: InputMaybe<Scalars['Boolean']>;
+  hasSubmittedApplication?: InputMaybe<Scalars['Boolean']>;
+  hatId?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  isAllocated?: InputMaybe<Scalars['Boolean']>;
+  isApproved?: InputMaybe<Scalars['Boolean']>;
+  isAwaitingApproval?: InputMaybe<Scalars['Boolean']>;
+  isDistributed?: InputMaybe<Scalars['Boolean']>;
+  isRejected?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
+  nonce?: InputMaybe<Scalars['numeric']>;
+  owner?: InputMaybe<Scalars['String']>;
+  pastNames?: InputMaybe<Array<Scalars['String']>>;
+  pastProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  poolActive?: InputMaybe<Scalars['Boolean']>;
+  poolFunded?: InputMaybe<Scalars['Boolean']>;
+  poolId?: InputMaybe<Scalars['numeric']>;
+  profileId?: InputMaybe<Scalars['String']>;
+  profileMetadata_id?: InputMaybe<Scalars['String']>;
+  rejectedTime?: InputMaybe<Scalars['Int']>;
+  shipAllocation?: InputMaybe<Scalars['numeric']>;
+  shipApplicationBytesData?: InputMaybe<Scalars['String']>;
+  shipContractAddress?: InputMaybe<Scalars['String']>;
+  shipLaunched?: InputMaybe<Scalars['Boolean']>;
+  status?: InputMaybe<Scalars['Int']>;
+  totalAllocated?: InputMaybe<Scalars['numeric']>;
+  totalDistributed?: InputMaybe<Scalars['numeric']>;
+  totalFundsReceived?: InputMaybe<Scalars['numeric']>;
+  totalRoundAmount?: InputMaybe<Scalars['numeric']>;
+};
+
+/** order by sum() on columns of table "GrantShip" */
+export type GrantShip_sum_order_by = {
+  applicationSubmittedTime?: InputMaybe<order_by>;
+  approvedTime?: InputMaybe<order_by>;
+  balance?: InputMaybe<order_by>;
+  beaconLastUpdated?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  rejectedTime?: InputMaybe<order_by>;
+  shipAllocation?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAllocated?: InputMaybe<order_by>;
+  totalDistributed?: InputMaybe<order_by>;
+  totalFundsReceived?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by var_pop() on columns of table "GrantShip" */
+export type GrantShip_var_pop_order_by = {
+  applicationSubmittedTime?: InputMaybe<order_by>;
+  approvedTime?: InputMaybe<order_by>;
+  balance?: InputMaybe<order_by>;
+  beaconLastUpdated?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  rejectedTime?: InputMaybe<order_by>;
+  shipAllocation?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAllocated?: InputMaybe<order_by>;
+  totalDistributed?: InputMaybe<order_by>;
+  totalFundsReceived?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by var_samp() on columns of table "GrantShip" */
+export type GrantShip_var_samp_order_by = {
+  applicationSubmittedTime?: InputMaybe<order_by>;
+  approvedTime?: InputMaybe<order_by>;
+  balance?: InputMaybe<order_by>;
+  beaconLastUpdated?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  rejectedTime?: InputMaybe<order_by>;
+  shipAllocation?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAllocated?: InputMaybe<order_by>;
+  totalDistributed?: InputMaybe<order_by>;
+  totalFundsReceived?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
+/** order by variance() on columns of table "GrantShip" */
+export type GrantShip_variance_order_by = {
+  applicationSubmittedTime?: InputMaybe<order_by>;
+  approvedTime?: InputMaybe<order_by>;
+  balance?: InputMaybe<order_by>;
+  beaconLastUpdated?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  poolId?: InputMaybe<order_by>;
+  rejectedTime?: InputMaybe<order_by>;
+  shipAllocation?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAllocated?: InputMaybe<order_by>;
+  totalDistributed?: InputMaybe<order_by>;
+  totalFundsReceived?: InputMaybe<order_by>;
+  totalRoundAmount?: InputMaybe<order_by>;
+};
+
 /** columns and relationships of "GrantShipsVoting" */
 export type GrantShipsVoting = {
   /** An array relationship */
@@ -727,6 +2903,7 @@ export type GrantShipsVoting = {
   hatId: Scalars['numeric'];
   hatsAddress: Scalars['String'];
   id: Scalars['String'];
+  isDualToken: Scalars['Boolean'];
   isSBTVoting: Scalars['Boolean'];
   isVotingActive: Scalars['Boolean'];
   startTime?: Maybe<Scalars['numeric']>;
@@ -771,6 +2948,7 @@ export type GrantShipsVoting_bool_exp = {
   hatId?: InputMaybe<numeric_comparison_exp>;
   hatsAddress?: InputMaybe<String_comparison_exp>;
   id?: InputMaybe<String_comparison_exp>;
+  isDualToken?: InputMaybe<Boolean_comparison_exp>;
   isSBTVoting?: InputMaybe<Boolean_comparison_exp>;
   isVotingActive?: InputMaybe<Boolean_comparison_exp>;
   startTime?: InputMaybe<numeric_comparison_exp>;
@@ -791,6 +2969,7 @@ export type GrantShipsVoting_order_by = {
   hatId?: InputMaybe<order_by>;
   hatsAddress?: InputMaybe<order_by>;
   id?: InputMaybe<order_by>;
+  isDualToken?: InputMaybe<order_by>;
   isSBTVoting?: InputMaybe<order_by>;
   isVotingActive?: InputMaybe<order_by>;
   startTime?: InputMaybe<order_by>;
@@ -815,6 +2994,8 @@ export type GrantShipsVoting_select_column =
   | 'hatsAddress'
   /** column name */
   | 'id'
+  /** column name */
+  | 'isDualToken'
   /** column name */
   | 'isSBTVoting'
   /** column name */
@@ -846,6 +3027,7 @@ export type GrantShipsVoting_stream_cursor_value_input = {
   hatId?: InputMaybe<Scalars['numeric']>;
   hatsAddress?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
+  isDualToken?: InputMaybe<Scalars['Boolean']>;
   isSBTVoting?: InputMaybe<Scalars['Boolean']>;
   isVotingActive?: InputMaybe<Scalars['Boolean']>;
   startTime?: InputMaybe<Scalars['numeric']>;
@@ -853,6 +3035,260 @@ export type GrantShipsVoting_stream_cursor_value_input = {
   voteDuration?: InputMaybe<Scalars['numeric']>;
   voteTokenAddress?: InputMaybe<Scalars['String']>;
   votingCheckpoint?: InputMaybe<Scalars['numeric']>;
+};
+
+/** order by aggregate values of table "Grant" */
+export type Grant_aggregate_order_by = {
+  avg?: InputMaybe<Grant_avg_order_by>;
+  count?: InputMaybe<order_by>;
+  max?: InputMaybe<Grant_max_order_by>;
+  min?: InputMaybe<Grant_min_order_by>;
+  stddev?: InputMaybe<Grant_stddev_order_by>;
+  stddev_pop?: InputMaybe<Grant_stddev_pop_order_by>;
+  stddev_samp?: InputMaybe<Grant_stddev_samp_order_by>;
+  sum?: InputMaybe<Grant_sum_order_by>;
+  var_pop?: InputMaybe<Grant_var_pop_order_by>;
+  var_samp?: InputMaybe<Grant_var_samp_order_by>;
+  variance?: InputMaybe<Grant_variance_order_by>;
+};
+
+/** order by avg() on columns of table "Grant" */
+export type Grant_avg_order_by = {
+  amount?: InputMaybe<order_by>;
+  amountAllocated?: InputMaybe<order_by>;
+  amountDistributed?: InputMaybe<order_by>;
+  lastUpdated?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** Boolean expression to filter rows from the table "Grant". All fields are combined with a logical 'AND'. */
+export type Grant_bool_exp = {
+  _and?: InputMaybe<Array<Grant_bool_exp>>;
+  _not?: InputMaybe<Grant_bool_exp>;
+  _or?: InputMaybe<Array<Grant_bool_exp>>;
+  allMilestonesApproved?: InputMaybe<Boolean_comparison_exp>;
+  amount?: InputMaybe<numeric_comparison_exp>;
+  amountAllocated?: InputMaybe<numeric_comparison_exp>;
+  amountDistributed?: InputMaybe<numeric_comparison_exp>;
+  applicationApproved?: InputMaybe<Boolean_comparison_exp>;
+  applications?: InputMaybe<Application_bool_exp>;
+  currentApplication?: InputMaybe<Application_bool_exp>;
+  currentApplication_id?: InputMaybe<String_comparison_exp>;
+  currentMilestones?: InputMaybe<MilestoneSet_bool_exp>;
+  currentMilestones_id?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  gameManager?: InputMaybe<GameManager_bool_exp>;
+  gameManager_id?: InputMaybe<String_comparison_exp>;
+  grantCompleted?: InputMaybe<Boolean_comparison_exp>;
+  hasPendingMilestones?: InputMaybe<Boolean_comparison_exp>;
+  hasRejectedMilestones?: InputMaybe<Boolean_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  isAllocated?: InputMaybe<Boolean_comparison_exp>;
+  lastUpdated?: InputMaybe<Int_comparison_exp>;
+  milestoneDrafts?: InputMaybe<MilestoneSet_bool_exp>;
+  project?: InputMaybe<Project_bool_exp>;
+  project_id?: InputMaybe<String_comparison_exp>;
+  requestingEarlyReview?: InputMaybe<Boolean_comparison_exp>;
+  ship?: InputMaybe<GrantShip_bool_exp>;
+  ship_id?: InputMaybe<String_comparison_exp>;
+  status?: InputMaybe<Int_comparison_exp>;
+};
+
+/** order by max() on columns of table "Grant" */
+export type Grant_max_order_by = {
+  amount?: InputMaybe<order_by>;
+  amountAllocated?: InputMaybe<order_by>;
+  amountDistributed?: InputMaybe<order_by>;
+  currentApplication_id?: InputMaybe<order_by>;
+  currentMilestones_id?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  gameManager_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  lastUpdated?: InputMaybe<order_by>;
+  project_id?: InputMaybe<order_by>;
+  ship_id?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by min() on columns of table "Grant" */
+export type Grant_min_order_by = {
+  amount?: InputMaybe<order_by>;
+  amountAllocated?: InputMaybe<order_by>;
+  amountDistributed?: InputMaybe<order_by>;
+  currentApplication_id?: InputMaybe<order_by>;
+  currentMilestones_id?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  gameManager_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  lastUpdated?: InputMaybe<order_by>;
+  project_id?: InputMaybe<order_by>;
+  ship_id?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** Ordering options when selecting data from "Grant". */
+export type Grant_order_by = {
+  allMilestonesApproved?: InputMaybe<order_by>;
+  amount?: InputMaybe<order_by>;
+  amountAllocated?: InputMaybe<order_by>;
+  amountDistributed?: InputMaybe<order_by>;
+  applicationApproved?: InputMaybe<order_by>;
+  applications_aggregate?: InputMaybe<Application_aggregate_order_by>;
+  currentApplication?: InputMaybe<Application_order_by>;
+  currentApplication_id?: InputMaybe<order_by>;
+  currentMilestones?: InputMaybe<MilestoneSet_order_by>;
+  currentMilestones_id?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  gameManager?: InputMaybe<GameManager_order_by>;
+  gameManager_id?: InputMaybe<order_by>;
+  grantCompleted?: InputMaybe<order_by>;
+  hasPendingMilestones?: InputMaybe<order_by>;
+  hasRejectedMilestones?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  isAllocated?: InputMaybe<order_by>;
+  lastUpdated?: InputMaybe<order_by>;
+  milestoneDrafts_aggregate?: InputMaybe<MilestoneSet_aggregate_order_by>;
+  project?: InputMaybe<Project_order_by>;
+  project_id?: InputMaybe<order_by>;
+  requestingEarlyReview?: InputMaybe<order_by>;
+  ship?: InputMaybe<GrantShip_order_by>;
+  ship_id?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** select columns of table "Grant" */
+export type Grant_select_column =
+  /** column name */
+  | 'allMilestonesApproved'
+  /** column name */
+  | 'amount'
+  /** column name */
+  | 'amountAllocated'
+  /** column name */
+  | 'amountDistributed'
+  /** column name */
+  | 'applicationApproved'
+  /** column name */
+  | 'currentApplication_id'
+  /** column name */
+  | 'currentMilestones_id'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'gameManager_id'
+  /** column name */
+  | 'grantCompleted'
+  /** column name */
+  | 'hasPendingMilestones'
+  /** column name */
+  | 'hasRejectedMilestones'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'isAllocated'
+  /** column name */
+  | 'lastUpdated'
+  /** column name */
+  | 'project_id'
+  /** column name */
+  | 'requestingEarlyReview'
+  /** column name */
+  | 'ship_id'
+  /** column name */
+  | 'status';
+
+/** order by stddev() on columns of table "Grant" */
+export type Grant_stddev_order_by = {
+  amount?: InputMaybe<order_by>;
+  amountAllocated?: InputMaybe<order_by>;
+  amountDistributed?: InputMaybe<order_by>;
+  lastUpdated?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by stddev_pop() on columns of table "Grant" */
+export type Grant_stddev_pop_order_by = {
+  amount?: InputMaybe<order_by>;
+  amountAllocated?: InputMaybe<order_by>;
+  amountDistributed?: InputMaybe<order_by>;
+  lastUpdated?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by stddev_samp() on columns of table "Grant" */
+export type Grant_stddev_samp_order_by = {
+  amount?: InputMaybe<order_by>;
+  amountAllocated?: InputMaybe<order_by>;
+  amountDistributed?: InputMaybe<order_by>;
+  lastUpdated?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** Streaming cursor of the table "Grant" */
+export type Grant_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: Grant_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Grant_stream_cursor_value_input = {
+  allMilestonesApproved?: InputMaybe<Scalars['Boolean']>;
+  amount?: InputMaybe<Scalars['numeric']>;
+  amountAllocated?: InputMaybe<Scalars['numeric']>;
+  amountDistributed?: InputMaybe<Scalars['numeric']>;
+  applicationApproved?: InputMaybe<Scalars['Boolean']>;
+  currentApplication_id?: InputMaybe<Scalars['String']>;
+  currentMilestones_id?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  gameManager_id?: InputMaybe<Scalars['String']>;
+  grantCompleted?: InputMaybe<Scalars['Boolean']>;
+  hasPendingMilestones?: InputMaybe<Scalars['Boolean']>;
+  hasRejectedMilestones?: InputMaybe<Scalars['Boolean']>;
+  id?: InputMaybe<Scalars['String']>;
+  isAllocated?: InputMaybe<Scalars['Boolean']>;
+  lastUpdated?: InputMaybe<Scalars['Int']>;
+  project_id?: InputMaybe<Scalars['String']>;
+  requestingEarlyReview?: InputMaybe<Scalars['Boolean']>;
+  ship_id?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "Grant" */
+export type Grant_sum_order_by = {
+  amount?: InputMaybe<order_by>;
+  amountAllocated?: InputMaybe<order_by>;
+  amountDistributed?: InputMaybe<order_by>;
+  lastUpdated?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by var_pop() on columns of table "Grant" */
+export type Grant_var_pop_order_by = {
+  amount?: InputMaybe<order_by>;
+  amountAllocated?: InputMaybe<order_by>;
+  amountDistributed?: InputMaybe<order_by>;
+  lastUpdated?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by var_samp() on columns of table "Grant" */
+export type Grant_var_samp_order_by = {
+  amount?: InputMaybe<order_by>;
+  amountAllocated?: InputMaybe<order_by>;
+  amountDistributed?: InputMaybe<order_by>;
+  lastUpdated?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by variance() on columns of table "Grant" */
+export type Grant_variance_order_by = {
+  amount?: InputMaybe<order_by>;
+  amountAllocated?: InputMaybe<order_by>;
+  amountDistributed?: InputMaybe<order_by>;
+  lastUpdated?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
 };
 
 /** columns and relationships of "HALParams" */
@@ -1052,6 +3488,424 @@ export type LocalLog_stream_cursor_value_input = {
   message?: InputMaybe<Scalars['String']>;
 };
 
+/** columns and relationships of "Milestone" */
+export type Milestone = {
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  grant_id: Scalars['String'];
+  id: Scalars['String'];
+  index: Scalars['Int'];
+  metadata_id: Scalars['String'];
+  /** An object relationship */
+  milestoneSet?: Maybe<MilestoneSet>;
+  milestoneSet_id: Scalars['String'];
+  percentage: Scalars['numeric'];
+  status: Scalars['Int'];
+};
+
+/** columns and relationships of "MilestoneSet" */
+export type MilestoneSet = {
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  grant_id: Scalars['String'];
+  id: Scalars['String'];
+  index: Scalars['Int'];
+  milestoneLength: Scalars['Int'];
+  /** An array relationship */
+  milestones: Array<Milestone>;
+  milestonesCompleted: Scalars['Int'];
+  milestonesPending: Scalars['Int'];
+  milestonesRejected: Scalars['Int'];
+  status: Scalars['Int'];
+  timestamp: Scalars['Int'];
+};
+
+
+/** columns and relationships of "MilestoneSet" */
+export type MilestoneSetmilestonesArgs = {
+  distinct_on?: InputMaybe<Array<Milestone_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Milestone_order_by>>;
+  where?: InputMaybe<Milestone_bool_exp>;
+};
+
+/** order by aggregate values of table "MilestoneSet" */
+export type MilestoneSet_aggregate_order_by = {
+  avg?: InputMaybe<MilestoneSet_avg_order_by>;
+  count?: InputMaybe<order_by>;
+  max?: InputMaybe<MilestoneSet_max_order_by>;
+  min?: InputMaybe<MilestoneSet_min_order_by>;
+  stddev?: InputMaybe<MilestoneSet_stddev_order_by>;
+  stddev_pop?: InputMaybe<MilestoneSet_stddev_pop_order_by>;
+  stddev_samp?: InputMaybe<MilestoneSet_stddev_samp_order_by>;
+  sum?: InputMaybe<MilestoneSet_sum_order_by>;
+  var_pop?: InputMaybe<MilestoneSet_var_pop_order_by>;
+  var_samp?: InputMaybe<MilestoneSet_var_samp_order_by>;
+  variance?: InputMaybe<MilestoneSet_variance_order_by>;
+};
+
+/** order by avg() on columns of table "MilestoneSet" */
+export type MilestoneSet_avg_order_by = {
+  index?: InputMaybe<order_by>;
+  milestoneLength?: InputMaybe<order_by>;
+  milestonesCompleted?: InputMaybe<order_by>;
+  milestonesPending?: InputMaybe<order_by>;
+  milestonesRejected?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** Boolean expression to filter rows from the table "MilestoneSet". All fields are combined with a logical 'AND'. */
+export type MilestoneSet_bool_exp = {
+  _and?: InputMaybe<Array<MilestoneSet_bool_exp>>;
+  _not?: InputMaybe<MilestoneSet_bool_exp>;
+  _or?: InputMaybe<Array<MilestoneSet_bool_exp>>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  grant?: InputMaybe<Grant_bool_exp>;
+  grant_id?: InputMaybe<String_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  index?: InputMaybe<Int_comparison_exp>;
+  milestoneLength?: InputMaybe<Int_comparison_exp>;
+  milestones?: InputMaybe<Milestone_bool_exp>;
+  milestonesCompleted?: InputMaybe<Int_comparison_exp>;
+  milestonesPending?: InputMaybe<Int_comparison_exp>;
+  milestonesRejected?: InputMaybe<Int_comparison_exp>;
+  status?: InputMaybe<Int_comparison_exp>;
+  timestamp?: InputMaybe<Int_comparison_exp>;
+};
+
+/** order by max() on columns of table "MilestoneSet" */
+export type MilestoneSet_max_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  grant_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  milestoneLength?: InputMaybe<order_by>;
+  milestonesCompleted?: InputMaybe<order_by>;
+  milestonesPending?: InputMaybe<order_by>;
+  milestonesRejected?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by min() on columns of table "MilestoneSet" */
+export type MilestoneSet_min_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  grant_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  milestoneLength?: InputMaybe<order_by>;
+  milestonesCompleted?: InputMaybe<order_by>;
+  milestonesPending?: InputMaybe<order_by>;
+  milestonesRejected?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** Ordering options when selecting data from "MilestoneSet". */
+export type MilestoneSet_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  grant?: InputMaybe<Grant_order_by>;
+  grant_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  milestoneLength?: InputMaybe<order_by>;
+  milestonesCompleted?: InputMaybe<order_by>;
+  milestonesPending?: InputMaybe<order_by>;
+  milestonesRejected?: InputMaybe<order_by>;
+  milestones_aggregate?: InputMaybe<Milestone_aggregate_order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** select columns of table "MilestoneSet" */
+export type MilestoneSet_select_column =
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'grant_id'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'index'
+  /** column name */
+  | 'milestoneLength'
+  /** column name */
+  | 'milestonesCompleted'
+  /** column name */
+  | 'milestonesPending'
+  /** column name */
+  | 'milestonesRejected'
+  /** column name */
+  | 'status'
+  /** column name */
+  | 'timestamp';
+
+/** order by stddev() on columns of table "MilestoneSet" */
+export type MilestoneSet_stddev_order_by = {
+  index?: InputMaybe<order_by>;
+  milestoneLength?: InputMaybe<order_by>;
+  milestonesCompleted?: InputMaybe<order_by>;
+  milestonesPending?: InputMaybe<order_by>;
+  milestonesRejected?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by stddev_pop() on columns of table "MilestoneSet" */
+export type MilestoneSet_stddev_pop_order_by = {
+  index?: InputMaybe<order_by>;
+  milestoneLength?: InputMaybe<order_by>;
+  milestonesCompleted?: InputMaybe<order_by>;
+  milestonesPending?: InputMaybe<order_by>;
+  milestonesRejected?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by stddev_samp() on columns of table "MilestoneSet" */
+export type MilestoneSet_stddev_samp_order_by = {
+  index?: InputMaybe<order_by>;
+  milestoneLength?: InputMaybe<order_by>;
+  milestonesCompleted?: InputMaybe<order_by>;
+  milestonesPending?: InputMaybe<order_by>;
+  milestonesRejected?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** Streaming cursor of the table "MilestoneSet" */
+export type MilestoneSet_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: MilestoneSet_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type MilestoneSet_stream_cursor_value_input = {
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  grant_id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  index?: InputMaybe<Scalars['Int']>;
+  milestoneLength?: InputMaybe<Scalars['Int']>;
+  milestonesCompleted?: InputMaybe<Scalars['Int']>;
+  milestonesPending?: InputMaybe<Scalars['Int']>;
+  milestonesRejected?: InputMaybe<Scalars['Int']>;
+  status?: InputMaybe<Scalars['Int']>;
+  timestamp?: InputMaybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "MilestoneSet" */
+export type MilestoneSet_sum_order_by = {
+  index?: InputMaybe<order_by>;
+  milestoneLength?: InputMaybe<order_by>;
+  milestonesCompleted?: InputMaybe<order_by>;
+  milestonesPending?: InputMaybe<order_by>;
+  milestonesRejected?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by var_pop() on columns of table "MilestoneSet" */
+export type MilestoneSet_var_pop_order_by = {
+  index?: InputMaybe<order_by>;
+  milestoneLength?: InputMaybe<order_by>;
+  milestonesCompleted?: InputMaybe<order_by>;
+  milestonesPending?: InputMaybe<order_by>;
+  milestonesRejected?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by var_samp() on columns of table "MilestoneSet" */
+export type MilestoneSet_var_samp_order_by = {
+  index?: InputMaybe<order_by>;
+  milestoneLength?: InputMaybe<order_by>;
+  milestonesCompleted?: InputMaybe<order_by>;
+  milestonesPending?: InputMaybe<order_by>;
+  milestonesRejected?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by variance() on columns of table "MilestoneSet" */
+export type MilestoneSet_variance_order_by = {
+  index?: InputMaybe<order_by>;
+  milestoneLength?: InputMaybe<order_by>;
+  milestonesCompleted?: InputMaybe<order_by>;
+  milestonesPending?: InputMaybe<order_by>;
+  milestonesRejected?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** order by aggregate values of table "Milestone" */
+export type Milestone_aggregate_order_by = {
+  avg?: InputMaybe<Milestone_avg_order_by>;
+  count?: InputMaybe<order_by>;
+  max?: InputMaybe<Milestone_max_order_by>;
+  min?: InputMaybe<Milestone_min_order_by>;
+  stddev?: InputMaybe<Milestone_stddev_order_by>;
+  stddev_pop?: InputMaybe<Milestone_stddev_pop_order_by>;
+  stddev_samp?: InputMaybe<Milestone_stddev_samp_order_by>;
+  sum?: InputMaybe<Milestone_sum_order_by>;
+  var_pop?: InputMaybe<Milestone_var_pop_order_by>;
+  var_samp?: InputMaybe<Milestone_var_samp_order_by>;
+  variance?: InputMaybe<Milestone_variance_order_by>;
+};
+
+/** order by avg() on columns of table "Milestone" */
+export type Milestone_avg_order_by = {
+  index?: InputMaybe<order_by>;
+  percentage?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** Boolean expression to filter rows from the table "Milestone". All fields are combined with a logical 'AND'. */
+export type Milestone_bool_exp = {
+  _and?: InputMaybe<Array<Milestone_bool_exp>>;
+  _not?: InputMaybe<Milestone_bool_exp>;
+  _or?: InputMaybe<Array<Milestone_bool_exp>>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  grant?: InputMaybe<Grant_bool_exp>;
+  grant_id?: InputMaybe<String_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  index?: InputMaybe<Int_comparison_exp>;
+  metadata?: InputMaybe<RawMetadata_bool_exp>;
+  metadata_id?: InputMaybe<String_comparison_exp>;
+  milestoneSet?: InputMaybe<MilestoneSet_bool_exp>;
+  milestoneSet_id?: InputMaybe<String_comparison_exp>;
+  percentage?: InputMaybe<numeric_comparison_exp>;
+  status?: InputMaybe<Int_comparison_exp>;
+};
+
+/** order by max() on columns of table "Milestone" */
+export type Milestone_max_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  grant_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  metadata_id?: InputMaybe<order_by>;
+  milestoneSet_id?: InputMaybe<order_by>;
+  percentage?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by min() on columns of table "Milestone" */
+export type Milestone_min_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  grant_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  metadata_id?: InputMaybe<order_by>;
+  milestoneSet_id?: InputMaybe<order_by>;
+  percentage?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** Ordering options when selecting data from "Milestone". */
+export type Milestone_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  grant?: InputMaybe<Grant_order_by>;
+  grant_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  index?: InputMaybe<order_by>;
+  metadata?: InputMaybe<RawMetadata_order_by>;
+  metadata_id?: InputMaybe<order_by>;
+  milestoneSet?: InputMaybe<MilestoneSet_order_by>;
+  milestoneSet_id?: InputMaybe<order_by>;
+  percentage?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** select columns of table "Milestone" */
+export type Milestone_select_column =
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'grant_id'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'index'
+  /** column name */
+  | 'metadata_id'
+  /** column name */
+  | 'milestoneSet_id'
+  /** column name */
+  | 'percentage'
+  /** column name */
+  | 'status';
+
+/** order by stddev() on columns of table "Milestone" */
+export type Milestone_stddev_order_by = {
+  index?: InputMaybe<order_by>;
+  percentage?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by stddev_pop() on columns of table "Milestone" */
+export type Milestone_stddev_pop_order_by = {
+  index?: InputMaybe<order_by>;
+  percentage?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by stddev_samp() on columns of table "Milestone" */
+export type Milestone_stddev_samp_order_by = {
+  index?: InputMaybe<order_by>;
+  percentage?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** Streaming cursor of the table "Milestone" */
+export type Milestone_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: Milestone_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Milestone_stream_cursor_value_input = {
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  grant_id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  index?: InputMaybe<Scalars['Int']>;
+  metadata_id?: InputMaybe<Scalars['String']>;
+  milestoneSet_id?: InputMaybe<Scalars['String']>;
+  percentage?: InputMaybe<Scalars['numeric']>;
+  status?: InputMaybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "Milestone" */
+export type Milestone_sum_order_by = {
+  index?: InputMaybe<order_by>;
+  percentage?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by var_pop() on columns of table "Milestone" */
+export type Milestone_var_pop_order_by = {
+  index?: InputMaybe<order_by>;
+  percentage?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by var_samp() on columns of table "Milestone" */
+export type Milestone_var_samp_order_by = {
+  index?: InputMaybe<order_by>;
+  percentage?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
+/** order by variance() on columns of table "Milestone" */
+export type Milestone_variance_order_by = {
+  index?: InputMaybe<order_by>;
+  percentage?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+};
+
 /** columns and relationships of "ModuleTemplate" */
 export type ModuleTemplate = {
   active: Scalars['Boolean'];
@@ -1122,6 +3976,267 @@ export type ModuleTemplate_stream_cursor_value_input = {
   mdProtocol?: InputMaybe<Scalars['numeric']>;
   moduleName?: InputMaybe<Scalars['String']>;
   templateAddress?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "ProfileIdToAnchor" */
+export type ProfileIdToAnchor = {
+  anchor: Scalars['String'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  profileId: Scalars['String'];
+};
+
+/** Boolean expression to filter rows from the table "ProfileIdToAnchor". All fields are combined with a logical 'AND'. */
+export type ProfileIdToAnchor_bool_exp = {
+  _and?: InputMaybe<Array<ProfileIdToAnchor_bool_exp>>;
+  _not?: InputMaybe<ProfileIdToAnchor_bool_exp>;
+  _or?: InputMaybe<Array<ProfileIdToAnchor_bool_exp>>;
+  anchor?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  profileId?: InputMaybe<String_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "ProfileIdToAnchor". */
+export type ProfileIdToAnchor_order_by = {
+  anchor?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  profileId?: InputMaybe<order_by>;
+};
+
+/** select columns of table "ProfileIdToAnchor" */
+export type ProfileIdToAnchor_select_column =
+  /** column name */
+  | 'anchor'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'profileId';
+
+/** Streaming cursor of the table "ProfileIdToAnchor" */
+export type ProfileIdToAnchor_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: ProfileIdToAnchor_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ProfileIdToAnchor_stream_cursor_value_input = {
+  anchor?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  profileId?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "ProfileMemberGroup" */
+export type ProfileMemberGroup = {
+  addresses: Array<Scalars['String']>;
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  role: Scalars['String'];
+};
+
+/** Boolean expression to filter rows from the table "ProfileMemberGroup". All fields are combined with a logical 'AND'. */
+export type ProfileMemberGroup_bool_exp = {
+  _and?: InputMaybe<Array<ProfileMemberGroup_bool_exp>>;
+  _not?: InputMaybe<ProfileMemberGroup_bool_exp>;
+  _or?: InputMaybe<Array<ProfileMemberGroup_bool_exp>>;
+  addresses?: InputMaybe<String_array_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  role?: InputMaybe<String_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "ProfileMemberGroup". */
+export type ProfileMemberGroup_order_by = {
+  addresses?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  role?: InputMaybe<order_by>;
+};
+
+/** select columns of table "ProfileMemberGroup" */
+export type ProfileMemberGroup_select_column =
+  /** column name */
+  | 'addresses'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'role';
+
+/** Streaming cursor of the table "ProfileMemberGroup" */
+export type ProfileMemberGroup_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: ProfileMemberGroup_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ProfileMemberGroup_stream_cursor_value_input = {
+  addresses?: InputMaybe<Array<Scalars['String']>>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  role?: InputMaybe<Scalars['String']>;
+};
+
+/** Boolean expression to filter rows from the table "Project". All fields are combined with a logical 'AND'. */
+export type Project_bool_exp = {
+  _and?: InputMaybe<Array<Project_bool_exp>>;
+  _not?: InputMaybe<Project_bool_exp>;
+  _or?: InputMaybe<Array<Project_bool_exp>>;
+  anchor?: InputMaybe<String_comparison_exp>;
+  chainId?: InputMaybe<Int_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  grants?: InputMaybe<Grant_bool_exp>;
+  hasEditedProfile?: InputMaybe<Boolean_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  members?: InputMaybe<ProfileMemberGroup_bool_exp>;
+  members_id?: InputMaybe<String_comparison_exp>;
+  metadata?: InputMaybe<RawMetadata_bool_exp>;
+  metadata_id?: InputMaybe<String_comparison_exp>;
+  name?: InputMaybe<String_comparison_exp>;
+  nonce?: InputMaybe<numeric_comparison_exp>;
+  owner?: InputMaybe<String_comparison_exp>;
+  pastNames?: InputMaybe<String_array_comparison_exp>;
+  pastProfileIds?: InputMaybe<String_array_comparison_exp>;
+  profileId?: InputMaybe<String_comparison_exp>;
+  status?: InputMaybe<Int_comparison_exp>;
+  totalAmountReceived?: InputMaybe<numeric_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "Project". */
+export type Project_order_by = {
+  anchor?: InputMaybe<order_by>;
+  chainId?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  grants_aggregate?: InputMaybe<Grant_aggregate_order_by>;
+  hasEditedProfile?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  members?: InputMaybe<ProfileMemberGroup_order_by>;
+  members_id?: InputMaybe<order_by>;
+  metadata?: InputMaybe<RawMetadata_order_by>;
+  metadata_id?: InputMaybe<order_by>;
+  name?: InputMaybe<order_by>;
+  nonce?: InputMaybe<order_by>;
+  owner?: InputMaybe<order_by>;
+  pastNames?: InputMaybe<order_by>;
+  pastProfileIds?: InputMaybe<order_by>;
+  profileId?: InputMaybe<order_by>;
+  status?: InputMaybe<order_by>;
+  totalAmountReceived?: InputMaybe<order_by>;
+};
+
+/** select columns of table "Project" */
+export type Project_select_column =
+  /** column name */
+  | 'anchor'
+  /** column name */
+  | 'chainId'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'hasEditedProfile'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'members_id'
+  /** column name */
+  | 'metadata_id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'nonce'
+  /** column name */
+  | 'owner'
+  /** column name */
+  | 'pastNames'
+  /** column name */
+  | 'pastProfileIds'
+  /** column name */
+  | 'profileId'
+  /** column name */
+  | 'status'
+  /** column name */
+  | 'totalAmountReceived';
+
+/** Streaming cursor of the table "Project" */
+export type Project_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: Project_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Project_stream_cursor_value_input = {
+  anchor?: InputMaybe<Scalars['String']>;
+  chainId?: InputMaybe<Scalars['Int']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  hasEditedProfile?: InputMaybe<Scalars['Boolean']>;
+  id?: InputMaybe<Scalars['String']>;
+  members_id?: InputMaybe<Scalars['String']>;
+  metadata_id?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  nonce?: InputMaybe<Scalars['numeric']>;
+  owner?: InputMaybe<Scalars['String']>;
+  pastNames?: InputMaybe<Array<Scalars['String']>>;
+  pastProfileIds?: InputMaybe<Array<Scalars['String']>>;
+  profileId?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['Int']>;
+  totalAmountReceived?: InputMaybe<Scalars['numeric']>;
+};
+
+/** Boolean expression to filter rows from the table "RawMetadata". All fields are combined with a logical 'AND'. */
+export type RawMetadata_bool_exp = {
+  _and?: InputMaybe<Array<RawMetadata_bool_exp>>;
+  _not?: InputMaybe<RawMetadata_bool_exp>;
+  _or?: InputMaybe<Array<RawMetadata_bool_exp>>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  pointer?: InputMaybe<String_comparison_exp>;
+  protocol?: InputMaybe<numeric_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "RawMetadata". */
+export type RawMetadata_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  pointer?: InputMaybe<order_by>;
+  protocol?: InputMaybe<order_by>;
+};
+
+/** select columns of table "RawMetadata" */
+export type RawMetadata_select_column =
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'pointer'
+  /** column name */
+  | 'protocol';
+
+/** Streaming cursor of the table "RawMetadata" */
+export type RawMetadata_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: RawMetadata_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type RawMetadata_stream_cursor_value_input = {
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  pointer?: InputMaybe<Scalars['String']>;
+  protocol?: InputMaybe<Scalars['numeric']>;
 };
 
 /** columns and relationships of "Record" */
@@ -1341,6 +4456,124 @@ export type SBTBalParams_stream_cursor_value_input = {
   voteTokenAddress?: InputMaybe<Scalars['String']>;
 };
 
+/** columns and relationships of "ScaffoldShaman" */
+export type ScaffoldShaman = {
+  address: Scalars['String'];
+  /** An object relationship */
+  controlGate?: Maybe<Gate>;
+  controlGate_id: Scalars['String'];
+  dao: Scalars['String'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  /** An object relationship */
+  lootToken?: Maybe<DAOToken>;
+  lootToken_id: Scalars['String'];
+  /** An object relationship */
+  managerGate?: Maybe<Gate>;
+  managerGate_id: Scalars['String'];
+  /** An object relationship */
+  minterGate?: Maybe<Gate>;
+  minterGate_id: Scalars['String'];
+  /** An object relationship */
+  sharesToken?: Maybe<DAOToken>;
+  sharesToken_id: Scalars['String'];
+  /** An array relationship */
+  templates: Array<BadgeTemplate>;
+};
+
+
+/** columns and relationships of "ScaffoldShaman" */
+export type ScaffoldShamantemplatesArgs = {
+  distinct_on?: InputMaybe<Array<BadgeTemplate_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<BadgeTemplate_order_by>>;
+  where?: InputMaybe<BadgeTemplate_bool_exp>;
+};
+
+/** Boolean expression to filter rows from the table "ScaffoldShaman". All fields are combined with a logical 'AND'. */
+export type ScaffoldShaman_bool_exp = {
+  _and?: InputMaybe<Array<ScaffoldShaman_bool_exp>>;
+  _not?: InputMaybe<ScaffoldShaman_bool_exp>;
+  _or?: InputMaybe<Array<ScaffoldShaman_bool_exp>>;
+  address?: InputMaybe<String_comparison_exp>;
+  controlGate?: InputMaybe<Gate_bool_exp>;
+  controlGate_id?: InputMaybe<String_comparison_exp>;
+  dao?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  lootToken?: InputMaybe<DAOToken_bool_exp>;
+  lootToken_id?: InputMaybe<String_comparison_exp>;
+  managerGate?: InputMaybe<Gate_bool_exp>;
+  managerGate_id?: InputMaybe<String_comparison_exp>;
+  minterGate?: InputMaybe<Gate_bool_exp>;
+  minterGate_id?: InputMaybe<String_comparison_exp>;
+  sharesToken?: InputMaybe<DAOToken_bool_exp>;
+  sharesToken_id?: InputMaybe<String_comparison_exp>;
+  templates?: InputMaybe<BadgeTemplate_bool_exp>;
+};
+
+/** Ordering options when selecting data from "ScaffoldShaman". */
+export type ScaffoldShaman_order_by = {
+  address?: InputMaybe<order_by>;
+  controlGate?: InputMaybe<Gate_order_by>;
+  controlGate_id?: InputMaybe<order_by>;
+  dao?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  lootToken?: InputMaybe<DAOToken_order_by>;
+  lootToken_id?: InputMaybe<order_by>;
+  managerGate?: InputMaybe<Gate_order_by>;
+  managerGate_id?: InputMaybe<order_by>;
+  minterGate?: InputMaybe<Gate_order_by>;
+  minterGate_id?: InputMaybe<order_by>;
+  sharesToken?: InputMaybe<DAOToken_order_by>;
+  sharesToken_id?: InputMaybe<order_by>;
+  templates_aggregate?: InputMaybe<BadgeTemplate_aggregate_order_by>;
+};
+
+/** select columns of table "ScaffoldShaman" */
+export type ScaffoldShaman_select_column =
+  /** column name */
+  | 'address'
+  /** column name */
+  | 'controlGate_id'
+  /** column name */
+  | 'dao'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'lootToken_id'
+  /** column name */
+  | 'managerGate_id'
+  /** column name */
+  | 'minterGate_id'
+  /** column name */
+  | 'sharesToken_id';
+
+/** Streaming cursor of the table "ScaffoldShaman" */
+export type ScaffoldShaman_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: ScaffoldShaman_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ScaffoldShaman_stream_cursor_value_input = {
+  address?: InputMaybe<Scalars['String']>;
+  controlGate_id?: InputMaybe<Scalars['String']>;
+  dao?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  lootToken_id?: InputMaybe<Scalars['String']>;
+  managerGate_id?: InputMaybe<Scalars['String']>;
+  minterGate_id?: InputMaybe<Scalars['String']>;
+  sharesToken_id?: InputMaybe<Scalars['String']>;
+};
+
 /** columns and relationships of "ShipChoice" */
 export type ShipChoice = {
   active: Scalars['Boolean'];
@@ -1348,6 +4581,8 @@ export type ShipChoice = {
   /** An object relationship */
   contest?: Maybe<GrantShipsVoting>;
   contest_id: Scalars['String'];
+  contextTokenTally: Scalars['numeric'];
+  daoTokenTally: Scalars['numeric'];
   db_write_timestamp?: Maybe<Scalars['timestamp']>;
   id: Scalars['String'];
   mdPointer: Scalars['String'];
@@ -1384,6 +4619,8 @@ export type ShipChoice_aggregate_order_by = {
 
 /** order by avg() on columns of table "ShipChoice" */
 export type ShipChoice_avg_order_by = {
+  contextTokenTally?: InputMaybe<order_by>;
+  daoTokenTally?: InputMaybe<order_by>;
   mdProtocol?: InputMaybe<order_by>;
   voteTally?: InputMaybe<order_by>;
 };
@@ -1397,6 +4634,8 @@ export type ShipChoice_bool_exp = {
   choiceData?: InputMaybe<String_comparison_exp>;
   contest?: InputMaybe<GrantShipsVoting_bool_exp>;
   contest_id?: InputMaybe<String_comparison_exp>;
+  contextTokenTally?: InputMaybe<numeric_comparison_exp>;
+  daoTokenTally?: InputMaybe<numeric_comparison_exp>;
   db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
   id?: InputMaybe<String_comparison_exp>;
   mdPointer?: InputMaybe<String_comparison_exp>;
@@ -1409,6 +4648,8 @@ export type ShipChoice_bool_exp = {
 export type ShipChoice_max_order_by = {
   choiceData?: InputMaybe<order_by>;
   contest_id?: InputMaybe<order_by>;
+  contextTokenTally?: InputMaybe<order_by>;
+  daoTokenTally?: InputMaybe<order_by>;
   db_write_timestamp?: InputMaybe<order_by>;
   id?: InputMaybe<order_by>;
   mdPointer?: InputMaybe<order_by>;
@@ -1420,6 +4661,8 @@ export type ShipChoice_max_order_by = {
 export type ShipChoice_min_order_by = {
   choiceData?: InputMaybe<order_by>;
   contest_id?: InputMaybe<order_by>;
+  contextTokenTally?: InputMaybe<order_by>;
+  daoTokenTally?: InputMaybe<order_by>;
   db_write_timestamp?: InputMaybe<order_by>;
   id?: InputMaybe<order_by>;
   mdPointer?: InputMaybe<order_by>;
@@ -1433,6 +4676,8 @@ export type ShipChoice_order_by = {
   choiceData?: InputMaybe<order_by>;
   contest?: InputMaybe<GrantShipsVoting_order_by>;
   contest_id?: InputMaybe<order_by>;
+  contextTokenTally?: InputMaybe<order_by>;
+  daoTokenTally?: InputMaybe<order_by>;
   db_write_timestamp?: InputMaybe<order_by>;
   id?: InputMaybe<order_by>;
   mdPointer?: InputMaybe<order_by>;
@@ -1450,6 +4695,10 @@ export type ShipChoice_select_column =
   /** column name */
   | 'contest_id'
   /** column name */
+  | 'contextTokenTally'
+  /** column name */
+  | 'daoTokenTally'
+  /** column name */
   | 'db_write_timestamp'
   /** column name */
   | 'id'
@@ -1462,18 +4711,24 @@ export type ShipChoice_select_column =
 
 /** order by stddev() on columns of table "ShipChoice" */
 export type ShipChoice_stddev_order_by = {
+  contextTokenTally?: InputMaybe<order_by>;
+  daoTokenTally?: InputMaybe<order_by>;
   mdProtocol?: InputMaybe<order_by>;
   voteTally?: InputMaybe<order_by>;
 };
 
 /** order by stddev_pop() on columns of table "ShipChoice" */
 export type ShipChoice_stddev_pop_order_by = {
+  contextTokenTally?: InputMaybe<order_by>;
+  daoTokenTally?: InputMaybe<order_by>;
   mdProtocol?: InputMaybe<order_by>;
   voteTally?: InputMaybe<order_by>;
 };
 
 /** order by stddev_samp() on columns of table "ShipChoice" */
 export type ShipChoice_stddev_samp_order_by = {
+  contextTokenTally?: InputMaybe<order_by>;
+  daoTokenTally?: InputMaybe<order_by>;
   mdProtocol?: InputMaybe<order_by>;
   voteTally?: InputMaybe<order_by>;
 };
@@ -1491,6 +4746,8 @@ export type ShipChoice_stream_cursor_value_input = {
   active?: InputMaybe<Scalars['Boolean']>;
   choiceData?: InputMaybe<Scalars['String']>;
   contest_id?: InputMaybe<Scalars['String']>;
+  contextTokenTally?: InputMaybe<Scalars['numeric']>;
+  daoTokenTally?: InputMaybe<Scalars['numeric']>;
   db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
   id?: InputMaybe<Scalars['String']>;
   mdPointer?: InputMaybe<Scalars['String']>;
@@ -1500,26 +4757,98 @@ export type ShipChoice_stream_cursor_value_input = {
 
 /** order by sum() on columns of table "ShipChoice" */
 export type ShipChoice_sum_order_by = {
+  contextTokenTally?: InputMaybe<order_by>;
+  daoTokenTally?: InputMaybe<order_by>;
   mdProtocol?: InputMaybe<order_by>;
   voteTally?: InputMaybe<order_by>;
 };
 
 /** order by var_pop() on columns of table "ShipChoice" */
 export type ShipChoice_var_pop_order_by = {
+  contextTokenTally?: InputMaybe<order_by>;
+  daoTokenTally?: InputMaybe<order_by>;
   mdProtocol?: InputMaybe<order_by>;
   voteTally?: InputMaybe<order_by>;
 };
 
 /** order by var_samp() on columns of table "ShipChoice" */
 export type ShipChoice_var_samp_order_by = {
+  contextTokenTally?: InputMaybe<order_by>;
+  daoTokenTally?: InputMaybe<order_by>;
   mdProtocol?: InputMaybe<order_by>;
   voteTally?: InputMaybe<order_by>;
 };
 
 /** order by variance() on columns of table "ShipChoice" */
 export type ShipChoice_variance_order_by = {
+  contextTokenTally?: InputMaybe<order_by>;
+  daoTokenTally?: InputMaybe<order_by>;
   mdProtocol?: InputMaybe<order_by>;
   voteTally?: InputMaybe<order_by>;
+};
+
+/** columns and relationships of "ShipContext" */
+export type ShipContext = {
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  gameManager_id: Scalars['String'];
+  grantShip_id: Scalars['String'];
+  id: Scalars['String'];
+  shipAddress: Scalars['String'];
+};
+
+/** Boolean expression to filter rows from the table "ShipContext". All fields are combined with a logical 'AND'. */
+export type ShipContext_bool_exp = {
+  _and?: InputMaybe<Array<ShipContext_bool_exp>>;
+  _not?: InputMaybe<ShipContext_bool_exp>;
+  _or?: InputMaybe<Array<ShipContext_bool_exp>>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  gameManager?: InputMaybe<GameManager_bool_exp>;
+  gameManager_id?: InputMaybe<String_comparison_exp>;
+  grantShip?: InputMaybe<GrantShip_bool_exp>;
+  grantShip_id?: InputMaybe<String_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  shipAddress?: InputMaybe<String_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "ShipContext". */
+export type ShipContext_order_by = {
+  db_write_timestamp?: InputMaybe<order_by>;
+  gameManager?: InputMaybe<GameManager_order_by>;
+  gameManager_id?: InputMaybe<order_by>;
+  grantShip?: InputMaybe<GrantShip_order_by>;
+  grantShip_id?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  shipAddress?: InputMaybe<order_by>;
+};
+
+/** select columns of table "ShipContext" */
+export type ShipContext_select_column =
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'gameManager_id'
+  /** column name */
+  | 'grantShip_id'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'shipAddress';
+
+/** Streaming cursor of the table "ShipContext" */
+export type ShipContext_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: ShipContext_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type ShipContext_stream_cursor_value_input = {
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  gameManager_id?: InputMaybe<Scalars['String']>;
+  grantShip_id?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  shipAddress?: InputMaybe<Scalars['String']>;
 };
 
 /** columns and relationships of "ShipVote" */
@@ -1536,6 +4865,7 @@ export type ShipVote = {
   isRetractVote: Scalars['Boolean'];
   mdPointer: Scalars['String'];
   mdProtocol: Scalars['numeric'];
+  token: Scalars['String'];
   /** An object relationship */
   voter?: Maybe<GSVoter>;
   voter_id: Scalars['String'];
@@ -1577,6 +4907,7 @@ export type ShipVote_bool_exp = {
   isRetractVote?: InputMaybe<Boolean_comparison_exp>;
   mdPointer?: InputMaybe<String_comparison_exp>;
   mdProtocol?: InputMaybe<numeric_comparison_exp>;
+  token?: InputMaybe<String_comparison_exp>;
   voter?: InputMaybe<GSVoter_bool_exp>;
   voter_id?: InputMaybe<String_comparison_exp>;
 };
@@ -1590,6 +4921,7 @@ export type ShipVote_max_order_by = {
   id?: InputMaybe<order_by>;
   mdPointer?: InputMaybe<order_by>;
   mdProtocol?: InputMaybe<order_by>;
+  token?: InputMaybe<order_by>;
   voter_id?: InputMaybe<order_by>;
 };
 
@@ -1602,6 +4934,7 @@ export type ShipVote_min_order_by = {
   id?: InputMaybe<order_by>;
   mdPointer?: InputMaybe<order_by>;
   mdProtocol?: InputMaybe<order_by>;
+  token?: InputMaybe<order_by>;
   voter_id?: InputMaybe<order_by>;
 };
 
@@ -1617,6 +4950,7 @@ export type ShipVote_order_by = {
   isRetractVote?: InputMaybe<order_by>;
   mdPointer?: InputMaybe<order_by>;
   mdProtocol?: InputMaybe<order_by>;
+  token?: InputMaybe<order_by>;
   voter?: InputMaybe<GSVoter_order_by>;
   voter_id?: InputMaybe<order_by>;
 };
@@ -1639,6 +4973,8 @@ export type ShipVote_select_column =
   | 'mdPointer'
   /** column name */
   | 'mdProtocol'
+  /** column name */
+  | 'token'
   /** column name */
   | 'voter_id';
 
@@ -1678,6 +5014,7 @@ export type ShipVote_stream_cursor_value_input = {
   isRetractVote?: InputMaybe<Scalars['Boolean']>;
   mdPointer?: InputMaybe<Scalars['String']>;
   mdProtocol?: InputMaybe<Scalars['numeric']>;
+  token?: InputMaybe<Scalars['String']>;
   voter_id?: InputMaybe<Scalars['String']>;
 };
 
@@ -1889,6 +5226,189 @@ export type TVParams_stream_cursor_value_input = {
   voteDuration?: InputMaybe<Scalars['numeric']>;
 };
 
+/** columns and relationships of "Transaction" */
+export type Transaction = {
+  blockNumber: Scalars['numeric'];
+  db_write_timestamp?: Maybe<Scalars['timestamp']>;
+  id: Scalars['String'];
+  srcAddress: Scalars['String'];
+  timestamp: Scalars['Int'];
+  txHash: Scalars['String'];
+};
+
+/** Boolean expression to filter rows from the table "Transaction". All fields are combined with a logical 'AND'. */
+export type Transaction_bool_exp = {
+  _and?: InputMaybe<Array<Transaction_bool_exp>>;
+  _not?: InputMaybe<Transaction_bool_exp>;
+  _or?: InputMaybe<Array<Transaction_bool_exp>>;
+  blockNumber?: InputMaybe<numeric_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  srcAddress?: InputMaybe<String_comparison_exp>;
+  timestamp?: InputMaybe<Int_comparison_exp>;
+  txHash?: InputMaybe<String_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "Transaction". */
+export type Transaction_order_by = {
+  blockNumber?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  srcAddress?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+  txHash?: InputMaybe<order_by>;
+};
+
+/** select columns of table "Transaction" */
+export type Transaction_select_column =
+  /** column name */
+  | 'blockNumber'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'srcAddress'
+  /** column name */
+  | 'timestamp'
+  /** column name */
+  | 'txHash';
+
+/** Streaming cursor of the table "Transaction" */
+export type Transaction_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: Transaction_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Transaction_stream_cursor_value_input = {
+  blockNumber?: InputMaybe<Scalars['numeric']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  id?: InputMaybe<Scalars['String']>;
+  srcAddress?: InputMaybe<Scalars['String']>;
+  timestamp?: InputMaybe<Scalars['Int']>;
+  txHash?: InputMaybe<Scalars['String']>;
+};
+
+/** Boolean expression to filter rows from the table "Update". All fields are combined with a logical 'AND'. */
+export type Update_bool_exp = {
+  _and?: InputMaybe<Array<Update_bool_exp>>;
+  _not?: InputMaybe<Update_bool_exp>;
+  _or?: InputMaybe<Array<Update_bool_exp>>;
+  chainId?: InputMaybe<Int_comparison_exp>;
+  content?: InputMaybe<RawMetadata_bool_exp>;
+  contentSchema?: InputMaybe<Int_comparison_exp>;
+  content_id?: InputMaybe<String_comparison_exp>;
+  db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
+  domain?: InputMaybe<GameManager_bool_exp>;
+  domain_id?: InputMaybe<String_comparison_exp>;
+  entityAddress?: InputMaybe<String_comparison_exp>;
+  entityMetadata?: InputMaybe<RawMetadata_bool_exp>;
+  entityMetadata_id?: InputMaybe<String_comparison_exp>;
+  hostEntityId?: InputMaybe<String_comparison_exp>;
+  id?: InputMaybe<String_comparison_exp>;
+  message?: InputMaybe<String_comparison_exp>;
+  playerType?: InputMaybe<Int_comparison_exp>;
+  postBlockNumber?: InputMaybe<Int_comparison_exp>;
+  postDecorator?: InputMaybe<Int_comparison_exp>;
+  postedBy?: InputMaybe<String_comparison_exp>;
+  scope?: InputMaybe<Int_comparison_exp>;
+  tag?: InputMaybe<String_comparison_exp>;
+  timestamp?: InputMaybe<Int_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "Update". */
+export type Update_order_by = {
+  chainId?: InputMaybe<order_by>;
+  content?: InputMaybe<RawMetadata_order_by>;
+  contentSchema?: InputMaybe<order_by>;
+  content_id?: InputMaybe<order_by>;
+  db_write_timestamp?: InputMaybe<order_by>;
+  domain?: InputMaybe<GameManager_order_by>;
+  domain_id?: InputMaybe<order_by>;
+  entityAddress?: InputMaybe<order_by>;
+  entityMetadata?: InputMaybe<RawMetadata_order_by>;
+  entityMetadata_id?: InputMaybe<order_by>;
+  hostEntityId?: InputMaybe<order_by>;
+  id?: InputMaybe<order_by>;
+  message?: InputMaybe<order_by>;
+  playerType?: InputMaybe<order_by>;
+  postBlockNumber?: InputMaybe<order_by>;
+  postDecorator?: InputMaybe<order_by>;
+  postedBy?: InputMaybe<order_by>;
+  scope?: InputMaybe<order_by>;
+  tag?: InputMaybe<order_by>;
+  timestamp?: InputMaybe<order_by>;
+};
+
+/** select columns of table "Update" */
+export type Update_select_column =
+  /** column name */
+  | 'chainId'
+  /** column name */
+  | 'contentSchema'
+  /** column name */
+  | 'content_id'
+  /** column name */
+  | 'db_write_timestamp'
+  /** column name */
+  | 'domain_id'
+  /** column name */
+  | 'entityAddress'
+  /** column name */
+  | 'entityMetadata_id'
+  /** column name */
+  | 'hostEntityId'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'message'
+  /** column name */
+  | 'playerType'
+  /** column name */
+  | 'postBlockNumber'
+  /** column name */
+  | 'postDecorator'
+  /** column name */
+  | 'postedBy'
+  /** column name */
+  | 'scope'
+  /** column name */
+  | 'tag'
+  /** column name */
+  | 'timestamp';
+
+/** Streaming cursor of the table "Update" */
+export type Update_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: Update_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Update_stream_cursor_value_input = {
+  chainId?: InputMaybe<Scalars['Int']>;
+  contentSchema?: InputMaybe<Scalars['Int']>;
+  content_id?: InputMaybe<Scalars['String']>;
+  db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
+  domain_id?: InputMaybe<Scalars['String']>;
+  entityAddress?: InputMaybe<Scalars['String']>;
+  entityMetadata_id?: InputMaybe<Scalars['String']>;
+  hostEntityId?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  message?: InputMaybe<Scalars['String']>;
+  playerType?: InputMaybe<Scalars['Int']>;
+  postBlockNumber?: InputMaybe<Scalars['Int']>;
+  postDecorator?: InputMaybe<Scalars['Int']>;
+  postedBy?: InputMaybe<Scalars['String']>;
+  scope?: InputMaybe<Scalars['Int']>;
+  tag?: InputMaybe<Scalars['String']>;
+  timestamp?: InputMaybe<Scalars['Int']>;
+};
+
 /** columns and relationships of "chain_metadata" */
 export type chain_metadata = {
   block_height: Scalars['Int'];
@@ -2007,11 +5527,15 @@ export type cursor_ordering =
 
 /** columns and relationships of "dynamic_contract_registry" */
 export type dynamic_contract_registry = {
-  block_timestamp: Scalars['Int'];
   chain_id: Scalars['Int'];
   contract_address: Scalars['String'];
   contract_type: Scalars['contract_type'];
-  event_id: Scalars['numeric'];
+  registering_event_block_number: Scalars['Int'];
+  registering_event_block_timestamp: Scalars['Int'];
+  registering_event_contract_name: Scalars['String'];
+  registering_event_log_index: Scalars['Int'];
+  registering_event_name: Scalars['String'];
+  registering_event_src_address: Scalars['String'];
 };
 
 /** Boolean expression to filter rows from the table "dynamic_contract_registry". All fields are combined with a logical 'AND'. */
@@ -2019,26 +5543,32 @@ export type dynamic_contract_registry_bool_exp = {
   _and?: InputMaybe<Array<dynamic_contract_registry_bool_exp>>;
   _not?: InputMaybe<dynamic_contract_registry_bool_exp>;
   _or?: InputMaybe<Array<dynamic_contract_registry_bool_exp>>;
-  block_timestamp?: InputMaybe<Int_comparison_exp>;
   chain_id?: InputMaybe<Int_comparison_exp>;
   contract_address?: InputMaybe<String_comparison_exp>;
   contract_type?: InputMaybe<contract_type_comparison_exp>;
-  event_id?: InputMaybe<numeric_comparison_exp>;
+  registering_event_block_number?: InputMaybe<Int_comparison_exp>;
+  registering_event_block_timestamp?: InputMaybe<Int_comparison_exp>;
+  registering_event_contract_name?: InputMaybe<String_comparison_exp>;
+  registering_event_log_index?: InputMaybe<Int_comparison_exp>;
+  registering_event_name?: InputMaybe<String_comparison_exp>;
+  registering_event_src_address?: InputMaybe<String_comparison_exp>;
 };
 
 /** Ordering options when selecting data from "dynamic_contract_registry". */
 export type dynamic_contract_registry_order_by = {
-  block_timestamp?: InputMaybe<order_by>;
   chain_id?: InputMaybe<order_by>;
   contract_address?: InputMaybe<order_by>;
   contract_type?: InputMaybe<order_by>;
-  event_id?: InputMaybe<order_by>;
+  registering_event_block_number?: InputMaybe<order_by>;
+  registering_event_block_timestamp?: InputMaybe<order_by>;
+  registering_event_contract_name?: InputMaybe<order_by>;
+  registering_event_log_index?: InputMaybe<order_by>;
+  registering_event_name?: InputMaybe<order_by>;
+  registering_event_src_address?: InputMaybe<order_by>;
 };
 
 /** select columns of table "dynamic_contract_registry" */
 export type dynamic_contract_registry_select_column =
-  /** column name */
-  | 'block_timestamp'
   /** column name */
   | 'chain_id'
   /** column name */
@@ -2046,7 +5576,17 @@ export type dynamic_contract_registry_select_column =
   /** column name */
   | 'contract_type'
   /** column name */
-  | 'event_id';
+  | 'registering_event_block_number'
+  /** column name */
+  | 'registering_event_block_timestamp'
+  /** column name */
+  | 'registering_event_contract_name'
+  /** column name */
+  | 'registering_event_log_index'
+  /** column name */
+  | 'registering_event_name'
+  /** column name */
+  | 'registering_event_src_address';
 
 /** Streaming cursor of the table "dynamic_contract_registry" */
 export type dynamic_contract_registry_stream_cursor_input = {
@@ -2058,11 +5598,69 @@ export type dynamic_contract_registry_stream_cursor_input = {
 
 /** Initial value of the column from where the streaming should start */
 export type dynamic_contract_registry_stream_cursor_value_input = {
-  block_timestamp?: InputMaybe<Scalars['Int']>;
   chain_id?: InputMaybe<Scalars['Int']>;
   contract_address?: InputMaybe<Scalars['String']>;
   contract_type?: InputMaybe<Scalars['contract_type']>;
-  event_id?: InputMaybe<Scalars['numeric']>;
+  registering_event_block_number?: InputMaybe<Scalars['Int']>;
+  registering_event_block_timestamp?: InputMaybe<Scalars['Int']>;
+  registering_event_contract_name?: InputMaybe<Scalars['String']>;
+  registering_event_log_index?: InputMaybe<Scalars['Int']>;
+  registering_event_name?: InputMaybe<Scalars['String']>;
+  registering_event_src_address?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "end_of_block_range_scanned_data" */
+export type end_of_block_range_scanned_data = {
+  block_hash: Scalars['String'];
+  block_number: Scalars['Int'];
+  block_timestamp: Scalars['Int'];
+  chain_id: Scalars['Int'];
+};
+
+/** Boolean expression to filter rows from the table "end_of_block_range_scanned_data". All fields are combined with a logical 'AND'. */
+export type end_of_block_range_scanned_data_bool_exp = {
+  _and?: InputMaybe<Array<end_of_block_range_scanned_data_bool_exp>>;
+  _not?: InputMaybe<end_of_block_range_scanned_data_bool_exp>;
+  _or?: InputMaybe<Array<end_of_block_range_scanned_data_bool_exp>>;
+  block_hash?: InputMaybe<String_comparison_exp>;
+  block_number?: InputMaybe<Int_comparison_exp>;
+  block_timestamp?: InputMaybe<Int_comparison_exp>;
+  chain_id?: InputMaybe<Int_comparison_exp>;
+};
+
+/** Ordering options when selecting data from "end_of_block_range_scanned_data". */
+export type end_of_block_range_scanned_data_order_by = {
+  block_hash?: InputMaybe<order_by>;
+  block_number?: InputMaybe<order_by>;
+  block_timestamp?: InputMaybe<order_by>;
+  chain_id?: InputMaybe<order_by>;
+};
+
+/** select columns of table "end_of_block_range_scanned_data" */
+export type end_of_block_range_scanned_data_select_column =
+  /** column name */
+  | 'block_hash'
+  /** column name */
+  | 'block_number'
+  /** column name */
+  | 'block_timestamp'
+  /** column name */
+  | 'chain_id';
+
+/** Streaming cursor of the table "end_of_block_range_scanned_data" */
+export type end_of_block_range_scanned_data_stream_cursor_input = {
+  /** Stream column input with initial value */
+  initial_value: end_of_block_range_scanned_data_stream_cursor_value_input;
+  /** cursor ordering */
+  ordering?: InputMaybe<cursor_ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type end_of_block_range_scanned_data_stream_cursor_value_input = {
+  block_hash?: InputMaybe<Scalars['String']>;
+  block_number?: InputMaybe<Scalars['Int']>;
+  block_timestamp?: InputMaybe<Scalars['Int']>;
+  chain_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** columns and relationships of "entity_history" */
@@ -2075,7 +5673,7 @@ export type entity_history = {
   /** An object relationship */
   event?: Maybe<raw_events>;
   log_index: Scalars['Int'];
-  params?: Maybe<Scalars['json']>;
+  params?: Maybe<Scalars['jsonb']>;
   previous_block_number?: Maybe<Scalars['Int']>;
   previous_block_timestamp?: Maybe<Scalars['Int']>;
   previous_chain_id?: Maybe<Scalars['Int']>;
@@ -2127,7 +5725,7 @@ export type entity_history_bool_exp = {
   entity_type?: InputMaybe<entity_type_comparison_exp>;
   event?: InputMaybe<raw_events_bool_exp>;
   log_index?: InputMaybe<Int_comparison_exp>;
-  params?: InputMaybe<json_comparison_exp>;
+  params?: InputMaybe<jsonb_comparison_exp>;
   previous_block_number?: InputMaybe<Int_comparison_exp>;
   previous_block_timestamp?: InputMaybe<Int_comparison_exp>;
   previous_chain_id?: InputMaybe<Int_comparison_exp>;
@@ -2144,9 +5742,9 @@ export type entity_history_filter = {
   /** An object relationship */
   event?: Maybe<raw_events>;
   log_index: Scalars['Int'];
-  new_val?: Maybe<Scalars['json']>;
-  old_val?: Maybe<Scalars['json']>;
-  previous_block_number: Scalars['Int'];
+  new_val?: Maybe<Scalars['jsonb']>;
+  old_val?: Maybe<Scalars['jsonb']>;
+  previous_block_number?: Maybe<Scalars['Int']>;
   previous_log_index: Scalars['Int'];
 };
 
@@ -2174,8 +5772,8 @@ export type entity_history_filter_bool_exp = {
   entity_type?: InputMaybe<entity_type_comparison_exp>;
   event?: InputMaybe<raw_events_bool_exp>;
   log_index?: InputMaybe<Int_comparison_exp>;
-  new_val?: InputMaybe<json_comparison_exp>;
-  old_val?: InputMaybe<json_comparison_exp>;
+  new_val?: InputMaybe<jsonb_comparison_exp>;
+  old_val?: InputMaybe<jsonb_comparison_exp>;
   previous_block_number?: InputMaybe<Int_comparison_exp>;
   previous_log_index?: InputMaybe<Int_comparison_exp>;
 };
@@ -2234,8 +5832,8 @@ export type entity_history_filter_stream_cursor_value_input = {
   entity_id?: InputMaybe<Scalars['String']>;
   entity_type?: InputMaybe<Scalars['entity_type']>;
   log_index?: InputMaybe<Scalars['Int']>;
-  new_val?: InputMaybe<Scalars['json']>;
-  old_val?: InputMaybe<Scalars['json']>;
+  new_val?: InputMaybe<Scalars['jsonb']>;
+  old_val?: InputMaybe<Scalars['jsonb']>;
   previous_block_number?: InputMaybe<Scalars['Int']>;
   previous_log_index?: InputMaybe<Scalars['Int']>;
 };
@@ -2361,7 +5959,7 @@ export type entity_history_stream_cursor_value_input = {
   entity_id?: InputMaybe<Scalars['String']>;
   entity_type?: InputMaybe<Scalars['entity_type']>;
   log_index?: InputMaybe<Scalars['Int']>;
-  params?: InputMaybe<Scalars['json']>;
+  params?: InputMaybe<Scalars['jsonb']>;
   previous_block_number?: InputMaybe<Scalars['Int']>;
   previous_block_timestamp?: InputMaybe<Scalars['Int']>;
   previous_chain_id?: InputMaybe<Scalars['Int']>;
@@ -2434,8 +6032,8 @@ export type event_sync_state = {
   block_number: Scalars['Int'];
   block_timestamp: Scalars['Int'];
   chain_id: Scalars['Int'];
+  is_pre_registering_dynamic_contracts: Scalars['Boolean'];
   log_index: Scalars['Int'];
-  transaction_index: Scalars['Int'];
 };
 
 /** Boolean expression to filter rows from the table "event_sync_state". All fields are combined with a logical 'AND'. */
@@ -2446,8 +6044,8 @@ export type event_sync_state_bool_exp = {
   block_number?: InputMaybe<Int_comparison_exp>;
   block_timestamp?: InputMaybe<Int_comparison_exp>;
   chain_id?: InputMaybe<Int_comparison_exp>;
+  is_pre_registering_dynamic_contracts?: InputMaybe<Boolean_comparison_exp>;
   log_index?: InputMaybe<Int_comparison_exp>;
-  transaction_index?: InputMaybe<Int_comparison_exp>;
 };
 
 /** Ordering options when selecting data from "event_sync_state". */
@@ -2455,8 +6053,8 @@ export type event_sync_state_order_by = {
   block_number?: InputMaybe<order_by>;
   block_timestamp?: InputMaybe<order_by>;
   chain_id?: InputMaybe<order_by>;
+  is_pre_registering_dynamic_contracts?: InputMaybe<order_by>;
   log_index?: InputMaybe<order_by>;
-  transaction_index?: InputMaybe<order_by>;
 };
 
 /** select columns of table "event_sync_state" */
@@ -2468,9 +6066,9 @@ export type event_sync_state_select_column =
   /** column name */
   | 'chain_id'
   /** column name */
-  | 'log_index'
+  | 'is_pre_registering_dynamic_contracts'
   /** column name */
-  | 'transaction_index';
+  | 'log_index';
 
 /** Streaming cursor of the table "event_sync_state" */
 export type event_sync_state_stream_cursor_input = {
@@ -2485,21 +6083,8 @@ export type event_sync_state_stream_cursor_value_input = {
   block_number?: InputMaybe<Scalars['Int']>;
   block_timestamp?: InputMaybe<Scalars['Int']>;
   chain_id?: InputMaybe<Scalars['Int']>;
+  is_pre_registering_dynamic_contracts?: InputMaybe<Scalars['Boolean']>;
   log_index?: InputMaybe<Scalars['Int']>;
-  transaction_index?: InputMaybe<Scalars['Int']>;
-};
-
-/** Boolean expression to compare columns of type "event_type". All fields are combined with logical 'AND'. */
-export type event_type_comparison_exp = {
-  _eq?: InputMaybe<Scalars['event_type']>;
-  _gt?: InputMaybe<Scalars['event_type']>;
-  _gte?: InputMaybe<Scalars['event_type']>;
-  _in?: InputMaybe<Array<Scalars['event_type']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['event_type']>;
-  _lte?: InputMaybe<Scalars['event_type']>;
-  _neq?: InputMaybe<Scalars['event_type']>;
-  _nin?: InputMaybe<Array<Scalars['event_type']>>;
 };
 
 export type get_entity_history_filter_args = {
@@ -2513,17 +6098,32 @@ export type get_entity_history_filter_args = {
   start_timestamp?: InputMaybe<Scalars['Int']>;
 };
 
-/** Boolean expression to compare columns of type "json". All fields are combined with logical 'AND'. */
-export type json_comparison_exp = {
-  _eq?: InputMaybe<Scalars['json']>;
-  _gt?: InputMaybe<Scalars['json']>;
-  _gte?: InputMaybe<Scalars['json']>;
-  _in?: InputMaybe<Array<Scalars['json']>>;
+export type jsonb_cast_exp = {
+  String?: InputMaybe<String_comparison_exp>;
+};
+
+/** Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'. */
+export type jsonb_comparison_exp = {
+  _cast?: InputMaybe<jsonb_cast_exp>;
+  /** is the column contained in the given json value */
+  _contained_in?: InputMaybe<Scalars['jsonb']>;
+  /** does the column contain the given json value at the top level */
+  _contains?: InputMaybe<Scalars['jsonb']>;
+  _eq?: InputMaybe<Scalars['jsonb']>;
+  _gt?: InputMaybe<Scalars['jsonb']>;
+  _gte?: InputMaybe<Scalars['jsonb']>;
+  /** does the string exist as a top-level key in the column */
+  _has_key?: InputMaybe<Scalars['String']>;
+  /** do all of these strings exist as top-level keys in the column */
+  _has_keys_all?: InputMaybe<Array<Scalars['String']>>;
+  /** do any of these strings exist as top-level keys in the column */
+  _has_keys_any?: InputMaybe<Array<Scalars['String']>>;
+  _in?: InputMaybe<Array<Scalars['jsonb']>>;
   _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['json']>;
-  _lte?: InputMaybe<Scalars['json']>;
-  _neq?: InputMaybe<Scalars['json']>;
-  _nin?: InputMaybe<Array<Scalars['json']>>;
+  _lt?: InputMaybe<Scalars['jsonb']>;
+  _lte?: InputMaybe<Scalars['jsonb']>;
+  _neq?: InputMaybe<Scalars['jsonb']>;
+  _nin?: InputMaybe<Array<Scalars['jsonb']>>;
 };
 
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
@@ -2638,6 +6238,22 @@ export type persisted_state_stream_cursor_value_input = {
 };
 
 export type query_root = {
+  /** fetch data from the table: "Application" */
+  Application: Array<Application>;
+  /** fetch data from the table: "Application" using primary key columns */
+  Application_by_pk?: Maybe<Application>;
+  /** fetch data from the table: "Badge" */
+  Badge: Array<Badge>;
+  /** fetch data from the table: "BadgeHolder" */
+  BadgeHolder: Array<BadgeHolder>;
+  /** fetch data from the table: "BadgeHolder" using primary key columns */
+  BadgeHolder_by_pk?: Maybe<BadgeHolder>;
+  /** fetch data from the table: "BadgeTemplate" */
+  BadgeTemplate: Array<BadgeTemplate>;
+  /** fetch data from the table: "BadgeTemplate" using primary key columns */
+  BadgeTemplate_by_pk?: Maybe<BadgeTemplate>;
+  /** fetch data from the table: "Badge" using primary key columns */
+  Badge_by_pk?: Maybe<Badge>;
   /** fetch data from the table: "Contest" */
   Contest: Array<Contest>;
   /** fetch data from the table: "ContestClone" */
@@ -2650,6 +6266,18 @@ export type query_root = {
   ContestTemplate_by_pk?: Maybe<ContestTemplate>;
   /** fetch data from the table: "Contest" using primary key columns */
   Contest_by_pk?: Maybe<Contest>;
+  /** fetch data from the table: "DAOToken" */
+  DAOToken: Array<DAOToken>;
+  /** fetch data from the table: "DAOToken" using primary key columns */
+  DAOToken_by_pk?: Maybe<DAOToken>;
+  /** fetch data from the table: "DualTokenPointsParams" */
+  DualTokenPointsParams: Array<DualTokenPointsParams>;
+  /** fetch data from the table: "DualTokenPointsParams" using primary key columns */
+  DualTokenPointsParams_by_pk?: Maybe<DualTokenPointsParams>;
+  /** fetch data from the table: "DualTokenTVParams" */
+  DualTokenTVParams: Array<DualTokenTVParams>;
+  /** fetch data from the table: "DualTokenTVParams" using primary key columns */
+  DualTokenTVParams_by_pk?: Maybe<DualTokenTVParams>;
   /** fetch data from the table: "ERCPointParams" */
   ERCPointParams: Array<ERCPointParams>;
   /** fetch data from the table: "ERCPointParams" using primary key columns */
@@ -2666,10 +6294,42 @@ export type query_root = {
   FactoryEventsSummary: Array<FactoryEventsSummary>;
   /** fetch data from the table: "FactoryEventsSummary" using primary key columns */
   FactoryEventsSummary_by_pk?: Maybe<FactoryEventsSummary>;
+  /** fetch data from the table: "FeedCard" */
+  FeedCard: Array<FeedCard>;
+  /** fetch data from the table: "FeedCard" using primary key columns */
+  FeedCard_by_pk?: Maybe<FeedCard>;
+  /** fetch data from the table: "FeedItemEmbed" */
+  FeedItemEmbed: Array<FeedItemEmbed>;
+  /** fetch data from the table: "FeedItemEmbed" using primary key columns */
+  FeedItemEmbed_by_pk?: Maybe<FeedItemEmbed>;
+  /** fetch data from the table: "FeedItemEntity" */
+  FeedItemEntity: Array<FeedItemEntity>;
+  /** fetch data from the table: "FeedItemEntity" using primary key columns */
+  FeedItemEntity_by_pk?: Maybe<FeedItemEntity>;
+  /** fetch data from the table: "GMInitParams" */
+  GMInitParams: Array<GMInitParams>;
+  /** fetch data from the table: "GMInitParams" using primary key columns */
+  GMInitParams_by_pk?: Maybe<GMInitParams>;
   /** fetch data from the table: "GSVoter" */
   GSVoter: Array<GSVoter>;
   /** fetch data from the table: "GSVoter" using primary key columns */
   GSVoter_by_pk?: Maybe<GSVoter>;
+  /** fetch data from the table: "GameManagerFactory" */
+  GameManagerFactory: Array<GameManagerFactory>;
+  /** fetch data from the table: "GameManagerFactory" using primary key columns */
+  GameManagerFactory_by_pk?: Maybe<GameManagerFactory>;
+  /** fetch data from the table: "GameManagerTemplate" */
+  GameManagerTemplate: Array<GameManagerTemplate>;
+  /** fetch data from the table: "GameManagerTemplate" using primary key columns */
+  GameManagerTemplate_by_pk?: Maybe<GameManagerTemplate>;
+  /** fetch data from the table: "GameRound" */
+  GameRound: Array<GameRound>;
+  /** fetch data from the table: "GameRound" using primary key columns */
+  GameRound_by_pk?: Maybe<GameRound>;
+  /** fetch data from the table: "Gate" */
+  Gate: Array<Gate>;
+  /** fetch data from the table: "Gate" using primary key columns */
+  Gate_by_pk?: Maybe<Gate>;
   /** fetch data from the table: "GrantShipsVoting" */
   GrantShipsVoting: Array<GrantShipsVoting>;
   /** fetch data from the table: "GrantShipsVoting" using primary key columns */
@@ -2686,10 +6346,26 @@ export type query_root = {
   LocalLog: Array<LocalLog>;
   /** fetch data from the table: "LocalLog" using primary key columns */
   LocalLog_by_pk?: Maybe<LocalLog>;
+  /** fetch data from the table: "Milestone" */
+  Milestone: Array<Milestone>;
+  /** fetch data from the table: "MilestoneSet" */
+  MilestoneSet: Array<MilestoneSet>;
+  /** fetch data from the table: "MilestoneSet" using primary key columns */
+  MilestoneSet_by_pk?: Maybe<MilestoneSet>;
+  /** fetch data from the table: "Milestone" using primary key columns */
+  Milestone_by_pk?: Maybe<Milestone>;
   /** fetch data from the table: "ModuleTemplate" */
   ModuleTemplate: Array<ModuleTemplate>;
   /** fetch data from the table: "ModuleTemplate" using primary key columns */
   ModuleTemplate_by_pk?: Maybe<ModuleTemplate>;
+  /** fetch data from the table: "ProfileIdToAnchor" */
+  ProfileIdToAnchor: Array<ProfileIdToAnchor>;
+  /** fetch data from the table: "ProfileIdToAnchor" using primary key columns */
+  ProfileIdToAnchor_by_pk?: Maybe<ProfileIdToAnchor>;
+  /** fetch data from the table: "ProfileMemberGroup" */
+  ProfileMemberGroup: Array<ProfileMemberGroup>;
+  /** fetch data from the table: "ProfileMemberGroup" using primary key columns */
+  ProfileMemberGroup_by_pk?: Maybe<ProfileMemberGroup>;
   /** fetch data from the table: "Record" */
   Record: Array<Record>;
   /** fetch data from the table: "Record" using primary key columns */
@@ -2698,10 +6374,18 @@ export type query_root = {
   SBTBalParams: Array<SBTBalParams>;
   /** fetch data from the table: "SBTBalParams" using primary key columns */
   SBTBalParams_by_pk?: Maybe<SBTBalParams>;
+  /** fetch data from the table: "ScaffoldShaman" */
+  ScaffoldShaman: Array<ScaffoldShaman>;
+  /** fetch data from the table: "ScaffoldShaman" using primary key columns */
+  ScaffoldShaman_by_pk?: Maybe<ScaffoldShaman>;
   /** fetch data from the table: "ShipChoice" */
   ShipChoice: Array<ShipChoice>;
   /** fetch data from the table: "ShipChoice" using primary key columns */
   ShipChoice_by_pk?: Maybe<ShipChoice>;
+  /** fetch data from the table: "ShipContext" */
+  ShipContext: Array<ShipContext>;
+  /** fetch data from the table: "ShipContext" using primary key columns */
+  ShipContext_by_pk?: Maybe<ShipContext>;
   /** fetch data from the table: "ShipVote" */
   ShipVote: Array<ShipVote>;
   /** fetch data from the table: "ShipVote" using primary key columns */
@@ -2714,6 +6398,10 @@ export type query_root = {
   TVParams: Array<TVParams>;
   /** fetch data from the table: "TVParams" using primary key columns */
   TVParams_by_pk?: Maybe<TVParams>;
+  /** fetch data from the table: "Transaction" */
+  Transaction: Array<Transaction>;
+  /** fetch data from the table: "Transaction" using primary key columns */
+  Transaction_by_pk?: Maybe<Transaction>;
   /** fetch data from the table: "chain_metadata" */
   chain_metadata: Array<chain_metadata>;
   /** fetch data from the table: "chain_metadata" using primary key columns */
@@ -2722,6 +6410,10 @@ export type query_root = {
   dynamic_contract_registry: Array<dynamic_contract_registry>;
   /** fetch data from the table: "dynamic_contract_registry" using primary key columns */
   dynamic_contract_registry_by_pk?: Maybe<dynamic_contract_registry>;
+  /** fetch data from the table: "end_of_block_range_scanned_data" */
+  end_of_block_range_scanned_data: Array<end_of_block_range_scanned_data>;
+  /** fetch data from the table: "end_of_block_range_scanned_data" using primary key columns */
+  end_of_block_range_scanned_data_by_pk?: Maybe<end_of_block_range_scanned_data>;
   /** fetch data from the table: "entity_history" */
   entity_history: Array<entity_history>;
   /** fetch data from the table: "entity_history" using primary key columns */
@@ -2744,6 +6436,62 @@ export type query_root = {
   raw_events: Array<raw_events>;
   /** fetch data from the table: "raw_events" using primary key columns */
   raw_events_by_pk?: Maybe<raw_events>;
+};
+
+
+export type query_rootApplicationArgs = {
+  distinct_on?: InputMaybe<Array<Application_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Application_order_by>>;
+  where?: InputMaybe<Application_bool_exp>;
+};
+
+
+export type query_rootApplication_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootBadgeArgs = {
+  distinct_on?: InputMaybe<Array<Badge_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Badge_order_by>>;
+  where?: InputMaybe<Badge_bool_exp>;
+};
+
+
+export type query_rootBadgeHolderArgs = {
+  distinct_on?: InputMaybe<Array<BadgeHolder_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<BadgeHolder_order_by>>;
+  where?: InputMaybe<BadgeHolder_bool_exp>;
+};
+
+
+export type query_rootBadgeHolder_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootBadgeTemplateArgs = {
+  distinct_on?: InputMaybe<Array<BadgeTemplate_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<BadgeTemplate_order_by>>;
+  where?: InputMaybe<BadgeTemplate_bool_exp>;
+};
+
+
+export type query_rootBadgeTemplate_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootBadge_by_pkArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -2785,6 +6533,48 @@ export type query_rootContestTemplate_by_pkArgs = {
 
 
 export type query_rootContest_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootDAOTokenArgs = {
+  distinct_on?: InputMaybe<Array<DAOToken_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<DAOToken_order_by>>;
+  where?: InputMaybe<DAOToken_bool_exp>;
+};
+
+
+export type query_rootDAOToken_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootDualTokenPointsParamsArgs = {
+  distinct_on?: InputMaybe<Array<DualTokenPointsParams_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<DualTokenPointsParams_order_by>>;
+  where?: InputMaybe<DualTokenPointsParams_bool_exp>;
+};
+
+
+export type query_rootDualTokenPointsParams_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootDualTokenTVParamsArgs = {
+  distinct_on?: InputMaybe<Array<DualTokenTVParams_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<DualTokenTVParams_order_by>>;
+  where?: InputMaybe<DualTokenTVParams_bool_exp>;
+};
+
+
+export type query_rootDualTokenTVParams_by_pkArgs = {
   id: Scalars['String'];
 };
 
@@ -2845,6 +6635,62 @@ export type query_rootFactoryEventsSummary_by_pkArgs = {
 };
 
 
+export type query_rootFeedCardArgs = {
+  distinct_on?: InputMaybe<Array<FeedCard_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<FeedCard_order_by>>;
+  where?: InputMaybe<FeedCard_bool_exp>;
+};
+
+
+export type query_rootFeedCard_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootFeedItemEmbedArgs = {
+  distinct_on?: InputMaybe<Array<FeedItemEmbed_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<FeedItemEmbed_order_by>>;
+  where?: InputMaybe<FeedItemEmbed_bool_exp>;
+};
+
+
+export type query_rootFeedItemEmbed_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootFeedItemEntityArgs = {
+  distinct_on?: InputMaybe<Array<FeedItemEntity_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<FeedItemEntity_order_by>>;
+  where?: InputMaybe<FeedItemEntity_bool_exp>;
+};
+
+
+export type query_rootFeedItemEntity_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootGMInitParamsArgs = {
+  distinct_on?: InputMaybe<Array<GMInitParams_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<GMInitParams_order_by>>;
+  where?: InputMaybe<GMInitParams_bool_exp>;
+};
+
+
+export type query_rootGMInitParams_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
 export type query_rootGSVoterArgs = {
   distinct_on?: InputMaybe<Array<GSVoter_select_column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -2855,6 +6701,62 @@ export type query_rootGSVoterArgs = {
 
 
 export type query_rootGSVoter_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootGameManagerFactoryArgs = {
+  distinct_on?: InputMaybe<Array<GameManagerFactory_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<GameManagerFactory_order_by>>;
+  where?: InputMaybe<GameManagerFactory_bool_exp>;
+};
+
+
+export type query_rootGameManagerFactory_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootGameManagerTemplateArgs = {
+  distinct_on?: InputMaybe<Array<GameManagerTemplate_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<GameManagerTemplate_order_by>>;
+  where?: InputMaybe<GameManagerTemplate_bool_exp>;
+};
+
+
+export type query_rootGameManagerTemplate_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootGameRoundArgs = {
+  distinct_on?: InputMaybe<Array<GameRound_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<GameRound_order_by>>;
+  where?: InputMaybe<GameRound_bool_exp>;
+};
+
+
+export type query_rootGameRound_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootGateArgs = {
+  distinct_on?: InputMaybe<Array<Gate_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Gate_order_by>>;
+  where?: InputMaybe<Gate_bool_exp>;
+};
+
+
+export type query_rootGate_by_pkArgs = {
   id: Scalars['String'];
 };
 
@@ -2915,6 +6817,34 @@ export type query_rootLocalLog_by_pkArgs = {
 };
 
 
+export type query_rootMilestoneArgs = {
+  distinct_on?: InputMaybe<Array<Milestone_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Milestone_order_by>>;
+  where?: InputMaybe<Milestone_bool_exp>;
+};
+
+
+export type query_rootMilestoneSetArgs = {
+  distinct_on?: InputMaybe<Array<MilestoneSet_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<MilestoneSet_order_by>>;
+  where?: InputMaybe<MilestoneSet_bool_exp>;
+};
+
+
+export type query_rootMilestoneSet_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootMilestone_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
 export type query_rootModuleTemplateArgs = {
   distinct_on?: InputMaybe<Array<ModuleTemplate_select_column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -2925,6 +6855,34 @@ export type query_rootModuleTemplateArgs = {
 
 
 export type query_rootModuleTemplate_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootProfileIdToAnchorArgs = {
+  distinct_on?: InputMaybe<Array<ProfileIdToAnchor_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ProfileIdToAnchor_order_by>>;
+  where?: InputMaybe<ProfileIdToAnchor_bool_exp>;
+};
+
+
+export type query_rootProfileIdToAnchor_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootProfileMemberGroupArgs = {
+  distinct_on?: InputMaybe<Array<ProfileMemberGroup_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ProfileMemberGroup_order_by>>;
+  where?: InputMaybe<ProfileMemberGroup_bool_exp>;
+};
+
+
+export type query_rootProfileMemberGroup_by_pkArgs = {
   id: Scalars['String'];
 };
 
@@ -2957,6 +6915,20 @@ export type query_rootSBTBalParams_by_pkArgs = {
 };
 
 
+export type query_rootScaffoldShamanArgs = {
+  distinct_on?: InputMaybe<Array<ScaffoldShaman_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ScaffoldShaman_order_by>>;
+  where?: InputMaybe<ScaffoldShaman_bool_exp>;
+};
+
+
+export type query_rootScaffoldShaman_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
 export type query_rootShipChoiceArgs = {
   distinct_on?: InputMaybe<Array<ShipChoice_select_column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -2967,6 +6939,20 @@ export type query_rootShipChoiceArgs = {
 
 
 export type query_rootShipChoice_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type query_rootShipContextArgs = {
+  distinct_on?: InputMaybe<Array<ShipContext_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ShipContext_order_by>>;
+  where?: InputMaybe<ShipContext_bool_exp>;
+};
+
+
+export type query_rootShipContext_by_pkArgs = {
   id: Scalars['String'];
 };
 
@@ -3013,6 +6999,20 @@ export type query_rootTVParams_by_pkArgs = {
 };
 
 
+export type query_rootTransactionArgs = {
+  distinct_on?: InputMaybe<Array<Transaction_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transaction_order_by>>;
+  where?: InputMaybe<Transaction_bool_exp>;
+};
+
+
+export type query_rootTransaction_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
 export type query_rootchain_metadataArgs = {
   distinct_on?: InputMaybe<Array<chain_metadata_select_column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3039,6 +7039,21 @@ export type query_rootdynamic_contract_registryArgs = {
 export type query_rootdynamic_contract_registry_by_pkArgs = {
   chain_id: Scalars['Int'];
   contract_address: Scalars['String'];
+};
+
+
+export type query_rootend_of_block_range_scanned_dataArgs = {
+  distinct_on?: InputMaybe<Array<end_of_block_range_scanned_data_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<end_of_block_range_scanned_data_order_by>>;
+  where?: InputMaybe<end_of_block_range_scanned_data_bool_exp>;
+};
+
+
+export type query_rootend_of_block_range_scanned_data_by_pkArgs = {
+  block_number: Scalars['Int'];
+  chain_id: Scalars['Int'];
 };
 
 
@@ -3072,10 +7087,11 @@ export type query_rootentity_history_filterArgs = {
 
 export type query_rootentity_history_filter_by_pkArgs = {
   block_number: Scalars['Int'];
+  block_timestamp: Scalars['Int'];
   chain_id: Scalars['Int'];
   entity_id: Scalars['String'];
+  entity_type: Scalars['entity_type'];
   log_index: Scalars['Int'];
-  previous_block_number: Scalars['Int'];
   previous_log_index: Scalars['Int'];
 };
 
@@ -3134,20 +7150,27 @@ export type query_rootraw_events_by_pkArgs = {
 
 /** columns and relationships of "raw_events" */
 export type raw_events = {
+  block_fields: Scalars['jsonb'];
   block_hash: Scalars['String'];
   block_number: Scalars['Int'];
   block_timestamp: Scalars['Int'];
   chain_id: Scalars['Int'];
+  contract_name: Scalars['String'];
   db_write_timestamp?: Maybe<Scalars['timestamp']>;
   /** An array relationship */
   event_history: Array<entity_history>;
   event_id: Scalars['numeric'];
-  event_type: Scalars['event_type'];
+  event_name: Scalars['String'];
   log_index: Scalars['Int'];
-  params: Scalars['json'];
+  params: Scalars['jsonb'];
   src_address: Scalars['String'];
-  transaction_hash: Scalars['String'];
-  transaction_index: Scalars['Int'];
+  transaction_fields: Scalars['jsonb'];
+};
+
+
+/** columns and relationships of "raw_events" */
+export type raw_eventsblock_fieldsArgs = {
+  path?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -3166,45 +7189,55 @@ export type raw_eventsparamsArgs = {
   path?: InputMaybe<Scalars['String']>;
 };
 
+
+/** columns and relationships of "raw_events" */
+export type raw_eventstransaction_fieldsArgs = {
+  path?: InputMaybe<Scalars['String']>;
+};
+
 /** Boolean expression to filter rows from the table "raw_events". All fields are combined with a logical 'AND'. */
 export type raw_events_bool_exp = {
   _and?: InputMaybe<Array<raw_events_bool_exp>>;
   _not?: InputMaybe<raw_events_bool_exp>;
   _or?: InputMaybe<Array<raw_events_bool_exp>>;
+  block_fields?: InputMaybe<jsonb_comparison_exp>;
   block_hash?: InputMaybe<String_comparison_exp>;
   block_number?: InputMaybe<Int_comparison_exp>;
   block_timestamp?: InputMaybe<Int_comparison_exp>;
   chain_id?: InputMaybe<Int_comparison_exp>;
+  contract_name?: InputMaybe<String_comparison_exp>;
   db_write_timestamp?: InputMaybe<timestamp_comparison_exp>;
   event_history?: InputMaybe<entity_history_bool_exp>;
   event_id?: InputMaybe<numeric_comparison_exp>;
-  event_type?: InputMaybe<event_type_comparison_exp>;
+  event_name?: InputMaybe<String_comparison_exp>;
   log_index?: InputMaybe<Int_comparison_exp>;
-  params?: InputMaybe<json_comparison_exp>;
+  params?: InputMaybe<jsonb_comparison_exp>;
   src_address?: InputMaybe<String_comparison_exp>;
-  transaction_hash?: InputMaybe<String_comparison_exp>;
-  transaction_index?: InputMaybe<Int_comparison_exp>;
+  transaction_fields?: InputMaybe<jsonb_comparison_exp>;
 };
 
 /** Ordering options when selecting data from "raw_events". */
 export type raw_events_order_by = {
+  block_fields?: InputMaybe<order_by>;
   block_hash?: InputMaybe<order_by>;
   block_number?: InputMaybe<order_by>;
   block_timestamp?: InputMaybe<order_by>;
   chain_id?: InputMaybe<order_by>;
+  contract_name?: InputMaybe<order_by>;
   db_write_timestamp?: InputMaybe<order_by>;
   event_history_aggregate?: InputMaybe<entity_history_aggregate_order_by>;
   event_id?: InputMaybe<order_by>;
-  event_type?: InputMaybe<order_by>;
+  event_name?: InputMaybe<order_by>;
   log_index?: InputMaybe<order_by>;
   params?: InputMaybe<order_by>;
   src_address?: InputMaybe<order_by>;
-  transaction_hash?: InputMaybe<order_by>;
-  transaction_index?: InputMaybe<order_by>;
+  transaction_fields?: InputMaybe<order_by>;
 };
 
 /** select columns of table "raw_events" */
 export type raw_events_select_column =
+  /** column name */
+  | 'block_fields'
   /** column name */
   | 'block_hash'
   /** column name */
@@ -3214,11 +7247,13 @@ export type raw_events_select_column =
   /** column name */
   | 'chain_id'
   /** column name */
+  | 'contract_name'
+  /** column name */
   | 'db_write_timestamp'
   /** column name */
   | 'event_id'
   /** column name */
-  | 'event_type'
+  | 'event_name'
   /** column name */
   | 'log_index'
   /** column name */
@@ -3226,9 +7261,7 @@ export type raw_events_select_column =
   /** column name */
   | 'src_address'
   /** column name */
-  | 'transaction_hash'
-  /** column name */
-  | 'transaction_index';
+  | 'transaction_fields';
 
 /** Streaming cursor of the table "raw_events" */
 export type raw_events_stream_cursor_input = {
@@ -3240,21 +7273,46 @@ export type raw_events_stream_cursor_input = {
 
 /** Initial value of the column from where the streaming should start */
 export type raw_events_stream_cursor_value_input = {
+  block_fields?: InputMaybe<Scalars['jsonb']>;
   block_hash?: InputMaybe<Scalars['String']>;
   block_number?: InputMaybe<Scalars['Int']>;
   block_timestamp?: InputMaybe<Scalars['Int']>;
   chain_id?: InputMaybe<Scalars['Int']>;
+  contract_name?: InputMaybe<Scalars['String']>;
   db_write_timestamp?: InputMaybe<Scalars['timestamp']>;
   event_id?: InputMaybe<Scalars['numeric']>;
-  event_type?: InputMaybe<Scalars['event_type']>;
+  event_name?: InputMaybe<Scalars['String']>;
   log_index?: InputMaybe<Scalars['Int']>;
-  params?: InputMaybe<Scalars['json']>;
+  params?: InputMaybe<Scalars['jsonb']>;
   src_address?: InputMaybe<Scalars['String']>;
-  transaction_hash?: InputMaybe<Scalars['String']>;
-  transaction_index?: InputMaybe<Scalars['Int']>;
+  transaction_fields?: InputMaybe<Scalars['jsonb']>;
 };
 
 export type subscription_root = {
+  /** fetch data from the table: "Application" */
+  Application: Array<Application>;
+  /** fetch data from the table: "Application" using primary key columns */
+  Application_by_pk?: Maybe<Application>;
+  /** fetch data from the table in a streaming manner: "Application" */
+  Application_stream: Array<Application>;
+  /** fetch data from the table: "Badge" */
+  Badge: Array<Badge>;
+  /** fetch data from the table: "BadgeHolder" */
+  BadgeHolder: Array<BadgeHolder>;
+  /** fetch data from the table: "BadgeHolder" using primary key columns */
+  BadgeHolder_by_pk?: Maybe<BadgeHolder>;
+  /** fetch data from the table in a streaming manner: "BadgeHolder" */
+  BadgeHolder_stream: Array<BadgeHolder>;
+  /** fetch data from the table: "BadgeTemplate" */
+  BadgeTemplate: Array<BadgeTemplate>;
+  /** fetch data from the table: "BadgeTemplate" using primary key columns */
+  BadgeTemplate_by_pk?: Maybe<BadgeTemplate>;
+  /** fetch data from the table in a streaming manner: "BadgeTemplate" */
+  BadgeTemplate_stream: Array<BadgeTemplate>;
+  /** fetch data from the table: "Badge" using primary key columns */
+  Badge_by_pk?: Maybe<Badge>;
+  /** fetch data from the table in a streaming manner: "Badge" */
+  Badge_stream: Array<Badge>;
   /** fetch data from the table: "Contest" */
   Contest: Array<Contest>;
   /** fetch data from the table: "ContestClone" */
@@ -3273,6 +7331,24 @@ export type subscription_root = {
   Contest_by_pk?: Maybe<Contest>;
   /** fetch data from the table in a streaming manner: "Contest" */
   Contest_stream: Array<Contest>;
+  /** fetch data from the table: "DAOToken" */
+  DAOToken: Array<DAOToken>;
+  /** fetch data from the table: "DAOToken" using primary key columns */
+  DAOToken_by_pk?: Maybe<DAOToken>;
+  /** fetch data from the table in a streaming manner: "DAOToken" */
+  DAOToken_stream: Array<DAOToken>;
+  /** fetch data from the table: "DualTokenPointsParams" */
+  DualTokenPointsParams: Array<DualTokenPointsParams>;
+  /** fetch data from the table: "DualTokenPointsParams" using primary key columns */
+  DualTokenPointsParams_by_pk?: Maybe<DualTokenPointsParams>;
+  /** fetch data from the table in a streaming manner: "DualTokenPointsParams" */
+  DualTokenPointsParams_stream: Array<DualTokenPointsParams>;
+  /** fetch data from the table: "DualTokenTVParams" */
+  DualTokenTVParams: Array<DualTokenTVParams>;
+  /** fetch data from the table: "DualTokenTVParams" using primary key columns */
+  DualTokenTVParams_by_pk?: Maybe<DualTokenTVParams>;
+  /** fetch data from the table in a streaming manner: "DualTokenTVParams" */
+  DualTokenTVParams_stream: Array<DualTokenTVParams>;
   /** fetch data from the table: "ERCPointParams" */
   ERCPointParams: Array<ERCPointParams>;
   /** fetch data from the table: "ERCPointParams" using primary key columns */
@@ -3297,12 +7373,60 @@ export type subscription_root = {
   FactoryEventsSummary_by_pk?: Maybe<FactoryEventsSummary>;
   /** fetch data from the table in a streaming manner: "FactoryEventsSummary" */
   FactoryEventsSummary_stream: Array<FactoryEventsSummary>;
+  /** fetch data from the table: "FeedCard" */
+  FeedCard: Array<FeedCard>;
+  /** fetch data from the table: "FeedCard" using primary key columns */
+  FeedCard_by_pk?: Maybe<FeedCard>;
+  /** fetch data from the table in a streaming manner: "FeedCard" */
+  FeedCard_stream: Array<FeedCard>;
+  /** fetch data from the table: "FeedItemEmbed" */
+  FeedItemEmbed: Array<FeedItemEmbed>;
+  /** fetch data from the table: "FeedItemEmbed" using primary key columns */
+  FeedItemEmbed_by_pk?: Maybe<FeedItemEmbed>;
+  /** fetch data from the table in a streaming manner: "FeedItemEmbed" */
+  FeedItemEmbed_stream: Array<FeedItemEmbed>;
+  /** fetch data from the table: "FeedItemEntity" */
+  FeedItemEntity: Array<FeedItemEntity>;
+  /** fetch data from the table: "FeedItemEntity" using primary key columns */
+  FeedItemEntity_by_pk?: Maybe<FeedItemEntity>;
+  /** fetch data from the table in a streaming manner: "FeedItemEntity" */
+  FeedItemEntity_stream: Array<FeedItemEntity>;
+  /** fetch data from the table: "GMInitParams" */
+  GMInitParams: Array<GMInitParams>;
+  /** fetch data from the table: "GMInitParams" using primary key columns */
+  GMInitParams_by_pk?: Maybe<GMInitParams>;
+  /** fetch data from the table in a streaming manner: "GMInitParams" */
+  GMInitParams_stream: Array<GMInitParams>;
   /** fetch data from the table: "GSVoter" */
   GSVoter: Array<GSVoter>;
   /** fetch data from the table: "GSVoter" using primary key columns */
   GSVoter_by_pk?: Maybe<GSVoter>;
   /** fetch data from the table in a streaming manner: "GSVoter" */
   GSVoter_stream: Array<GSVoter>;
+  /** fetch data from the table: "GameManagerFactory" */
+  GameManagerFactory: Array<GameManagerFactory>;
+  /** fetch data from the table: "GameManagerFactory" using primary key columns */
+  GameManagerFactory_by_pk?: Maybe<GameManagerFactory>;
+  /** fetch data from the table in a streaming manner: "GameManagerFactory" */
+  GameManagerFactory_stream: Array<GameManagerFactory>;
+  /** fetch data from the table: "GameManagerTemplate" */
+  GameManagerTemplate: Array<GameManagerTemplate>;
+  /** fetch data from the table: "GameManagerTemplate" using primary key columns */
+  GameManagerTemplate_by_pk?: Maybe<GameManagerTemplate>;
+  /** fetch data from the table in a streaming manner: "GameManagerTemplate" */
+  GameManagerTemplate_stream: Array<GameManagerTemplate>;
+  /** fetch data from the table: "GameRound" */
+  GameRound: Array<GameRound>;
+  /** fetch data from the table: "GameRound" using primary key columns */
+  GameRound_by_pk?: Maybe<GameRound>;
+  /** fetch data from the table in a streaming manner: "GameRound" */
+  GameRound_stream: Array<GameRound>;
+  /** fetch data from the table: "Gate" */
+  Gate: Array<Gate>;
+  /** fetch data from the table: "Gate" using primary key columns */
+  Gate_by_pk?: Maybe<Gate>;
+  /** fetch data from the table in a streaming manner: "Gate" */
+  Gate_stream: Array<Gate>;
   /** fetch data from the table: "GrantShipsVoting" */
   GrantShipsVoting: Array<GrantShipsVoting>;
   /** fetch data from the table: "GrantShipsVoting" using primary key columns */
@@ -3327,12 +7451,36 @@ export type subscription_root = {
   LocalLog_by_pk?: Maybe<LocalLog>;
   /** fetch data from the table in a streaming manner: "LocalLog" */
   LocalLog_stream: Array<LocalLog>;
+  /** fetch data from the table: "Milestone" */
+  Milestone: Array<Milestone>;
+  /** fetch data from the table: "MilestoneSet" */
+  MilestoneSet: Array<MilestoneSet>;
+  /** fetch data from the table: "MilestoneSet" using primary key columns */
+  MilestoneSet_by_pk?: Maybe<MilestoneSet>;
+  /** fetch data from the table in a streaming manner: "MilestoneSet" */
+  MilestoneSet_stream: Array<MilestoneSet>;
+  /** fetch data from the table: "Milestone" using primary key columns */
+  Milestone_by_pk?: Maybe<Milestone>;
+  /** fetch data from the table in a streaming manner: "Milestone" */
+  Milestone_stream: Array<Milestone>;
   /** fetch data from the table: "ModuleTemplate" */
   ModuleTemplate: Array<ModuleTemplate>;
   /** fetch data from the table: "ModuleTemplate" using primary key columns */
   ModuleTemplate_by_pk?: Maybe<ModuleTemplate>;
   /** fetch data from the table in a streaming manner: "ModuleTemplate" */
   ModuleTemplate_stream: Array<ModuleTemplate>;
+  /** fetch data from the table: "ProfileIdToAnchor" */
+  ProfileIdToAnchor: Array<ProfileIdToAnchor>;
+  /** fetch data from the table: "ProfileIdToAnchor" using primary key columns */
+  ProfileIdToAnchor_by_pk?: Maybe<ProfileIdToAnchor>;
+  /** fetch data from the table in a streaming manner: "ProfileIdToAnchor" */
+  ProfileIdToAnchor_stream: Array<ProfileIdToAnchor>;
+  /** fetch data from the table: "ProfileMemberGroup" */
+  ProfileMemberGroup: Array<ProfileMemberGroup>;
+  /** fetch data from the table: "ProfileMemberGroup" using primary key columns */
+  ProfileMemberGroup_by_pk?: Maybe<ProfileMemberGroup>;
+  /** fetch data from the table in a streaming manner: "ProfileMemberGroup" */
+  ProfileMemberGroup_stream: Array<ProfileMemberGroup>;
   /** fetch data from the table: "Record" */
   Record: Array<Record>;
   /** fetch data from the table: "Record" using primary key columns */
@@ -3345,12 +7493,24 @@ export type subscription_root = {
   SBTBalParams_by_pk?: Maybe<SBTBalParams>;
   /** fetch data from the table in a streaming manner: "SBTBalParams" */
   SBTBalParams_stream: Array<SBTBalParams>;
+  /** fetch data from the table: "ScaffoldShaman" */
+  ScaffoldShaman: Array<ScaffoldShaman>;
+  /** fetch data from the table: "ScaffoldShaman" using primary key columns */
+  ScaffoldShaman_by_pk?: Maybe<ScaffoldShaman>;
+  /** fetch data from the table in a streaming manner: "ScaffoldShaman" */
+  ScaffoldShaman_stream: Array<ScaffoldShaman>;
   /** fetch data from the table: "ShipChoice" */
   ShipChoice: Array<ShipChoice>;
   /** fetch data from the table: "ShipChoice" using primary key columns */
   ShipChoice_by_pk?: Maybe<ShipChoice>;
   /** fetch data from the table in a streaming manner: "ShipChoice" */
   ShipChoice_stream: Array<ShipChoice>;
+  /** fetch data from the table: "ShipContext" */
+  ShipContext: Array<ShipContext>;
+  /** fetch data from the table: "ShipContext" using primary key columns */
+  ShipContext_by_pk?: Maybe<ShipContext>;
+  /** fetch data from the table in a streaming manner: "ShipContext" */
+  ShipContext_stream: Array<ShipContext>;
   /** fetch data from the table: "ShipVote" */
   ShipVote: Array<ShipVote>;
   /** fetch data from the table: "ShipVote" using primary key columns */
@@ -3369,6 +7529,12 @@ export type subscription_root = {
   TVParams_by_pk?: Maybe<TVParams>;
   /** fetch data from the table in a streaming manner: "TVParams" */
   TVParams_stream: Array<TVParams>;
+  /** fetch data from the table: "Transaction" */
+  Transaction: Array<Transaction>;
+  /** fetch data from the table: "Transaction" using primary key columns */
+  Transaction_by_pk?: Maybe<Transaction>;
+  /** fetch data from the table in a streaming manner: "Transaction" */
+  Transaction_stream: Array<Transaction>;
   /** fetch data from the table: "chain_metadata" */
   chain_metadata: Array<chain_metadata>;
   /** fetch data from the table: "chain_metadata" using primary key columns */
@@ -3381,6 +7547,12 @@ export type subscription_root = {
   dynamic_contract_registry_by_pk?: Maybe<dynamic_contract_registry>;
   /** fetch data from the table in a streaming manner: "dynamic_contract_registry" */
   dynamic_contract_registry_stream: Array<dynamic_contract_registry>;
+  /** fetch data from the table: "end_of_block_range_scanned_data" */
+  end_of_block_range_scanned_data: Array<end_of_block_range_scanned_data>;
+  /** fetch data from the table: "end_of_block_range_scanned_data" using primary key columns */
+  end_of_block_range_scanned_data_by_pk?: Maybe<end_of_block_range_scanned_data>;
+  /** fetch data from the table in a streaming manner: "end_of_block_range_scanned_data" */
+  end_of_block_range_scanned_data_stream: Array<end_of_block_range_scanned_data>;
   /** fetch data from the table: "entity_history" */
   entity_history: Array<entity_history>;
   /** fetch data from the table: "entity_history" using primary key columns */
@@ -3413,6 +7585,90 @@ export type subscription_root = {
   raw_events_by_pk?: Maybe<raw_events>;
   /** fetch data from the table in a streaming manner: "raw_events" */
   raw_events_stream: Array<raw_events>;
+};
+
+
+export type subscription_rootApplicationArgs = {
+  distinct_on?: InputMaybe<Array<Application_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Application_order_by>>;
+  where?: InputMaybe<Application_bool_exp>;
+};
+
+
+export type subscription_rootApplication_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootApplication_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Application_stream_cursor_input>>;
+  where?: InputMaybe<Application_bool_exp>;
+};
+
+
+export type subscription_rootBadgeArgs = {
+  distinct_on?: InputMaybe<Array<Badge_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Badge_order_by>>;
+  where?: InputMaybe<Badge_bool_exp>;
+};
+
+
+export type subscription_rootBadgeHolderArgs = {
+  distinct_on?: InputMaybe<Array<BadgeHolder_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<BadgeHolder_order_by>>;
+  where?: InputMaybe<BadgeHolder_bool_exp>;
+};
+
+
+export type subscription_rootBadgeHolder_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootBadgeHolder_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<BadgeHolder_stream_cursor_input>>;
+  where?: InputMaybe<BadgeHolder_bool_exp>;
+};
+
+
+export type subscription_rootBadgeTemplateArgs = {
+  distinct_on?: InputMaybe<Array<BadgeTemplate_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<BadgeTemplate_order_by>>;
+  where?: InputMaybe<BadgeTemplate_bool_exp>;
+};
+
+
+export type subscription_rootBadgeTemplate_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootBadgeTemplate_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<BadgeTemplate_stream_cursor_input>>;
+  where?: InputMaybe<BadgeTemplate_bool_exp>;
+};
+
+
+export type subscription_rootBadge_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootBadge_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Badge_stream_cursor_input>>;
+  where?: InputMaybe<Badge_bool_exp>;
 };
 
 
@@ -3476,6 +7732,69 @@ export type subscription_rootContest_streamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<Contest_stream_cursor_input>>;
   where?: InputMaybe<Contest_bool_exp>;
+};
+
+
+export type subscription_rootDAOTokenArgs = {
+  distinct_on?: InputMaybe<Array<DAOToken_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<DAOToken_order_by>>;
+  where?: InputMaybe<DAOToken_bool_exp>;
+};
+
+
+export type subscription_rootDAOToken_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootDAOToken_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<DAOToken_stream_cursor_input>>;
+  where?: InputMaybe<DAOToken_bool_exp>;
+};
+
+
+export type subscription_rootDualTokenPointsParamsArgs = {
+  distinct_on?: InputMaybe<Array<DualTokenPointsParams_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<DualTokenPointsParams_order_by>>;
+  where?: InputMaybe<DualTokenPointsParams_bool_exp>;
+};
+
+
+export type subscription_rootDualTokenPointsParams_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootDualTokenPointsParams_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<DualTokenPointsParams_stream_cursor_input>>;
+  where?: InputMaybe<DualTokenPointsParams_bool_exp>;
+};
+
+
+export type subscription_rootDualTokenTVParamsArgs = {
+  distinct_on?: InputMaybe<Array<DualTokenTVParams_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<DualTokenTVParams_order_by>>;
+  where?: InputMaybe<DualTokenTVParams_bool_exp>;
+};
+
+
+export type subscription_rootDualTokenTVParams_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootDualTokenTVParams_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<DualTokenTVParams_stream_cursor_input>>;
+  where?: InputMaybe<DualTokenTVParams_bool_exp>;
 };
 
 
@@ -3563,6 +7882,90 @@ export type subscription_rootFactoryEventsSummary_streamArgs = {
 };
 
 
+export type subscription_rootFeedCardArgs = {
+  distinct_on?: InputMaybe<Array<FeedCard_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<FeedCard_order_by>>;
+  where?: InputMaybe<FeedCard_bool_exp>;
+};
+
+
+export type subscription_rootFeedCard_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootFeedCard_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<FeedCard_stream_cursor_input>>;
+  where?: InputMaybe<FeedCard_bool_exp>;
+};
+
+
+export type subscription_rootFeedItemEmbedArgs = {
+  distinct_on?: InputMaybe<Array<FeedItemEmbed_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<FeedItemEmbed_order_by>>;
+  where?: InputMaybe<FeedItemEmbed_bool_exp>;
+};
+
+
+export type subscription_rootFeedItemEmbed_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootFeedItemEmbed_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<FeedItemEmbed_stream_cursor_input>>;
+  where?: InputMaybe<FeedItemEmbed_bool_exp>;
+};
+
+
+export type subscription_rootFeedItemEntityArgs = {
+  distinct_on?: InputMaybe<Array<FeedItemEntity_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<FeedItemEntity_order_by>>;
+  where?: InputMaybe<FeedItemEntity_bool_exp>;
+};
+
+
+export type subscription_rootFeedItemEntity_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootFeedItemEntity_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<FeedItemEntity_stream_cursor_input>>;
+  where?: InputMaybe<FeedItemEntity_bool_exp>;
+};
+
+
+export type subscription_rootGMInitParamsArgs = {
+  distinct_on?: InputMaybe<Array<GMInitParams_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<GMInitParams_order_by>>;
+  where?: InputMaybe<GMInitParams_bool_exp>;
+};
+
+
+export type subscription_rootGMInitParams_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootGMInitParams_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<GMInitParams_stream_cursor_input>>;
+  where?: InputMaybe<GMInitParams_bool_exp>;
+};
+
+
 export type subscription_rootGSVoterArgs = {
   distinct_on?: InputMaybe<Array<GSVoter_select_column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3581,6 +7984,90 @@ export type subscription_rootGSVoter_streamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<GSVoter_stream_cursor_input>>;
   where?: InputMaybe<GSVoter_bool_exp>;
+};
+
+
+export type subscription_rootGameManagerFactoryArgs = {
+  distinct_on?: InputMaybe<Array<GameManagerFactory_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<GameManagerFactory_order_by>>;
+  where?: InputMaybe<GameManagerFactory_bool_exp>;
+};
+
+
+export type subscription_rootGameManagerFactory_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootGameManagerFactory_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<GameManagerFactory_stream_cursor_input>>;
+  where?: InputMaybe<GameManagerFactory_bool_exp>;
+};
+
+
+export type subscription_rootGameManagerTemplateArgs = {
+  distinct_on?: InputMaybe<Array<GameManagerTemplate_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<GameManagerTemplate_order_by>>;
+  where?: InputMaybe<GameManagerTemplate_bool_exp>;
+};
+
+
+export type subscription_rootGameManagerTemplate_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootGameManagerTemplate_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<GameManagerTemplate_stream_cursor_input>>;
+  where?: InputMaybe<GameManagerTemplate_bool_exp>;
+};
+
+
+export type subscription_rootGameRoundArgs = {
+  distinct_on?: InputMaybe<Array<GameRound_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<GameRound_order_by>>;
+  where?: InputMaybe<GameRound_bool_exp>;
+};
+
+
+export type subscription_rootGameRound_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootGameRound_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<GameRound_stream_cursor_input>>;
+  where?: InputMaybe<GameRound_bool_exp>;
+};
+
+
+export type subscription_rootGateArgs = {
+  distinct_on?: InputMaybe<Array<Gate_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Gate_order_by>>;
+  where?: InputMaybe<Gate_bool_exp>;
+};
+
+
+export type subscription_rootGate_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootGate_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Gate_stream_cursor_input>>;
+  where?: InputMaybe<Gate_bool_exp>;
 };
 
 
@@ -3668,6 +8155,48 @@ export type subscription_rootLocalLog_streamArgs = {
 };
 
 
+export type subscription_rootMilestoneArgs = {
+  distinct_on?: InputMaybe<Array<Milestone_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Milestone_order_by>>;
+  where?: InputMaybe<Milestone_bool_exp>;
+};
+
+
+export type subscription_rootMilestoneSetArgs = {
+  distinct_on?: InputMaybe<Array<MilestoneSet_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<MilestoneSet_order_by>>;
+  where?: InputMaybe<MilestoneSet_bool_exp>;
+};
+
+
+export type subscription_rootMilestoneSet_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootMilestoneSet_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<MilestoneSet_stream_cursor_input>>;
+  where?: InputMaybe<MilestoneSet_bool_exp>;
+};
+
+
+export type subscription_rootMilestone_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootMilestone_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Milestone_stream_cursor_input>>;
+  where?: InputMaybe<Milestone_bool_exp>;
+};
+
+
 export type subscription_rootModuleTemplateArgs = {
   distinct_on?: InputMaybe<Array<ModuleTemplate_select_column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3686,6 +8215,48 @@ export type subscription_rootModuleTemplate_streamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<ModuleTemplate_stream_cursor_input>>;
   where?: InputMaybe<ModuleTemplate_bool_exp>;
+};
+
+
+export type subscription_rootProfileIdToAnchorArgs = {
+  distinct_on?: InputMaybe<Array<ProfileIdToAnchor_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ProfileIdToAnchor_order_by>>;
+  where?: InputMaybe<ProfileIdToAnchor_bool_exp>;
+};
+
+
+export type subscription_rootProfileIdToAnchor_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootProfileIdToAnchor_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ProfileIdToAnchor_stream_cursor_input>>;
+  where?: InputMaybe<ProfileIdToAnchor_bool_exp>;
+};
+
+
+export type subscription_rootProfileMemberGroupArgs = {
+  distinct_on?: InputMaybe<Array<ProfileMemberGroup_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ProfileMemberGroup_order_by>>;
+  where?: InputMaybe<ProfileMemberGroup_bool_exp>;
+};
+
+
+export type subscription_rootProfileMemberGroup_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootProfileMemberGroup_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ProfileMemberGroup_stream_cursor_input>>;
+  where?: InputMaybe<ProfileMemberGroup_bool_exp>;
 };
 
 
@@ -3731,6 +8302,27 @@ export type subscription_rootSBTBalParams_streamArgs = {
 };
 
 
+export type subscription_rootScaffoldShamanArgs = {
+  distinct_on?: InputMaybe<Array<ScaffoldShaman_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ScaffoldShaman_order_by>>;
+  where?: InputMaybe<ScaffoldShaman_bool_exp>;
+};
+
+
+export type subscription_rootScaffoldShaman_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootScaffoldShaman_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ScaffoldShaman_stream_cursor_input>>;
+  where?: InputMaybe<ScaffoldShaman_bool_exp>;
+};
+
+
 export type subscription_rootShipChoiceArgs = {
   distinct_on?: InputMaybe<Array<ShipChoice_select_column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3749,6 +8341,27 @@ export type subscription_rootShipChoice_streamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<ShipChoice_stream_cursor_input>>;
   where?: InputMaybe<ShipChoice_bool_exp>;
+};
+
+
+export type subscription_rootShipContextArgs = {
+  distinct_on?: InputMaybe<Array<ShipContext_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<ShipContext_order_by>>;
+  where?: InputMaybe<ShipContext_bool_exp>;
+};
+
+
+export type subscription_rootShipContext_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootShipContext_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<ShipContext_stream_cursor_input>>;
+  where?: InputMaybe<ShipContext_bool_exp>;
 };
 
 
@@ -3815,6 +8428,27 @@ export type subscription_rootTVParams_streamArgs = {
 };
 
 
+export type subscription_rootTransactionArgs = {
+  distinct_on?: InputMaybe<Array<Transaction_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transaction_order_by>>;
+  where?: InputMaybe<Transaction_bool_exp>;
+};
+
+
+export type subscription_rootTransaction_by_pkArgs = {
+  id: Scalars['String'];
+};
+
+
+export type subscription_rootTransaction_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Transaction_stream_cursor_input>>;
+  where?: InputMaybe<Transaction_bool_exp>;
+};
+
+
 export type subscription_rootchain_metadataArgs = {
   distinct_on?: InputMaybe<Array<chain_metadata_select_column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3858,6 +8492,28 @@ export type subscription_rootdynamic_contract_registry_streamArgs = {
 };
 
 
+export type subscription_rootend_of_block_range_scanned_dataArgs = {
+  distinct_on?: InputMaybe<Array<end_of_block_range_scanned_data_select_column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<end_of_block_range_scanned_data_order_by>>;
+  where?: InputMaybe<end_of_block_range_scanned_data_bool_exp>;
+};
+
+
+export type subscription_rootend_of_block_range_scanned_data_by_pkArgs = {
+  block_number: Scalars['Int'];
+  chain_id: Scalars['Int'];
+};
+
+
+export type subscription_rootend_of_block_range_scanned_data_streamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<end_of_block_range_scanned_data_stream_cursor_input>>;
+  where?: InputMaybe<end_of_block_range_scanned_data_bool_exp>;
+};
+
+
 export type subscription_rootentity_historyArgs = {
   distinct_on?: InputMaybe<Array<entity_history_select_column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3888,10 +8544,11 @@ export type subscription_rootentity_history_filterArgs = {
 
 export type subscription_rootentity_history_filter_by_pkArgs = {
   block_number: Scalars['Int'];
+  block_timestamp: Scalars['Int'];
   chain_id: Scalars['Int'];
   entity_id: Scalars['String'];
+  entity_type: Scalars['entity_type'];
   log_index: Scalars['Int'];
-  previous_block_number: Scalars['Int'];
   previous_log_index: Scalars['Int'];
 };
 
@@ -4010,7 +8667,23 @@ export type timestamptz_comparison_exp = {
 };
 
   export type QuerySdk = {
-      /** fetch data from the table: "Contest" **/
+      /** fetch data from the table: "Application" **/
+  Application: InContextSdkMethod<query_root['Application'], query_rootApplicationArgs, MeshContext>,
+  /** fetch data from the table: "Application" using primary key columns **/
+  Application_by_pk: InContextSdkMethod<query_root['Application_by_pk'], query_rootApplication_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "Badge" **/
+  Badge: InContextSdkMethod<query_root['Badge'], query_rootBadgeArgs, MeshContext>,
+  /** fetch data from the table: "BadgeHolder" **/
+  BadgeHolder: InContextSdkMethod<query_root['BadgeHolder'], query_rootBadgeHolderArgs, MeshContext>,
+  /** fetch data from the table: "BadgeHolder" using primary key columns **/
+  BadgeHolder_by_pk: InContextSdkMethod<query_root['BadgeHolder_by_pk'], query_rootBadgeHolder_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "BadgeTemplate" **/
+  BadgeTemplate: InContextSdkMethod<query_root['BadgeTemplate'], query_rootBadgeTemplateArgs, MeshContext>,
+  /** fetch data from the table: "BadgeTemplate" using primary key columns **/
+  BadgeTemplate_by_pk: InContextSdkMethod<query_root['BadgeTemplate_by_pk'], query_rootBadgeTemplate_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "Badge" using primary key columns **/
+  Badge_by_pk: InContextSdkMethod<query_root['Badge_by_pk'], query_rootBadge_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "Contest" **/
   Contest: InContextSdkMethod<query_root['Contest'], query_rootContestArgs, MeshContext>,
   /** fetch data from the table: "ContestClone" **/
   ContestClone: InContextSdkMethod<query_root['ContestClone'], query_rootContestCloneArgs, MeshContext>,
@@ -4022,6 +8695,18 @@ export type timestamptz_comparison_exp = {
   ContestTemplate_by_pk: InContextSdkMethod<query_root['ContestTemplate_by_pk'], query_rootContestTemplate_by_pkArgs, MeshContext>,
   /** fetch data from the table: "Contest" using primary key columns **/
   Contest_by_pk: InContextSdkMethod<query_root['Contest_by_pk'], query_rootContest_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "DAOToken" **/
+  DAOToken: InContextSdkMethod<query_root['DAOToken'], query_rootDAOTokenArgs, MeshContext>,
+  /** fetch data from the table: "DAOToken" using primary key columns **/
+  DAOToken_by_pk: InContextSdkMethod<query_root['DAOToken_by_pk'], query_rootDAOToken_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "DualTokenPointsParams" **/
+  DualTokenPointsParams: InContextSdkMethod<query_root['DualTokenPointsParams'], query_rootDualTokenPointsParamsArgs, MeshContext>,
+  /** fetch data from the table: "DualTokenPointsParams" using primary key columns **/
+  DualTokenPointsParams_by_pk: InContextSdkMethod<query_root['DualTokenPointsParams_by_pk'], query_rootDualTokenPointsParams_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "DualTokenTVParams" **/
+  DualTokenTVParams: InContextSdkMethod<query_root['DualTokenTVParams'], query_rootDualTokenTVParamsArgs, MeshContext>,
+  /** fetch data from the table: "DualTokenTVParams" using primary key columns **/
+  DualTokenTVParams_by_pk: InContextSdkMethod<query_root['DualTokenTVParams_by_pk'], query_rootDualTokenTVParams_by_pkArgs, MeshContext>,
   /** fetch data from the table: "ERCPointParams" **/
   ERCPointParams: InContextSdkMethod<query_root['ERCPointParams'], query_rootERCPointParamsArgs, MeshContext>,
   /** fetch data from the table: "ERCPointParams" using primary key columns **/
@@ -4038,10 +8723,42 @@ export type timestamptz_comparison_exp = {
   FactoryEventsSummary: InContextSdkMethod<query_root['FactoryEventsSummary'], query_rootFactoryEventsSummaryArgs, MeshContext>,
   /** fetch data from the table: "FactoryEventsSummary" using primary key columns **/
   FactoryEventsSummary_by_pk: InContextSdkMethod<query_root['FactoryEventsSummary_by_pk'], query_rootFactoryEventsSummary_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "FeedCard" **/
+  FeedCard: InContextSdkMethod<query_root['FeedCard'], query_rootFeedCardArgs, MeshContext>,
+  /** fetch data from the table: "FeedCard" using primary key columns **/
+  FeedCard_by_pk: InContextSdkMethod<query_root['FeedCard_by_pk'], query_rootFeedCard_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "FeedItemEmbed" **/
+  FeedItemEmbed: InContextSdkMethod<query_root['FeedItemEmbed'], query_rootFeedItemEmbedArgs, MeshContext>,
+  /** fetch data from the table: "FeedItemEmbed" using primary key columns **/
+  FeedItemEmbed_by_pk: InContextSdkMethod<query_root['FeedItemEmbed_by_pk'], query_rootFeedItemEmbed_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "FeedItemEntity" **/
+  FeedItemEntity: InContextSdkMethod<query_root['FeedItemEntity'], query_rootFeedItemEntityArgs, MeshContext>,
+  /** fetch data from the table: "FeedItemEntity" using primary key columns **/
+  FeedItemEntity_by_pk: InContextSdkMethod<query_root['FeedItemEntity_by_pk'], query_rootFeedItemEntity_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "GMInitParams" **/
+  GMInitParams: InContextSdkMethod<query_root['GMInitParams'], query_rootGMInitParamsArgs, MeshContext>,
+  /** fetch data from the table: "GMInitParams" using primary key columns **/
+  GMInitParams_by_pk: InContextSdkMethod<query_root['GMInitParams_by_pk'], query_rootGMInitParams_by_pkArgs, MeshContext>,
   /** fetch data from the table: "GSVoter" **/
   GSVoter: InContextSdkMethod<query_root['GSVoter'], query_rootGSVoterArgs, MeshContext>,
   /** fetch data from the table: "GSVoter" using primary key columns **/
   GSVoter_by_pk: InContextSdkMethod<query_root['GSVoter_by_pk'], query_rootGSVoter_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "GameManagerFactory" **/
+  GameManagerFactory: InContextSdkMethod<query_root['GameManagerFactory'], query_rootGameManagerFactoryArgs, MeshContext>,
+  /** fetch data from the table: "GameManagerFactory" using primary key columns **/
+  GameManagerFactory_by_pk: InContextSdkMethod<query_root['GameManagerFactory_by_pk'], query_rootGameManagerFactory_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "GameManagerTemplate" **/
+  GameManagerTemplate: InContextSdkMethod<query_root['GameManagerTemplate'], query_rootGameManagerTemplateArgs, MeshContext>,
+  /** fetch data from the table: "GameManagerTemplate" using primary key columns **/
+  GameManagerTemplate_by_pk: InContextSdkMethod<query_root['GameManagerTemplate_by_pk'], query_rootGameManagerTemplate_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "GameRound" **/
+  GameRound: InContextSdkMethod<query_root['GameRound'], query_rootGameRoundArgs, MeshContext>,
+  /** fetch data from the table: "GameRound" using primary key columns **/
+  GameRound_by_pk: InContextSdkMethod<query_root['GameRound_by_pk'], query_rootGameRound_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "Gate" **/
+  Gate: InContextSdkMethod<query_root['Gate'], query_rootGateArgs, MeshContext>,
+  /** fetch data from the table: "Gate" using primary key columns **/
+  Gate_by_pk: InContextSdkMethod<query_root['Gate_by_pk'], query_rootGate_by_pkArgs, MeshContext>,
   /** fetch data from the table: "GrantShipsVoting" **/
   GrantShipsVoting: InContextSdkMethod<query_root['GrantShipsVoting'], query_rootGrantShipsVotingArgs, MeshContext>,
   /** fetch data from the table: "GrantShipsVoting" using primary key columns **/
@@ -4058,10 +8775,26 @@ export type timestamptz_comparison_exp = {
   LocalLog: InContextSdkMethod<query_root['LocalLog'], query_rootLocalLogArgs, MeshContext>,
   /** fetch data from the table: "LocalLog" using primary key columns **/
   LocalLog_by_pk: InContextSdkMethod<query_root['LocalLog_by_pk'], query_rootLocalLog_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "Milestone" **/
+  Milestone: InContextSdkMethod<query_root['Milestone'], query_rootMilestoneArgs, MeshContext>,
+  /** fetch data from the table: "MilestoneSet" **/
+  MilestoneSet: InContextSdkMethod<query_root['MilestoneSet'], query_rootMilestoneSetArgs, MeshContext>,
+  /** fetch data from the table: "MilestoneSet" using primary key columns **/
+  MilestoneSet_by_pk: InContextSdkMethod<query_root['MilestoneSet_by_pk'], query_rootMilestoneSet_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "Milestone" using primary key columns **/
+  Milestone_by_pk: InContextSdkMethod<query_root['Milestone_by_pk'], query_rootMilestone_by_pkArgs, MeshContext>,
   /** fetch data from the table: "ModuleTemplate" **/
   ModuleTemplate: InContextSdkMethod<query_root['ModuleTemplate'], query_rootModuleTemplateArgs, MeshContext>,
   /** fetch data from the table: "ModuleTemplate" using primary key columns **/
   ModuleTemplate_by_pk: InContextSdkMethod<query_root['ModuleTemplate_by_pk'], query_rootModuleTemplate_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "ProfileIdToAnchor" **/
+  ProfileIdToAnchor: InContextSdkMethod<query_root['ProfileIdToAnchor'], query_rootProfileIdToAnchorArgs, MeshContext>,
+  /** fetch data from the table: "ProfileIdToAnchor" using primary key columns **/
+  ProfileIdToAnchor_by_pk: InContextSdkMethod<query_root['ProfileIdToAnchor_by_pk'], query_rootProfileIdToAnchor_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "ProfileMemberGroup" **/
+  ProfileMemberGroup: InContextSdkMethod<query_root['ProfileMemberGroup'], query_rootProfileMemberGroupArgs, MeshContext>,
+  /** fetch data from the table: "ProfileMemberGroup" using primary key columns **/
+  ProfileMemberGroup_by_pk: InContextSdkMethod<query_root['ProfileMemberGroup_by_pk'], query_rootProfileMemberGroup_by_pkArgs, MeshContext>,
   /** fetch data from the table: "Record" **/
   Record: InContextSdkMethod<query_root['Record'], query_rootRecordArgs, MeshContext>,
   /** fetch data from the table: "Record" using primary key columns **/
@@ -4070,10 +8803,18 @@ export type timestamptz_comparison_exp = {
   SBTBalParams: InContextSdkMethod<query_root['SBTBalParams'], query_rootSBTBalParamsArgs, MeshContext>,
   /** fetch data from the table: "SBTBalParams" using primary key columns **/
   SBTBalParams_by_pk: InContextSdkMethod<query_root['SBTBalParams_by_pk'], query_rootSBTBalParams_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "ScaffoldShaman" **/
+  ScaffoldShaman: InContextSdkMethod<query_root['ScaffoldShaman'], query_rootScaffoldShamanArgs, MeshContext>,
+  /** fetch data from the table: "ScaffoldShaman" using primary key columns **/
+  ScaffoldShaman_by_pk: InContextSdkMethod<query_root['ScaffoldShaman_by_pk'], query_rootScaffoldShaman_by_pkArgs, MeshContext>,
   /** fetch data from the table: "ShipChoice" **/
   ShipChoice: InContextSdkMethod<query_root['ShipChoice'], query_rootShipChoiceArgs, MeshContext>,
   /** fetch data from the table: "ShipChoice" using primary key columns **/
   ShipChoice_by_pk: InContextSdkMethod<query_root['ShipChoice_by_pk'], query_rootShipChoice_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "ShipContext" **/
+  ShipContext: InContextSdkMethod<query_root['ShipContext'], query_rootShipContextArgs, MeshContext>,
+  /** fetch data from the table: "ShipContext" using primary key columns **/
+  ShipContext_by_pk: InContextSdkMethod<query_root['ShipContext_by_pk'], query_rootShipContext_by_pkArgs, MeshContext>,
   /** fetch data from the table: "ShipVote" **/
   ShipVote: InContextSdkMethod<query_root['ShipVote'], query_rootShipVoteArgs, MeshContext>,
   /** fetch data from the table: "ShipVote" using primary key columns **/
@@ -4086,6 +8827,10 @@ export type timestamptz_comparison_exp = {
   TVParams: InContextSdkMethod<query_root['TVParams'], query_rootTVParamsArgs, MeshContext>,
   /** fetch data from the table: "TVParams" using primary key columns **/
   TVParams_by_pk: InContextSdkMethod<query_root['TVParams_by_pk'], query_rootTVParams_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "Transaction" **/
+  Transaction: InContextSdkMethod<query_root['Transaction'], query_rootTransactionArgs, MeshContext>,
+  /** fetch data from the table: "Transaction" using primary key columns **/
+  Transaction_by_pk: InContextSdkMethod<query_root['Transaction_by_pk'], query_rootTransaction_by_pkArgs, MeshContext>,
   /** fetch data from the table: "chain_metadata" **/
   chain_metadata: InContextSdkMethod<query_root['chain_metadata'], query_rootchain_metadataArgs, MeshContext>,
   /** fetch data from the table: "chain_metadata" using primary key columns **/
@@ -4094,6 +8839,10 @@ export type timestamptz_comparison_exp = {
   dynamic_contract_registry: InContextSdkMethod<query_root['dynamic_contract_registry'], query_rootdynamic_contract_registryArgs, MeshContext>,
   /** fetch data from the table: "dynamic_contract_registry" using primary key columns **/
   dynamic_contract_registry_by_pk: InContextSdkMethod<query_root['dynamic_contract_registry_by_pk'], query_rootdynamic_contract_registry_by_pkArgs, MeshContext>,
+  /** fetch data from the table: "end_of_block_range_scanned_data" **/
+  end_of_block_range_scanned_data: InContextSdkMethod<query_root['end_of_block_range_scanned_data'], query_rootend_of_block_range_scanned_dataArgs, MeshContext>,
+  /** fetch data from the table: "end_of_block_range_scanned_data" using primary key columns **/
+  end_of_block_range_scanned_data_by_pk: InContextSdkMethod<query_root['end_of_block_range_scanned_data_by_pk'], query_rootend_of_block_range_scanned_data_by_pkArgs, MeshContext>,
   /** fetch data from the table: "entity_history" **/
   entity_history: InContextSdkMethod<query_root['entity_history'], query_rootentity_historyArgs, MeshContext>,
   /** fetch data from the table: "entity_history" using primary key columns **/
@@ -4123,7 +8872,31 @@ export type timestamptz_comparison_exp = {
   };
 
   export type SubscriptionSdk = {
-      /** fetch data from the table: "Contest" **/
+      /** fetch data from the table: "Application" **/
+  Application: InContextSdkMethod<subscription_root['Application'], subscription_rootApplicationArgs, MeshContext>,
+  /** fetch data from the table: "Application" using primary key columns **/
+  Application_by_pk: InContextSdkMethod<subscription_root['Application_by_pk'], subscription_rootApplication_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "Application" **/
+  Application_stream: InContextSdkMethod<subscription_root['Application_stream'], subscription_rootApplication_streamArgs, MeshContext>,
+  /** fetch data from the table: "Badge" **/
+  Badge: InContextSdkMethod<subscription_root['Badge'], subscription_rootBadgeArgs, MeshContext>,
+  /** fetch data from the table: "BadgeHolder" **/
+  BadgeHolder: InContextSdkMethod<subscription_root['BadgeHolder'], subscription_rootBadgeHolderArgs, MeshContext>,
+  /** fetch data from the table: "BadgeHolder" using primary key columns **/
+  BadgeHolder_by_pk: InContextSdkMethod<subscription_root['BadgeHolder_by_pk'], subscription_rootBadgeHolder_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "BadgeHolder" **/
+  BadgeHolder_stream: InContextSdkMethod<subscription_root['BadgeHolder_stream'], subscription_rootBadgeHolder_streamArgs, MeshContext>,
+  /** fetch data from the table: "BadgeTemplate" **/
+  BadgeTemplate: InContextSdkMethod<subscription_root['BadgeTemplate'], subscription_rootBadgeTemplateArgs, MeshContext>,
+  /** fetch data from the table: "BadgeTemplate" using primary key columns **/
+  BadgeTemplate_by_pk: InContextSdkMethod<subscription_root['BadgeTemplate_by_pk'], subscription_rootBadgeTemplate_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "BadgeTemplate" **/
+  BadgeTemplate_stream: InContextSdkMethod<subscription_root['BadgeTemplate_stream'], subscription_rootBadgeTemplate_streamArgs, MeshContext>,
+  /** fetch data from the table: "Badge" using primary key columns **/
+  Badge_by_pk: InContextSdkMethod<subscription_root['Badge_by_pk'], subscription_rootBadge_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "Badge" **/
+  Badge_stream: InContextSdkMethod<subscription_root['Badge_stream'], subscription_rootBadge_streamArgs, MeshContext>,
+  /** fetch data from the table: "Contest" **/
   Contest: InContextSdkMethod<subscription_root['Contest'], subscription_rootContestArgs, MeshContext>,
   /** fetch data from the table: "ContestClone" **/
   ContestClone: InContextSdkMethod<subscription_root['ContestClone'], subscription_rootContestCloneArgs, MeshContext>,
@@ -4141,6 +8914,24 @@ export type timestamptz_comparison_exp = {
   Contest_by_pk: InContextSdkMethod<subscription_root['Contest_by_pk'], subscription_rootContest_by_pkArgs, MeshContext>,
   /** fetch data from the table in a streaming manner: "Contest" **/
   Contest_stream: InContextSdkMethod<subscription_root['Contest_stream'], subscription_rootContest_streamArgs, MeshContext>,
+  /** fetch data from the table: "DAOToken" **/
+  DAOToken: InContextSdkMethod<subscription_root['DAOToken'], subscription_rootDAOTokenArgs, MeshContext>,
+  /** fetch data from the table: "DAOToken" using primary key columns **/
+  DAOToken_by_pk: InContextSdkMethod<subscription_root['DAOToken_by_pk'], subscription_rootDAOToken_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "DAOToken" **/
+  DAOToken_stream: InContextSdkMethod<subscription_root['DAOToken_stream'], subscription_rootDAOToken_streamArgs, MeshContext>,
+  /** fetch data from the table: "DualTokenPointsParams" **/
+  DualTokenPointsParams: InContextSdkMethod<subscription_root['DualTokenPointsParams'], subscription_rootDualTokenPointsParamsArgs, MeshContext>,
+  /** fetch data from the table: "DualTokenPointsParams" using primary key columns **/
+  DualTokenPointsParams_by_pk: InContextSdkMethod<subscription_root['DualTokenPointsParams_by_pk'], subscription_rootDualTokenPointsParams_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "DualTokenPointsParams" **/
+  DualTokenPointsParams_stream: InContextSdkMethod<subscription_root['DualTokenPointsParams_stream'], subscription_rootDualTokenPointsParams_streamArgs, MeshContext>,
+  /** fetch data from the table: "DualTokenTVParams" **/
+  DualTokenTVParams: InContextSdkMethod<subscription_root['DualTokenTVParams'], subscription_rootDualTokenTVParamsArgs, MeshContext>,
+  /** fetch data from the table: "DualTokenTVParams" using primary key columns **/
+  DualTokenTVParams_by_pk: InContextSdkMethod<subscription_root['DualTokenTVParams_by_pk'], subscription_rootDualTokenTVParams_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "DualTokenTVParams" **/
+  DualTokenTVParams_stream: InContextSdkMethod<subscription_root['DualTokenTVParams_stream'], subscription_rootDualTokenTVParams_streamArgs, MeshContext>,
   /** fetch data from the table: "ERCPointParams" **/
   ERCPointParams: InContextSdkMethod<subscription_root['ERCPointParams'], subscription_rootERCPointParamsArgs, MeshContext>,
   /** fetch data from the table: "ERCPointParams" using primary key columns **/
@@ -4165,12 +8956,60 @@ export type timestamptz_comparison_exp = {
   FactoryEventsSummary_by_pk: InContextSdkMethod<subscription_root['FactoryEventsSummary_by_pk'], subscription_rootFactoryEventsSummary_by_pkArgs, MeshContext>,
   /** fetch data from the table in a streaming manner: "FactoryEventsSummary" **/
   FactoryEventsSummary_stream: InContextSdkMethod<subscription_root['FactoryEventsSummary_stream'], subscription_rootFactoryEventsSummary_streamArgs, MeshContext>,
+  /** fetch data from the table: "FeedCard" **/
+  FeedCard: InContextSdkMethod<subscription_root['FeedCard'], subscription_rootFeedCardArgs, MeshContext>,
+  /** fetch data from the table: "FeedCard" using primary key columns **/
+  FeedCard_by_pk: InContextSdkMethod<subscription_root['FeedCard_by_pk'], subscription_rootFeedCard_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "FeedCard" **/
+  FeedCard_stream: InContextSdkMethod<subscription_root['FeedCard_stream'], subscription_rootFeedCard_streamArgs, MeshContext>,
+  /** fetch data from the table: "FeedItemEmbed" **/
+  FeedItemEmbed: InContextSdkMethod<subscription_root['FeedItemEmbed'], subscription_rootFeedItemEmbedArgs, MeshContext>,
+  /** fetch data from the table: "FeedItemEmbed" using primary key columns **/
+  FeedItemEmbed_by_pk: InContextSdkMethod<subscription_root['FeedItemEmbed_by_pk'], subscription_rootFeedItemEmbed_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "FeedItemEmbed" **/
+  FeedItemEmbed_stream: InContextSdkMethod<subscription_root['FeedItemEmbed_stream'], subscription_rootFeedItemEmbed_streamArgs, MeshContext>,
+  /** fetch data from the table: "FeedItemEntity" **/
+  FeedItemEntity: InContextSdkMethod<subscription_root['FeedItemEntity'], subscription_rootFeedItemEntityArgs, MeshContext>,
+  /** fetch data from the table: "FeedItemEntity" using primary key columns **/
+  FeedItemEntity_by_pk: InContextSdkMethod<subscription_root['FeedItemEntity_by_pk'], subscription_rootFeedItemEntity_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "FeedItemEntity" **/
+  FeedItemEntity_stream: InContextSdkMethod<subscription_root['FeedItemEntity_stream'], subscription_rootFeedItemEntity_streamArgs, MeshContext>,
+  /** fetch data from the table: "GMInitParams" **/
+  GMInitParams: InContextSdkMethod<subscription_root['GMInitParams'], subscription_rootGMInitParamsArgs, MeshContext>,
+  /** fetch data from the table: "GMInitParams" using primary key columns **/
+  GMInitParams_by_pk: InContextSdkMethod<subscription_root['GMInitParams_by_pk'], subscription_rootGMInitParams_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "GMInitParams" **/
+  GMInitParams_stream: InContextSdkMethod<subscription_root['GMInitParams_stream'], subscription_rootGMInitParams_streamArgs, MeshContext>,
   /** fetch data from the table: "GSVoter" **/
   GSVoter: InContextSdkMethod<subscription_root['GSVoter'], subscription_rootGSVoterArgs, MeshContext>,
   /** fetch data from the table: "GSVoter" using primary key columns **/
   GSVoter_by_pk: InContextSdkMethod<subscription_root['GSVoter_by_pk'], subscription_rootGSVoter_by_pkArgs, MeshContext>,
   /** fetch data from the table in a streaming manner: "GSVoter" **/
   GSVoter_stream: InContextSdkMethod<subscription_root['GSVoter_stream'], subscription_rootGSVoter_streamArgs, MeshContext>,
+  /** fetch data from the table: "GameManagerFactory" **/
+  GameManagerFactory: InContextSdkMethod<subscription_root['GameManagerFactory'], subscription_rootGameManagerFactoryArgs, MeshContext>,
+  /** fetch data from the table: "GameManagerFactory" using primary key columns **/
+  GameManagerFactory_by_pk: InContextSdkMethod<subscription_root['GameManagerFactory_by_pk'], subscription_rootGameManagerFactory_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "GameManagerFactory" **/
+  GameManagerFactory_stream: InContextSdkMethod<subscription_root['GameManagerFactory_stream'], subscription_rootGameManagerFactory_streamArgs, MeshContext>,
+  /** fetch data from the table: "GameManagerTemplate" **/
+  GameManagerTemplate: InContextSdkMethod<subscription_root['GameManagerTemplate'], subscription_rootGameManagerTemplateArgs, MeshContext>,
+  /** fetch data from the table: "GameManagerTemplate" using primary key columns **/
+  GameManagerTemplate_by_pk: InContextSdkMethod<subscription_root['GameManagerTemplate_by_pk'], subscription_rootGameManagerTemplate_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "GameManagerTemplate" **/
+  GameManagerTemplate_stream: InContextSdkMethod<subscription_root['GameManagerTemplate_stream'], subscription_rootGameManagerTemplate_streamArgs, MeshContext>,
+  /** fetch data from the table: "GameRound" **/
+  GameRound: InContextSdkMethod<subscription_root['GameRound'], subscription_rootGameRoundArgs, MeshContext>,
+  /** fetch data from the table: "GameRound" using primary key columns **/
+  GameRound_by_pk: InContextSdkMethod<subscription_root['GameRound_by_pk'], subscription_rootGameRound_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "GameRound" **/
+  GameRound_stream: InContextSdkMethod<subscription_root['GameRound_stream'], subscription_rootGameRound_streamArgs, MeshContext>,
+  /** fetch data from the table: "Gate" **/
+  Gate: InContextSdkMethod<subscription_root['Gate'], subscription_rootGateArgs, MeshContext>,
+  /** fetch data from the table: "Gate" using primary key columns **/
+  Gate_by_pk: InContextSdkMethod<subscription_root['Gate_by_pk'], subscription_rootGate_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "Gate" **/
+  Gate_stream: InContextSdkMethod<subscription_root['Gate_stream'], subscription_rootGate_streamArgs, MeshContext>,
   /** fetch data from the table: "GrantShipsVoting" **/
   GrantShipsVoting: InContextSdkMethod<subscription_root['GrantShipsVoting'], subscription_rootGrantShipsVotingArgs, MeshContext>,
   /** fetch data from the table: "GrantShipsVoting" using primary key columns **/
@@ -4195,12 +9034,36 @@ export type timestamptz_comparison_exp = {
   LocalLog_by_pk: InContextSdkMethod<subscription_root['LocalLog_by_pk'], subscription_rootLocalLog_by_pkArgs, MeshContext>,
   /** fetch data from the table in a streaming manner: "LocalLog" **/
   LocalLog_stream: InContextSdkMethod<subscription_root['LocalLog_stream'], subscription_rootLocalLog_streamArgs, MeshContext>,
+  /** fetch data from the table: "Milestone" **/
+  Milestone: InContextSdkMethod<subscription_root['Milestone'], subscription_rootMilestoneArgs, MeshContext>,
+  /** fetch data from the table: "MilestoneSet" **/
+  MilestoneSet: InContextSdkMethod<subscription_root['MilestoneSet'], subscription_rootMilestoneSetArgs, MeshContext>,
+  /** fetch data from the table: "MilestoneSet" using primary key columns **/
+  MilestoneSet_by_pk: InContextSdkMethod<subscription_root['MilestoneSet_by_pk'], subscription_rootMilestoneSet_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "MilestoneSet" **/
+  MilestoneSet_stream: InContextSdkMethod<subscription_root['MilestoneSet_stream'], subscription_rootMilestoneSet_streamArgs, MeshContext>,
+  /** fetch data from the table: "Milestone" using primary key columns **/
+  Milestone_by_pk: InContextSdkMethod<subscription_root['Milestone_by_pk'], subscription_rootMilestone_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "Milestone" **/
+  Milestone_stream: InContextSdkMethod<subscription_root['Milestone_stream'], subscription_rootMilestone_streamArgs, MeshContext>,
   /** fetch data from the table: "ModuleTemplate" **/
   ModuleTemplate: InContextSdkMethod<subscription_root['ModuleTemplate'], subscription_rootModuleTemplateArgs, MeshContext>,
   /** fetch data from the table: "ModuleTemplate" using primary key columns **/
   ModuleTemplate_by_pk: InContextSdkMethod<subscription_root['ModuleTemplate_by_pk'], subscription_rootModuleTemplate_by_pkArgs, MeshContext>,
   /** fetch data from the table in a streaming manner: "ModuleTemplate" **/
   ModuleTemplate_stream: InContextSdkMethod<subscription_root['ModuleTemplate_stream'], subscription_rootModuleTemplate_streamArgs, MeshContext>,
+  /** fetch data from the table: "ProfileIdToAnchor" **/
+  ProfileIdToAnchor: InContextSdkMethod<subscription_root['ProfileIdToAnchor'], subscription_rootProfileIdToAnchorArgs, MeshContext>,
+  /** fetch data from the table: "ProfileIdToAnchor" using primary key columns **/
+  ProfileIdToAnchor_by_pk: InContextSdkMethod<subscription_root['ProfileIdToAnchor_by_pk'], subscription_rootProfileIdToAnchor_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "ProfileIdToAnchor" **/
+  ProfileIdToAnchor_stream: InContextSdkMethod<subscription_root['ProfileIdToAnchor_stream'], subscription_rootProfileIdToAnchor_streamArgs, MeshContext>,
+  /** fetch data from the table: "ProfileMemberGroup" **/
+  ProfileMemberGroup: InContextSdkMethod<subscription_root['ProfileMemberGroup'], subscription_rootProfileMemberGroupArgs, MeshContext>,
+  /** fetch data from the table: "ProfileMemberGroup" using primary key columns **/
+  ProfileMemberGroup_by_pk: InContextSdkMethod<subscription_root['ProfileMemberGroup_by_pk'], subscription_rootProfileMemberGroup_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "ProfileMemberGroup" **/
+  ProfileMemberGroup_stream: InContextSdkMethod<subscription_root['ProfileMemberGroup_stream'], subscription_rootProfileMemberGroup_streamArgs, MeshContext>,
   /** fetch data from the table: "Record" **/
   Record: InContextSdkMethod<subscription_root['Record'], subscription_rootRecordArgs, MeshContext>,
   /** fetch data from the table: "Record" using primary key columns **/
@@ -4213,12 +9076,24 @@ export type timestamptz_comparison_exp = {
   SBTBalParams_by_pk: InContextSdkMethod<subscription_root['SBTBalParams_by_pk'], subscription_rootSBTBalParams_by_pkArgs, MeshContext>,
   /** fetch data from the table in a streaming manner: "SBTBalParams" **/
   SBTBalParams_stream: InContextSdkMethod<subscription_root['SBTBalParams_stream'], subscription_rootSBTBalParams_streamArgs, MeshContext>,
+  /** fetch data from the table: "ScaffoldShaman" **/
+  ScaffoldShaman: InContextSdkMethod<subscription_root['ScaffoldShaman'], subscription_rootScaffoldShamanArgs, MeshContext>,
+  /** fetch data from the table: "ScaffoldShaman" using primary key columns **/
+  ScaffoldShaman_by_pk: InContextSdkMethod<subscription_root['ScaffoldShaman_by_pk'], subscription_rootScaffoldShaman_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "ScaffoldShaman" **/
+  ScaffoldShaman_stream: InContextSdkMethod<subscription_root['ScaffoldShaman_stream'], subscription_rootScaffoldShaman_streamArgs, MeshContext>,
   /** fetch data from the table: "ShipChoice" **/
   ShipChoice: InContextSdkMethod<subscription_root['ShipChoice'], subscription_rootShipChoiceArgs, MeshContext>,
   /** fetch data from the table: "ShipChoice" using primary key columns **/
   ShipChoice_by_pk: InContextSdkMethod<subscription_root['ShipChoice_by_pk'], subscription_rootShipChoice_by_pkArgs, MeshContext>,
   /** fetch data from the table in a streaming manner: "ShipChoice" **/
   ShipChoice_stream: InContextSdkMethod<subscription_root['ShipChoice_stream'], subscription_rootShipChoice_streamArgs, MeshContext>,
+  /** fetch data from the table: "ShipContext" **/
+  ShipContext: InContextSdkMethod<subscription_root['ShipContext'], subscription_rootShipContextArgs, MeshContext>,
+  /** fetch data from the table: "ShipContext" using primary key columns **/
+  ShipContext_by_pk: InContextSdkMethod<subscription_root['ShipContext_by_pk'], subscription_rootShipContext_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "ShipContext" **/
+  ShipContext_stream: InContextSdkMethod<subscription_root['ShipContext_stream'], subscription_rootShipContext_streamArgs, MeshContext>,
   /** fetch data from the table: "ShipVote" **/
   ShipVote: InContextSdkMethod<subscription_root['ShipVote'], subscription_rootShipVoteArgs, MeshContext>,
   /** fetch data from the table: "ShipVote" using primary key columns **/
@@ -4237,6 +9112,12 @@ export type timestamptz_comparison_exp = {
   TVParams_by_pk: InContextSdkMethod<subscription_root['TVParams_by_pk'], subscription_rootTVParams_by_pkArgs, MeshContext>,
   /** fetch data from the table in a streaming manner: "TVParams" **/
   TVParams_stream: InContextSdkMethod<subscription_root['TVParams_stream'], subscription_rootTVParams_streamArgs, MeshContext>,
+  /** fetch data from the table: "Transaction" **/
+  Transaction: InContextSdkMethod<subscription_root['Transaction'], subscription_rootTransactionArgs, MeshContext>,
+  /** fetch data from the table: "Transaction" using primary key columns **/
+  Transaction_by_pk: InContextSdkMethod<subscription_root['Transaction_by_pk'], subscription_rootTransaction_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "Transaction" **/
+  Transaction_stream: InContextSdkMethod<subscription_root['Transaction_stream'], subscription_rootTransaction_streamArgs, MeshContext>,
   /** fetch data from the table: "chain_metadata" **/
   chain_metadata: InContextSdkMethod<subscription_root['chain_metadata'], subscription_rootchain_metadataArgs, MeshContext>,
   /** fetch data from the table: "chain_metadata" using primary key columns **/
@@ -4249,6 +9130,12 @@ export type timestamptz_comparison_exp = {
   dynamic_contract_registry_by_pk: InContextSdkMethod<subscription_root['dynamic_contract_registry_by_pk'], subscription_rootdynamic_contract_registry_by_pkArgs, MeshContext>,
   /** fetch data from the table in a streaming manner: "dynamic_contract_registry" **/
   dynamic_contract_registry_stream: InContextSdkMethod<subscription_root['dynamic_contract_registry_stream'], subscription_rootdynamic_contract_registry_streamArgs, MeshContext>,
+  /** fetch data from the table: "end_of_block_range_scanned_data" **/
+  end_of_block_range_scanned_data: InContextSdkMethod<subscription_root['end_of_block_range_scanned_data'], subscription_rootend_of_block_range_scanned_dataArgs, MeshContext>,
+  /** fetch data from the table: "end_of_block_range_scanned_data" using primary key columns **/
+  end_of_block_range_scanned_data_by_pk: InContextSdkMethod<subscription_root['end_of_block_range_scanned_data_by_pk'], subscription_rootend_of_block_range_scanned_data_by_pkArgs, MeshContext>,
+  /** fetch data from the table in a streaming manner: "end_of_block_range_scanned_data" **/
+  end_of_block_range_scanned_data_stream: InContextSdkMethod<subscription_root['end_of_block_range_scanned_data_stream'], subscription_rootend_of_block_range_scanned_data_streamArgs, MeshContext>,
   /** fetch data from the table: "entity_history" **/
   entity_history: InContextSdkMethod<subscription_root['entity_history'], subscription_rootentity_historyArgs, MeshContext>,
   /** fetch data from the table: "entity_history" using primary key columns **/

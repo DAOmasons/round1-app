@@ -12,6 +12,755 @@ directive @cached(
 ) on QUERY
 
 """
+columns and relationships of "Application"
+"""
+type Application {
+  amount: numeric!
+  db_write_timestamp: timestamp
+  grant_id: String!
+  id: String!
+  index: Int!
+  metadata_id: String!
+  receivingAddress: String!
+  status: Int!
+  timestamp: Int!
+}
+
+"""
+order by aggregate values of table "Application"
+"""
+input Application_aggregate_order_by {
+  avg: Application_avg_order_by
+  count: order_by
+  max: Application_max_order_by
+  min: Application_min_order_by
+  stddev: Application_stddev_order_by
+  stddev_pop: Application_stddev_pop_order_by
+  stddev_samp: Application_stddev_samp_order_by
+  sum: Application_sum_order_by
+  var_pop: Application_var_pop_order_by
+  var_samp: Application_var_samp_order_by
+  variance: Application_variance_order_by
+}
+
+"""
+order by avg() on columns of table "Application"
+"""
+input Application_avg_order_by {
+  amount: order_by
+  index: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "Application". All fields are combined with a logical 'AND'.
+"""
+input Application_bool_exp {
+  _and: [Application_bool_exp!]
+  _not: Application_bool_exp
+  _or: [Application_bool_exp!]
+  amount: numeric_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  grant: Grant_bool_exp
+  grant_id: String_comparison_exp
+  id: String_comparison_exp
+  index: Int_comparison_exp
+  metadata: RawMetadata_bool_exp
+  metadata_id: String_comparison_exp
+  receivingAddress: String_comparison_exp
+  status: Int_comparison_exp
+  timestamp: Int_comparison_exp
+}
+
+"""
+order by max() on columns of table "Application"
+"""
+input Application_max_order_by {
+  amount: order_by
+  db_write_timestamp: order_by
+  grant_id: order_by
+  id: order_by
+  index: order_by
+  metadata_id: order_by
+  receivingAddress: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by min() on columns of table "Application"
+"""
+input Application_min_order_by {
+  amount: order_by
+  db_write_timestamp: order_by
+  grant_id: order_by
+  id: order_by
+  index: order_by
+  metadata_id: order_by
+  receivingAddress: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""Ordering options when selecting data from "Application"."""
+input Application_order_by {
+  amount: order_by
+  db_write_timestamp: order_by
+  grant: Grant_order_by
+  grant_id: order_by
+  id: order_by
+  index: order_by
+  metadata: RawMetadata_order_by
+  metadata_id: order_by
+  receivingAddress: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+select columns of table "Application"
+"""
+enum Application_select_column {
+  """column name"""
+  amount
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  grant_id
+  """column name"""
+  id
+  """column name"""
+  index
+  """column name"""
+  metadata_id
+  """column name"""
+  receivingAddress
+  """column name"""
+  status
+  """column name"""
+  timestamp
+}
+
+"""
+order by stddev() on columns of table "Application"
+"""
+input Application_stddev_order_by {
+  amount: order_by
+  index: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by stddev_pop() on columns of table "Application"
+"""
+input Application_stddev_pop_order_by {
+  amount: order_by
+  index: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by stddev_samp() on columns of table "Application"
+"""
+input Application_stddev_samp_order_by {
+  amount: order_by
+  index: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+Streaming cursor of the table "Application"
+"""
+input Application_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Application_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Application_stream_cursor_value_input {
+  amount: numeric
+  db_write_timestamp: timestamp
+  grant_id: String
+  id: String
+  index: Int
+  metadata_id: String
+  receivingAddress: String
+  status: Int
+  timestamp: Int
+}
+
+"""
+order by sum() on columns of table "Application"
+"""
+input Application_sum_order_by {
+  amount: order_by
+  index: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by var_pop() on columns of table "Application"
+"""
+input Application_var_pop_order_by {
+  amount: order_by
+  index: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by var_samp() on columns of table "Application"
+"""
+input Application_var_samp_order_by {
+  amount: order_by
+  index: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by variance() on columns of table "Application"
+"""
+input Application_variance_order_by {
+  amount: order_by
+  index: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+columns and relationships of "Badge"
+"""
+type Badge {
+  amount: numeric!
+  dao: String!
+  db_write_timestamp: timestamp
+  id: String!
+  reason_id: String!
+  """An object relationship"""
+  template: BadgeTemplate
+  template_id: String!
+  """An object relationship"""
+  wearer: BadgeHolder
+  wearer_id: String!
+}
+
+"""
+columns and relationships of "BadgeHolder"
+"""
+type BadgeHolder {
+  address: String!
+  badgeBalance: numeric!
+  """An array relationship"""
+  badges(
+    """distinct select on columns"""
+    distinct_on: [Badge_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Badge_order_by!]
+    """filter the rows returned"""
+    where: Badge_bool_exp
+  ): [Badge!]!
+  dao: String!
+  db_write_timestamp: timestamp
+  id: String!
+  """An object relationship"""
+  shaman: ScaffoldShaman
+  shaman_id: String!
+}
+
+"""
+Boolean expression to filter rows from the table "BadgeHolder". All fields are combined with a logical 'AND'.
+"""
+input BadgeHolder_bool_exp {
+  _and: [BadgeHolder_bool_exp!]
+  _not: BadgeHolder_bool_exp
+  _or: [BadgeHolder_bool_exp!]
+  address: String_comparison_exp
+  badgeBalance: numeric_comparison_exp
+  badges: Badge_bool_exp
+  dao: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  shaman: ScaffoldShaman_bool_exp
+  shaman_id: String_comparison_exp
+}
+
+"""Ordering options when selecting data from "BadgeHolder"."""
+input BadgeHolder_order_by {
+  address: order_by
+  badgeBalance: order_by
+  badges_aggregate: Badge_aggregate_order_by
+  dao: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  shaman: ScaffoldShaman_order_by
+  shaman_id: order_by
+}
+
+"""
+select columns of table "BadgeHolder"
+"""
+enum BadgeHolder_select_column {
+  """column name"""
+  address
+  """column name"""
+  badgeBalance
+  """column name"""
+  dao
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  shaman_id
+}
+
+"""
+Streaming cursor of the table "BadgeHolder"
+"""
+input BadgeHolder_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: BadgeHolder_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input BadgeHolder_stream_cursor_value_input {
+  address: String
+  badgeBalance: numeric
+  dao: String
+  db_write_timestamp: timestamp
+  id: String
+  shaman_id: String
+}
+
+"""
+columns and relationships of "BadgeTemplate"
+"""
+type BadgeTemplate {
+  amount: numeric!
+  badgeId: numeric!
+  """An array relationship"""
+  badges(
+    """distinct select on columns"""
+    distinct_on: [Badge_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Badge_order_by!]
+    """filter the rows returned"""
+    where: Badge_bool_exp
+  ): [Badge!]!
+  dao: String!
+  db_write_timestamp: timestamp
+  exists: Boolean!
+  hasFixedAmount: Boolean!
+  id: String!
+  isSlash: Boolean!
+  isVotingToken: Boolean!
+  metadata_id: String!
+  name: String!
+  """An object relationship"""
+  shaman: ScaffoldShaman
+  shaman_id: String!
+}
+
+"""
+order by aggregate values of table "BadgeTemplate"
+"""
+input BadgeTemplate_aggregate_order_by {
+  avg: BadgeTemplate_avg_order_by
+  count: order_by
+  max: BadgeTemplate_max_order_by
+  min: BadgeTemplate_min_order_by
+  stddev: BadgeTemplate_stddev_order_by
+  stddev_pop: BadgeTemplate_stddev_pop_order_by
+  stddev_samp: BadgeTemplate_stddev_samp_order_by
+  sum: BadgeTemplate_sum_order_by
+  var_pop: BadgeTemplate_var_pop_order_by
+  var_samp: BadgeTemplate_var_samp_order_by
+  variance: BadgeTemplate_variance_order_by
+}
+
+"""
+order by avg() on columns of table "BadgeTemplate"
+"""
+input BadgeTemplate_avg_order_by {
+  amount: order_by
+  badgeId: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "BadgeTemplate". All fields are combined with a logical 'AND'.
+"""
+input BadgeTemplate_bool_exp {
+  _and: [BadgeTemplate_bool_exp!]
+  _not: BadgeTemplate_bool_exp
+  _or: [BadgeTemplate_bool_exp!]
+  amount: numeric_comparison_exp
+  badgeId: numeric_comparison_exp
+  badges: Badge_bool_exp
+  dao: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  exists: Boolean_comparison_exp
+  hasFixedAmount: Boolean_comparison_exp
+  id: String_comparison_exp
+  isSlash: Boolean_comparison_exp
+  isVotingToken: Boolean_comparison_exp
+  metadata: RawMetadata_bool_exp
+  metadata_id: String_comparison_exp
+  name: String_comparison_exp
+  shaman: ScaffoldShaman_bool_exp
+  shaman_id: String_comparison_exp
+}
+
+"""
+order by max() on columns of table "BadgeTemplate"
+"""
+input BadgeTemplate_max_order_by {
+  amount: order_by
+  badgeId: order_by
+  dao: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  metadata_id: order_by
+  name: order_by
+  shaman_id: order_by
+}
+
+"""
+order by min() on columns of table "BadgeTemplate"
+"""
+input BadgeTemplate_min_order_by {
+  amount: order_by
+  badgeId: order_by
+  dao: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  metadata_id: order_by
+  name: order_by
+  shaman_id: order_by
+}
+
+"""Ordering options when selecting data from "BadgeTemplate"."""
+input BadgeTemplate_order_by {
+  amount: order_by
+  badgeId: order_by
+  badges_aggregate: Badge_aggregate_order_by
+  dao: order_by
+  db_write_timestamp: order_by
+  exists: order_by
+  hasFixedAmount: order_by
+  id: order_by
+  isSlash: order_by
+  isVotingToken: order_by
+  metadata: RawMetadata_order_by
+  metadata_id: order_by
+  name: order_by
+  shaman: ScaffoldShaman_order_by
+  shaman_id: order_by
+}
+
+"""
+select columns of table "BadgeTemplate"
+"""
+enum BadgeTemplate_select_column {
+  """column name"""
+  amount
+  """column name"""
+  badgeId
+  """column name"""
+  dao
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  exists
+  """column name"""
+  hasFixedAmount
+  """column name"""
+  id
+  """column name"""
+  isSlash
+  """column name"""
+  isVotingToken
+  """column name"""
+  metadata_id
+  """column name"""
+  name
+  """column name"""
+  shaman_id
+}
+
+"""
+order by stddev() on columns of table "BadgeTemplate"
+"""
+input BadgeTemplate_stddev_order_by {
+  amount: order_by
+  badgeId: order_by
+}
+
+"""
+order by stddev_pop() on columns of table "BadgeTemplate"
+"""
+input BadgeTemplate_stddev_pop_order_by {
+  amount: order_by
+  badgeId: order_by
+}
+
+"""
+order by stddev_samp() on columns of table "BadgeTemplate"
+"""
+input BadgeTemplate_stddev_samp_order_by {
+  amount: order_by
+  badgeId: order_by
+}
+
+"""
+Streaming cursor of the table "BadgeTemplate"
+"""
+input BadgeTemplate_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: BadgeTemplate_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input BadgeTemplate_stream_cursor_value_input {
+  amount: numeric
+  badgeId: numeric
+  dao: String
+  db_write_timestamp: timestamp
+  exists: Boolean
+  hasFixedAmount: Boolean
+  id: String
+  isSlash: Boolean
+  isVotingToken: Boolean
+  metadata_id: String
+  name: String
+  shaman_id: String
+}
+
+"""
+order by sum() on columns of table "BadgeTemplate"
+"""
+input BadgeTemplate_sum_order_by {
+  amount: order_by
+  badgeId: order_by
+}
+
+"""
+order by var_pop() on columns of table "BadgeTemplate"
+"""
+input BadgeTemplate_var_pop_order_by {
+  amount: order_by
+  badgeId: order_by
+}
+
+"""
+order by var_samp() on columns of table "BadgeTemplate"
+"""
+input BadgeTemplate_var_samp_order_by {
+  amount: order_by
+  badgeId: order_by
+}
+
+"""
+order by variance() on columns of table "BadgeTemplate"
+"""
+input BadgeTemplate_variance_order_by {
+  amount: order_by
+  badgeId: order_by
+}
+
+"""
+order by aggregate values of table "Badge"
+"""
+input Badge_aggregate_order_by {
+  avg: Badge_avg_order_by
+  count: order_by
+  max: Badge_max_order_by
+  min: Badge_min_order_by
+  stddev: Badge_stddev_order_by
+  stddev_pop: Badge_stddev_pop_order_by
+  stddev_samp: Badge_stddev_samp_order_by
+  sum: Badge_sum_order_by
+  var_pop: Badge_var_pop_order_by
+  var_samp: Badge_var_samp_order_by
+  variance: Badge_variance_order_by
+}
+
+"""
+order by avg() on columns of table "Badge"
+"""
+input Badge_avg_order_by {
+  amount: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "Badge". All fields are combined with a logical 'AND'.
+"""
+input Badge_bool_exp {
+  _and: [Badge_bool_exp!]
+  _not: Badge_bool_exp
+  _or: [Badge_bool_exp!]
+  amount: numeric_comparison_exp
+  dao: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  reason: RawMetadata_bool_exp
+  reason_id: String_comparison_exp
+  template: BadgeTemplate_bool_exp
+  template_id: String_comparison_exp
+  wearer: BadgeHolder_bool_exp
+  wearer_id: String_comparison_exp
+}
+
+"""
+order by max() on columns of table "Badge"
+"""
+input Badge_max_order_by {
+  amount: order_by
+  dao: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  reason_id: order_by
+  template_id: order_by
+  wearer_id: order_by
+}
+
+"""
+order by min() on columns of table "Badge"
+"""
+input Badge_min_order_by {
+  amount: order_by
+  dao: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  reason_id: order_by
+  template_id: order_by
+  wearer_id: order_by
+}
+
+"""Ordering options when selecting data from "Badge"."""
+input Badge_order_by {
+  amount: order_by
+  dao: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  reason: RawMetadata_order_by
+  reason_id: order_by
+  template: BadgeTemplate_order_by
+  template_id: order_by
+  wearer: BadgeHolder_order_by
+  wearer_id: order_by
+}
+
+"""
+select columns of table "Badge"
+"""
+enum Badge_select_column {
+  """column name"""
+  amount
+  """column name"""
+  dao
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  reason_id
+  """column name"""
+  template_id
+  """column name"""
+  wearer_id
+}
+
+"""
+order by stddev() on columns of table "Badge"
+"""
+input Badge_stddev_order_by {
+  amount: order_by
+}
+
+"""
+order by stddev_pop() on columns of table "Badge"
+"""
+input Badge_stddev_pop_order_by {
+  amount: order_by
+}
+
+"""
+order by stddev_samp() on columns of table "Badge"
+"""
+input Badge_stddev_samp_order_by {
+  amount: order_by
+}
+
+"""
+Streaming cursor of the table "Badge"
+"""
+input Badge_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Badge_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Badge_stream_cursor_value_input {
+  amount: numeric
+  dao: String
+  db_write_timestamp: timestamp
+  id: String
+  reason_id: String
+  template_id: String
+  wearer_id: String
+}
+
+"""
+order by sum() on columns of table "Badge"
+"""
+input Badge_sum_order_by {
+  amount: order_by
+}
+
+"""
+order by var_pop() on columns of table "Badge"
+"""
+input Badge_var_pop_order_by {
+  amount: order_by
+}
+
+"""
+order by var_samp() on columns of table "Badge"
+"""
+input Badge_var_samp_order_by {
+  amount: order_by
+}
+
+"""
+order by variance() on columns of table "Badge"
+"""
+input Badge_variance_order_by {
+  amount: order_by
+}
+
+"""
 Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'.
 """
 input Boolean_comparison_exp {
@@ -301,6 +1050,223 @@ input Contest_stream_cursor_value_input {
   isRetractable: Boolean
   pointsModule_id: String
   votesModule_id: String
+}
+
+"""
+columns and relationships of "DAOToken"
+"""
+type DAOToken {
+  address: String!
+  dao: String!
+  db_write_timestamp: timestamp
+  id: String!
+  """An object relationship"""
+  shaman: ScaffoldShaman
+  shaman_id: String!
+  symbol: String!
+}
+
+"""
+Boolean expression to filter rows from the table "DAOToken". All fields are combined with a logical 'AND'.
+"""
+input DAOToken_bool_exp {
+  _and: [DAOToken_bool_exp!]
+  _not: DAOToken_bool_exp
+  _or: [DAOToken_bool_exp!]
+  address: String_comparison_exp
+  dao: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  shaman: ScaffoldShaman_bool_exp
+  shaman_id: String_comparison_exp
+  symbol: String_comparison_exp
+}
+
+"""Ordering options when selecting data from "DAOToken"."""
+input DAOToken_order_by {
+  address: order_by
+  dao: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  shaman: ScaffoldShaman_order_by
+  shaman_id: order_by
+  symbol: order_by
+}
+
+"""
+select columns of table "DAOToken"
+"""
+enum DAOToken_select_column {
+  """column name"""
+  address
+  """column name"""
+  dao
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  shaman_id
+  """column name"""
+  symbol
+}
+
+"""
+Streaming cursor of the table "DAOToken"
+"""
+input DAOToken_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: DAOToken_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input DAOToken_stream_cursor_value_input {
+  address: String
+  dao: String
+  db_write_timestamp: timestamp
+  id: String
+  shaman_id: String
+  symbol: String
+}
+
+"""
+columns and relationships of "DualTokenPointsParams"
+"""
+type DualTokenPointsParams {
+  contextTokenAddress: String!
+  daoTokenAddress: String!
+  db_write_timestamp: timestamp
+  id: String!
+  votingCheckpoint: numeric!
+}
+
+"""
+Boolean expression to filter rows from the table "DualTokenPointsParams". All fields are combined with a logical 'AND'.
+"""
+input DualTokenPointsParams_bool_exp {
+  _and: [DualTokenPointsParams_bool_exp!]
+  _not: DualTokenPointsParams_bool_exp
+  _or: [DualTokenPointsParams_bool_exp!]
+  contextTokenAddress: String_comparison_exp
+  daoTokenAddress: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  votingCheckpoint: numeric_comparison_exp
+}
+
+"""Ordering options when selecting data from "DualTokenPointsParams"."""
+input DualTokenPointsParams_order_by {
+  contextTokenAddress: order_by
+  daoTokenAddress: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  votingCheckpoint: order_by
+}
+
+"""
+select columns of table "DualTokenPointsParams"
+"""
+enum DualTokenPointsParams_select_column {
+  """column name"""
+  contextTokenAddress
+  """column name"""
+  daoTokenAddress
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  votingCheckpoint
+}
+
+"""
+Streaming cursor of the table "DualTokenPointsParams"
+"""
+input DualTokenPointsParams_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: DualTokenPointsParams_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input DualTokenPointsParams_stream_cursor_value_input {
+  contextTokenAddress: String
+  daoTokenAddress: String
+  db_write_timestamp: timestamp
+  id: String
+  votingCheckpoint: numeric
+}
+
+"""
+columns and relationships of "DualTokenTVParams"
+"""
+type DualTokenTVParams {
+  contextTokenAddress: String!
+  daoTokenAddress: String!
+  db_write_timestamp: timestamp
+  id: String!
+  voteDuration: numeric!
+}
+
+"""
+Boolean expression to filter rows from the table "DualTokenTVParams". All fields are combined with a logical 'AND'.
+"""
+input DualTokenTVParams_bool_exp {
+  _and: [DualTokenTVParams_bool_exp!]
+  _not: DualTokenTVParams_bool_exp
+  _or: [DualTokenTVParams_bool_exp!]
+  contextTokenAddress: String_comparison_exp
+  daoTokenAddress: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  voteDuration: numeric_comparison_exp
+}
+
+"""Ordering options when selecting data from "DualTokenTVParams"."""
+input DualTokenTVParams_order_by {
+  contextTokenAddress: order_by
+  daoTokenAddress: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  voteDuration: order_by
+}
+
+"""
+select columns of table "DualTokenTVParams"
+"""
+enum DualTokenTVParams_select_column {
+  """column name"""
+  contextTokenAddress
+  """column name"""
+  daoTokenAddress
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  voteDuration
+}
+
+"""
+Streaming cursor of the table "DualTokenTVParams"
+"""
+input DualTokenTVParams_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: DualTokenTVParams_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input DualTokenTVParams_stream_cursor_value_input {
+  contextTokenAddress: String
+  daoTokenAddress: String
+  db_write_timestamp: timestamp
+  id: String
+  voteDuration: numeric
 }
 
 """
@@ -727,6 +1693,346 @@ input FactoryEventsSummary_stream_cursor_value_input {
 }
 
 """
+columns and relationships of "FeedCard"
+"""
+type FeedCard {
+  db_write_timestamp: timestamp
+  domain_id: String
+  """An object relationship"""
+  embed: FeedItemEmbed
+  embed_id: String
+  externalLink: String
+  id: String!
+  internalLink: String
+  message: String
+  """An object relationship"""
+  object: FeedItemEntity
+  object_id: String
+  richTextContent_id: String
+  sender: String
+  """An object relationship"""
+  subject: FeedItemEntity
+  subjectMetadataPointer: String!
+  subject_id: String!
+  tag: String!
+  timestamp: Int!
+}
+
+"""
+Boolean expression to filter rows from the table "FeedCard". All fields are combined with a logical 'AND'.
+"""
+input FeedCard_bool_exp {
+  _and: [FeedCard_bool_exp!]
+  _not: FeedCard_bool_exp
+  _or: [FeedCard_bool_exp!]
+  db_write_timestamp: timestamp_comparison_exp
+  domain: GameManager_bool_exp
+  domain_id: String_comparison_exp
+  embed: FeedItemEmbed_bool_exp
+  embed_id: String_comparison_exp
+  externalLink: String_comparison_exp
+  id: String_comparison_exp
+  internalLink: String_comparison_exp
+  message: String_comparison_exp
+  object: FeedItemEntity_bool_exp
+  object_id: String_comparison_exp
+  richTextContent: RawMetadata_bool_exp
+  richTextContent_id: String_comparison_exp
+  sender: String_comparison_exp
+  subject: FeedItemEntity_bool_exp
+  subjectMetadataPointer: String_comparison_exp
+  subject_id: String_comparison_exp
+  tag: String_comparison_exp
+  timestamp: Int_comparison_exp
+}
+
+"""Ordering options when selecting data from "FeedCard"."""
+input FeedCard_order_by {
+  db_write_timestamp: order_by
+  domain: GameManager_order_by
+  domain_id: order_by
+  embed: FeedItemEmbed_order_by
+  embed_id: order_by
+  externalLink: order_by
+  id: order_by
+  internalLink: order_by
+  message: order_by
+  object: FeedItemEntity_order_by
+  object_id: order_by
+  richTextContent: RawMetadata_order_by
+  richTextContent_id: order_by
+  sender: order_by
+  subject: FeedItemEntity_order_by
+  subjectMetadataPointer: order_by
+  subject_id: order_by
+  tag: order_by
+  timestamp: order_by
+}
+
+"""
+select columns of table "FeedCard"
+"""
+enum FeedCard_select_column {
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  domain_id
+  """column name"""
+  embed_id
+  """column name"""
+  externalLink
+  """column name"""
+  id
+  """column name"""
+  internalLink
+  """column name"""
+  message
+  """column name"""
+  object_id
+  """column name"""
+  richTextContent_id
+  """column name"""
+  sender
+  """column name"""
+  subjectMetadataPointer
+  """column name"""
+  subject_id
+  """column name"""
+  tag
+  """column name"""
+  timestamp
+}
+
+"""
+Streaming cursor of the table "FeedCard"
+"""
+input FeedCard_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: FeedCard_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input FeedCard_stream_cursor_value_input {
+  db_write_timestamp: timestamp
+  domain_id: String
+  embed_id: String
+  externalLink: String
+  id: String
+  internalLink: String
+  message: String
+  object_id: String
+  richTextContent_id: String
+  sender: String
+  subjectMetadataPointer: String
+  subject_id: String
+  tag: String
+  timestamp: Int
+}
+
+"""
+columns and relationships of "FeedItemEmbed"
+"""
+type FeedItemEmbed {
+  content: String
+  db_write_timestamp: timestamp
+  id: String!
+  key: String
+  pointer: String
+  protocol: numeric
+}
+
+"""
+Boolean expression to filter rows from the table "FeedItemEmbed". All fields are combined with a logical 'AND'.
+"""
+input FeedItemEmbed_bool_exp {
+  _and: [FeedItemEmbed_bool_exp!]
+  _not: FeedItemEmbed_bool_exp
+  _or: [FeedItemEmbed_bool_exp!]
+  content: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  key: String_comparison_exp
+  pointer: String_comparison_exp
+  protocol: numeric_comparison_exp
+}
+
+"""Ordering options when selecting data from "FeedItemEmbed"."""
+input FeedItemEmbed_order_by {
+  content: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  key: order_by
+  pointer: order_by
+  protocol: order_by
+}
+
+"""
+select columns of table "FeedItemEmbed"
+"""
+enum FeedItemEmbed_select_column {
+  """column name"""
+  content
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  key
+  """column name"""
+  pointer
+  """column name"""
+  protocol
+}
+
+"""
+Streaming cursor of the table "FeedItemEmbed"
+"""
+input FeedItemEmbed_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: FeedItemEmbed_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input FeedItemEmbed_stream_cursor_value_input {
+  content: String
+  db_write_timestamp: timestamp
+  id: String
+  key: String
+  pointer: String
+  protocol: numeric
+}
+
+"""
+columns and relationships of "FeedItemEntity"
+"""
+type FeedItemEntity {
+  db_write_timestamp: timestamp
+  id: String!
+  name: String!
+  playerType: Int!
+}
+
+"""
+Boolean expression to filter rows from the table "FeedItemEntity". All fields are combined with a logical 'AND'.
+"""
+input FeedItemEntity_bool_exp {
+  _and: [FeedItemEntity_bool_exp!]
+  _not: FeedItemEntity_bool_exp
+  _or: [FeedItemEntity_bool_exp!]
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  name: String_comparison_exp
+  playerType: Int_comparison_exp
+}
+
+"""Ordering options when selecting data from "FeedItemEntity"."""
+input FeedItemEntity_order_by {
+  db_write_timestamp: order_by
+  id: order_by
+  name: order_by
+  playerType: order_by
+}
+
+"""
+select columns of table "FeedItemEntity"
+"""
+enum FeedItemEntity_select_column {
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  name
+  """column name"""
+  playerType
+}
+
+"""
+Streaming cursor of the table "FeedItemEntity"
+"""
+input FeedItemEntity_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: FeedItemEntity_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input FeedItemEntity_stream_cursor_value_input {
+  db_write_timestamp: timestamp
+  id: String
+  name: String
+  playerType: Int
+}
+
+"""
+columns and relationships of "GMInitParams"
+"""
+type GMInitParams {
+  db_write_timestamp: timestamp
+  gameFacilitatorId: numeric
+  gmRootAccount: String
+  id: String!
+}
+
+"""
+Boolean expression to filter rows from the table "GMInitParams". All fields are combined with a logical 'AND'.
+"""
+input GMInitParams_bool_exp {
+  _and: [GMInitParams_bool_exp!]
+  _not: GMInitParams_bool_exp
+  _or: [GMInitParams_bool_exp!]
+  db_write_timestamp: timestamp_comparison_exp
+  gameFacilitatorId: numeric_comparison_exp
+  gmRootAccount: String_comparison_exp
+  id: String_comparison_exp
+}
+
+"""Ordering options when selecting data from "GMInitParams"."""
+input GMInitParams_order_by {
+  db_write_timestamp: order_by
+  gameFacilitatorId: order_by
+  gmRootAccount: order_by
+  id: order_by
+}
+
+"""
+select columns of table "GMInitParams"
+"""
+enum GMInitParams_select_column {
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  gameFacilitatorId
+  """column name"""
+  gmRootAccount
+  """column name"""
+  id
+}
+
+"""
+Streaming cursor of the table "GMInitParams"
+"""
+input GMInitParams_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: GMInitParams_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input GMInitParams_stream_cursor_value_input {
+  db_write_timestamp: timestamp
+  gameFacilitatorId: numeric
+  gmRootAccount: String
+  id: String
+}
+
+"""
 columns and relationships of "GSVoter"
 """
 type GSVoter {
@@ -799,6 +2105,1138 @@ input GSVoter_stream_cursor_value_input {
 }
 
 """
+columns and relationships of "GameManagerFactory"
+"""
+type GameManagerFactory {
+  chainId: Int!
+  createdAt: Int!
+  db_write_timestamp: timestamp
+  id: String!
+  rootAccount: String!
+}
+
+"""
+Boolean expression to filter rows from the table "GameManagerFactory". All fields are combined with a logical 'AND'.
+"""
+input GameManagerFactory_bool_exp {
+  _and: [GameManagerFactory_bool_exp!]
+  _not: GameManagerFactory_bool_exp
+  _or: [GameManagerFactory_bool_exp!]
+  chainId: Int_comparison_exp
+  createdAt: Int_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  rootAccount: String_comparison_exp
+}
+
+"""Ordering options when selecting data from "GameManagerFactory"."""
+input GameManagerFactory_order_by {
+  chainId: order_by
+  createdAt: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  rootAccount: order_by
+}
+
+"""
+select columns of table "GameManagerFactory"
+"""
+enum GameManagerFactory_select_column {
+  """column name"""
+  chainId
+  """column name"""
+  createdAt
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  rootAccount
+}
+
+"""
+Streaming cursor of the table "GameManagerFactory"
+"""
+input GameManagerFactory_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: GameManagerFactory_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input GameManagerFactory_stream_cursor_value_input {
+  chainId: Int
+  createdAt: Int
+  db_write_timestamp: timestamp
+  id: String
+  rootAccount: String
+}
+
+"""
+columns and relationships of "GameManagerTemplate"
+"""
+type GameManagerTemplate {
+  address: String!
+  chainId: Int!
+  createdAt: Int!
+  db_write_timestamp: timestamp
+  id: String!
+  name: String!
+}
+
+"""
+Boolean expression to filter rows from the table "GameManagerTemplate". All fields are combined with a logical 'AND'.
+"""
+input GameManagerTemplate_bool_exp {
+  _and: [GameManagerTemplate_bool_exp!]
+  _not: GameManagerTemplate_bool_exp
+  _or: [GameManagerTemplate_bool_exp!]
+  address: String_comparison_exp
+  chainId: Int_comparison_exp
+  createdAt: Int_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  name: String_comparison_exp
+}
+
+"""Ordering options when selecting data from "GameManagerTemplate"."""
+input GameManagerTemplate_order_by {
+  address: order_by
+  chainId: order_by
+  createdAt: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  name: order_by
+}
+
+"""
+select columns of table "GameManagerTemplate"
+"""
+enum GameManagerTemplate_select_column {
+  """column name"""
+  address
+  """column name"""
+  chainId
+  """column name"""
+  createdAt
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  name
+}
+
+"""
+Streaming cursor of the table "GameManagerTemplate"
+"""
+input GameManagerTemplate_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: GameManagerTemplate_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input GameManagerTemplate_stream_cursor_value_input {
+  address: String
+  chainId: Int
+  createdAt: Int
+  db_write_timestamp: timestamp
+  id: String
+  name: String
+}
+
+"""
+Boolean expression to filter rows from the table "GameManager". All fields are combined with a logical 'AND'.
+"""
+input GameManager_bool_exp {
+  _and: [GameManager_bool_exp!]
+  _not: GameManager_bool_exp
+  _or: [GameManager_bool_exp!]
+  chainId: Int_comparison_exp
+  createdAt: Int_comparison_exp
+  currentRound: GameRound_bool_exp
+  currentRoundNumber: numeric_comparison_exp
+  currentRound_id: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  gameFacilitatorId: numeric_comparison_exp
+  gameRounds: GameRound_bool_exp
+  gmRootAccount: String_comparison_exp
+  id: String_comparison_exp
+  initData: String_comparison_exp
+  poolFunds: numeric_comparison_exp
+  poolId: numeric_comparison_exp
+  poolMetadataPointer: String_comparison_exp
+  poolMetadataProtocol: numeric_comparison_exp
+  profileId: String_comparison_exp
+  profileMetadataPointer: String_comparison_exp
+  profileMetadataProtocol: numeric_comparison_exp
+  template: GameManagerTemplate_bool_exp
+  template_id: String_comparison_exp
+  tokenAddress: String_comparison_exp
+}
+
+"""Ordering options when selecting data from "GameManager"."""
+input GameManager_order_by {
+  chainId: order_by
+  createdAt: order_by
+  currentRound: GameRound_order_by
+  currentRoundNumber: order_by
+  currentRound_id: order_by
+  db_write_timestamp: order_by
+  gameFacilitatorId: order_by
+  gameRounds_aggregate: GameRound_aggregate_order_by
+  gmRootAccount: order_by
+  id: order_by
+  initData: order_by
+  poolFunds: order_by
+  poolId: order_by
+  poolMetadataPointer: order_by
+  poolMetadataProtocol: order_by
+  profileId: order_by
+  profileMetadataPointer: order_by
+  profileMetadataProtocol: order_by
+  template: GameManagerTemplate_order_by
+  template_id: order_by
+  tokenAddress: order_by
+}
+
+"""
+select columns of table "GameManager"
+"""
+enum GameManager_select_column {
+  """column name"""
+  chainId
+  """column name"""
+  createdAt
+  """column name"""
+  currentRoundNumber
+  """column name"""
+  currentRound_id
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  gameFacilitatorId
+  """column name"""
+  gmRootAccount
+  """column name"""
+  id
+  """column name"""
+  initData
+  """column name"""
+  poolFunds
+  """column name"""
+  poolId
+  """column name"""
+  poolMetadataPointer
+  """column name"""
+  poolMetadataProtocol
+  """column name"""
+  profileId
+  """column name"""
+  profileMetadataPointer
+  """column name"""
+  profileMetadataProtocol
+  """column name"""
+  template_id
+  """column name"""
+  tokenAddress
+}
+
+"""
+Streaming cursor of the table "GameManager"
+"""
+input GameManager_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: GameManager_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input GameManager_stream_cursor_value_input {
+  chainId: Int
+  createdAt: Int
+  currentRoundNumber: numeric
+  currentRound_id: String
+  db_write_timestamp: timestamp
+  gameFacilitatorId: numeric
+  gmRootAccount: String
+  id: String
+  initData: String
+  poolFunds: numeric
+  poolId: numeric
+  poolMetadataPointer: String
+  poolMetadataProtocol: numeric
+  profileId: String
+  profileMetadataPointer: String
+  profileMetadataProtocol: numeric
+  template_id: String
+  tokenAddress: String
+}
+
+"""
+columns and relationships of "GameRound"
+"""
+type GameRound {
+  db_write_timestamp: timestamp
+  endTime: numeric!
+  gameManager_id: String!
+  gameStatus: Int!
+  id: String!
+  isGameActive: Boolean!
+  realEndTime: Int
+  realStartTime: Int
+  startTime: numeric!
+  totalAllocatedAmount: numeric!
+  totalDistributedAmount: numeric!
+  totalRoundAmount: numeric!
+}
+
+"""
+order by aggregate values of table "GameRound"
+"""
+input GameRound_aggregate_order_by {
+  avg: GameRound_avg_order_by
+  count: order_by
+  max: GameRound_max_order_by
+  min: GameRound_min_order_by
+  stddev: GameRound_stddev_order_by
+  stddev_pop: GameRound_stddev_pop_order_by
+  stddev_samp: GameRound_stddev_samp_order_by
+  sum: GameRound_sum_order_by
+  var_pop: GameRound_var_pop_order_by
+  var_samp: GameRound_var_samp_order_by
+  variance: GameRound_variance_order_by
+}
+
+"""
+order by avg() on columns of table "GameRound"
+"""
+input GameRound_avg_order_by {
+  endTime: order_by
+  gameStatus: order_by
+  realEndTime: order_by
+  realStartTime: order_by
+  startTime: order_by
+  totalAllocatedAmount: order_by
+  totalDistributedAmount: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "GameRound". All fields are combined with a logical 'AND'.
+"""
+input GameRound_bool_exp {
+  _and: [GameRound_bool_exp!]
+  _not: GameRound_bool_exp
+  _or: [GameRound_bool_exp!]
+  db_write_timestamp: timestamp_comparison_exp
+  endTime: numeric_comparison_exp
+  gameManager: GameManager_bool_exp
+  gameManager_id: String_comparison_exp
+  gameStatus: Int_comparison_exp
+  id: String_comparison_exp
+  isGameActive: Boolean_comparison_exp
+  realEndTime: Int_comparison_exp
+  realStartTime: Int_comparison_exp
+  ships: GrantShip_bool_exp
+  startTime: numeric_comparison_exp
+  totalAllocatedAmount: numeric_comparison_exp
+  totalDistributedAmount: numeric_comparison_exp
+  totalRoundAmount: numeric_comparison_exp
+}
+
+"""
+order by max() on columns of table "GameRound"
+"""
+input GameRound_max_order_by {
+  db_write_timestamp: order_by
+  endTime: order_by
+  gameManager_id: order_by
+  gameStatus: order_by
+  id: order_by
+  realEndTime: order_by
+  realStartTime: order_by
+  startTime: order_by
+  totalAllocatedAmount: order_by
+  totalDistributedAmount: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by min() on columns of table "GameRound"
+"""
+input GameRound_min_order_by {
+  db_write_timestamp: order_by
+  endTime: order_by
+  gameManager_id: order_by
+  gameStatus: order_by
+  id: order_by
+  realEndTime: order_by
+  realStartTime: order_by
+  startTime: order_by
+  totalAllocatedAmount: order_by
+  totalDistributedAmount: order_by
+  totalRoundAmount: order_by
+}
+
+"""Ordering options when selecting data from "GameRound"."""
+input GameRound_order_by {
+  db_write_timestamp: order_by
+  endTime: order_by
+  gameManager: GameManager_order_by
+  gameManager_id: order_by
+  gameStatus: order_by
+  id: order_by
+  isGameActive: order_by
+  realEndTime: order_by
+  realStartTime: order_by
+  ships_aggregate: GrantShip_aggregate_order_by
+  startTime: order_by
+  totalAllocatedAmount: order_by
+  totalDistributedAmount: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+select columns of table "GameRound"
+"""
+enum GameRound_select_column {
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  endTime
+  """column name"""
+  gameManager_id
+  """column name"""
+  gameStatus
+  """column name"""
+  id
+  """column name"""
+  isGameActive
+  """column name"""
+  realEndTime
+  """column name"""
+  realStartTime
+  """column name"""
+  startTime
+  """column name"""
+  totalAllocatedAmount
+  """column name"""
+  totalDistributedAmount
+  """column name"""
+  totalRoundAmount
+}
+
+"""
+order by stddev() on columns of table "GameRound"
+"""
+input GameRound_stddev_order_by {
+  endTime: order_by
+  gameStatus: order_by
+  realEndTime: order_by
+  realStartTime: order_by
+  startTime: order_by
+  totalAllocatedAmount: order_by
+  totalDistributedAmount: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by stddev_pop() on columns of table "GameRound"
+"""
+input GameRound_stddev_pop_order_by {
+  endTime: order_by
+  gameStatus: order_by
+  realEndTime: order_by
+  realStartTime: order_by
+  startTime: order_by
+  totalAllocatedAmount: order_by
+  totalDistributedAmount: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by stddev_samp() on columns of table "GameRound"
+"""
+input GameRound_stddev_samp_order_by {
+  endTime: order_by
+  gameStatus: order_by
+  realEndTime: order_by
+  realStartTime: order_by
+  startTime: order_by
+  totalAllocatedAmount: order_by
+  totalDistributedAmount: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+Streaming cursor of the table "GameRound"
+"""
+input GameRound_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: GameRound_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input GameRound_stream_cursor_value_input {
+  db_write_timestamp: timestamp
+  endTime: numeric
+  gameManager_id: String
+  gameStatus: Int
+  id: String
+  isGameActive: Boolean
+  realEndTime: Int
+  realStartTime: Int
+  startTime: numeric
+  totalAllocatedAmount: numeric
+  totalDistributedAmount: numeric
+  totalRoundAmount: numeric
+}
+
+"""
+order by sum() on columns of table "GameRound"
+"""
+input GameRound_sum_order_by {
+  endTime: order_by
+  gameStatus: order_by
+  realEndTime: order_by
+  realStartTime: order_by
+  startTime: order_by
+  totalAllocatedAmount: order_by
+  totalDistributedAmount: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by var_pop() on columns of table "GameRound"
+"""
+input GameRound_var_pop_order_by {
+  endTime: order_by
+  gameStatus: order_by
+  realEndTime: order_by
+  realStartTime: order_by
+  startTime: order_by
+  totalAllocatedAmount: order_by
+  totalDistributedAmount: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by var_samp() on columns of table "GameRound"
+"""
+input GameRound_var_samp_order_by {
+  endTime: order_by
+  gameStatus: order_by
+  realEndTime: order_by
+  realStartTime: order_by
+  startTime: order_by
+  totalAllocatedAmount: order_by
+  totalDistributedAmount: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by variance() on columns of table "GameRound"
+"""
+input GameRound_variance_order_by {
+  endTime: order_by
+  gameStatus: order_by
+  realEndTime: order_by
+  realStartTime: order_by
+  startTime: order_by
+  totalAllocatedAmount: order_by
+  totalDistributedAmount: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+columns and relationships of "Gate"
+"""
+type Gate {
+  db_write_timestamp: timestamp
+  gateId: Int!
+  gateType: Int!
+  hatId: numeric!
+  id: String!
+}
+
+"""
+Boolean expression to filter rows from the table "Gate". All fields are combined with a logical 'AND'.
+"""
+input Gate_bool_exp {
+  _and: [Gate_bool_exp!]
+  _not: Gate_bool_exp
+  _or: [Gate_bool_exp!]
+  db_write_timestamp: timestamp_comparison_exp
+  gateId: Int_comparison_exp
+  gateType: Int_comparison_exp
+  hatId: numeric_comparison_exp
+  id: String_comparison_exp
+}
+
+"""Ordering options when selecting data from "Gate"."""
+input Gate_order_by {
+  db_write_timestamp: order_by
+  gateId: order_by
+  gateType: order_by
+  hatId: order_by
+  id: order_by
+}
+
+"""
+select columns of table "Gate"
+"""
+enum Gate_select_column {
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  gateId
+  """column name"""
+  gateType
+  """column name"""
+  hatId
+  """column name"""
+  id
+}
+
+"""
+Streaming cursor of the table "Gate"
+"""
+input Gate_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Gate_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Gate_stream_cursor_value_input {
+  db_write_timestamp: timestamp
+  gateId: Int
+  gateType: Int
+  hatId: numeric
+  id: String
+}
+
+"""
+order by aggregate values of table "GrantShip"
+"""
+input GrantShip_aggregate_order_by {
+  avg: GrantShip_avg_order_by
+  count: order_by
+  max: GrantShip_max_order_by
+  min: GrantShip_min_order_by
+  stddev: GrantShip_stddev_order_by
+  stddev_pop: GrantShip_stddev_pop_order_by
+  stddev_samp: GrantShip_stddev_samp_order_by
+  sum: GrantShip_sum_order_by
+  var_pop: GrantShip_var_pop_order_by
+  var_samp: GrantShip_var_samp_order_by
+  variance: GrantShip_variance_order_by
+}
+
+"""
+order by avg() on columns of table "GrantShip"
+"""
+input GrantShip_avg_order_by {
+  applicationSubmittedTime: order_by
+  approvedTime: order_by
+  balance: order_by
+  beaconLastUpdated: order_by
+  chainId: order_by
+  nonce: order_by
+  poolId: order_by
+  rejectedTime: order_by
+  shipAllocation: order_by
+  status: order_by
+  totalAllocated: order_by
+  totalDistributed: order_by
+  totalFundsReceived: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "GrantShip". All fields are combined with a logical 'AND'.
+"""
+input GrantShip_bool_exp {
+  _and: [GrantShip_bool_exp!]
+  _not: GrantShip_bool_exp
+  _or: [GrantShip_bool_exp!]
+  alloProfileMembers: ProfileMemberGroup_bool_exp
+  alloProfileMembers_id: String_comparison_exp
+  anchor: String_comparison_exp
+  applicationReviewReason: RawMetadata_bool_exp
+  applicationReviewReason_id: String_comparison_exp
+  applicationSubmittedTime: Int_comparison_exp
+  approvedTime: Int_comparison_exp
+  balance: numeric_comparison_exp
+  beaconLastUpdated: Int_comparison_exp
+  beaconMessage: RawMetadata_bool_exp
+  beaconMessage_id: String_comparison_exp
+  chainId: Int_comparison_exp
+  customApplication: RawMetadata_bool_exp
+  customApplication_id: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  gameManager: GameManager_bool_exp
+  gameManager_id: String_comparison_exp
+  gameRound: GameRound_bool_exp
+  gameRound_id: String_comparison_exp
+  grants: Grant_bool_exp
+  hasEditedProfile: Boolean_comparison_exp
+  hasSubmittedApplication: Boolean_comparison_exp
+  hatId: String_comparison_exp
+  id: String_comparison_exp
+  isAllocated: Boolean_comparison_exp
+  isApproved: Boolean_comparison_exp
+  isAwaitingApproval: Boolean_comparison_exp
+  isDistributed: Boolean_comparison_exp
+  isRejected: Boolean_comparison_exp
+  name: String_comparison_exp
+  nonce: numeric_comparison_exp
+  owner: String_comparison_exp
+  pastNames: String_array_comparison_exp
+  pastProfileIds: String_array_comparison_exp
+  poolActive: Boolean_comparison_exp
+  poolFunded: Boolean_comparison_exp
+  poolId: numeric_comparison_exp
+  profileId: String_comparison_exp
+  profileMetadata: RawMetadata_bool_exp
+  profileMetadata_id: String_comparison_exp
+  rejectedTime: Int_comparison_exp
+  shipAllocation: numeric_comparison_exp
+  shipApplicationBytesData: String_comparison_exp
+  shipContractAddress: String_comparison_exp
+  shipLaunched: Boolean_comparison_exp
+  status: Int_comparison_exp
+  totalAllocated: numeric_comparison_exp
+  totalDistributed: numeric_comparison_exp
+  totalFundsReceived: numeric_comparison_exp
+  totalRoundAmount: numeric_comparison_exp
+}
+
+"""
+order by max() on columns of table "GrantShip"
+"""
+input GrantShip_max_order_by {
+  alloProfileMembers_id: order_by
+  anchor: order_by
+  applicationReviewReason_id: order_by
+  applicationSubmittedTime: order_by
+  approvedTime: order_by
+  balance: order_by
+  beaconLastUpdated: order_by
+  beaconMessage_id: order_by
+  chainId: order_by
+  customApplication_id: order_by
+  db_write_timestamp: order_by
+  gameManager_id: order_by
+  gameRound_id: order_by
+  hatId: order_by
+  id: order_by
+  name: order_by
+  nonce: order_by
+  owner: order_by
+  pastNames: order_by
+  pastProfileIds: order_by
+  poolId: order_by
+  profileId: order_by
+  profileMetadata_id: order_by
+  rejectedTime: order_by
+  shipAllocation: order_by
+  shipApplicationBytesData: order_by
+  shipContractAddress: order_by
+  status: order_by
+  totalAllocated: order_by
+  totalDistributed: order_by
+  totalFundsReceived: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by min() on columns of table "GrantShip"
+"""
+input GrantShip_min_order_by {
+  alloProfileMembers_id: order_by
+  anchor: order_by
+  applicationReviewReason_id: order_by
+  applicationSubmittedTime: order_by
+  approvedTime: order_by
+  balance: order_by
+  beaconLastUpdated: order_by
+  beaconMessage_id: order_by
+  chainId: order_by
+  customApplication_id: order_by
+  db_write_timestamp: order_by
+  gameManager_id: order_by
+  gameRound_id: order_by
+  hatId: order_by
+  id: order_by
+  name: order_by
+  nonce: order_by
+  owner: order_by
+  pastNames: order_by
+  pastProfileIds: order_by
+  poolId: order_by
+  profileId: order_by
+  profileMetadata_id: order_by
+  rejectedTime: order_by
+  shipAllocation: order_by
+  shipApplicationBytesData: order_by
+  shipContractAddress: order_by
+  status: order_by
+  totalAllocated: order_by
+  totalDistributed: order_by
+  totalFundsReceived: order_by
+  totalRoundAmount: order_by
+}
+
+"""Ordering options when selecting data from "GrantShip"."""
+input GrantShip_order_by {
+  alloProfileMembers: ProfileMemberGroup_order_by
+  alloProfileMembers_id: order_by
+  anchor: order_by
+  applicationReviewReason: RawMetadata_order_by
+  applicationReviewReason_id: order_by
+  applicationSubmittedTime: order_by
+  approvedTime: order_by
+  balance: order_by
+  beaconLastUpdated: order_by
+  beaconMessage: RawMetadata_order_by
+  beaconMessage_id: order_by
+  chainId: order_by
+  customApplication: RawMetadata_order_by
+  customApplication_id: order_by
+  db_write_timestamp: order_by
+  gameManager: GameManager_order_by
+  gameManager_id: order_by
+  gameRound: GameRound_order_by
+  gameRound_id: order_by
+  grants_aggregate: Grant_aggregate_order_by
+  hasEditedProfile: order_by
+  hasSubmittedApplication: order_by
+  hatId: order_by
+  id: order_by
+  isAllocated: order_by
+  isApproved: order_by
+  isAwaitingApproval: order_by
+  isDistributed: order_by
+  isRejected: order_by
+  name: order_by
+  nonce: order_by
+  owner: order_by
+  pastNames: order_by
+  pastProfileIds: order_by
+  poolActive: order_by
+  poolFunded: order_by
+  poolId: order_by
+  profileId: order_by
+  profileMetadata: RawMetadata_order_by
+  profileMetadata_id: order_by
+  rejectedTime: order_by
+  shipAllocation: order_by
+  shipApplicationBytesData: order_by
+  shipContractAddress: order_by
+  shipLaunched: order_by
+  status: order_by
+  totalAllocated: order_by
+  totalDistributed: order_by
+  totalFundsReceived: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+select columns of table "GrantShip"
+"""
+enum GrantShip_select_column {
+  """column name"""
+  alloProfileMembers_id
+  """column name"""
+  anchor
+  """column name"""
+  applicationReviewReason_id
+  """column name"""
+  applicationSubmittedTime
+  """column name"""
+  approvedTime
+  """column name"""
+  balance
+  """column name"""
+  beaconLastUpdated
+  """column name"""
+  beaconMessage_id
+  """column name"""
+  chainId
+  """column name"""
+  customApplication_id
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  gameManager_id
+  """column name"""
+  gameRound_id
+  """column name"""
+  hasEditedProfile
+  """column name"""
+  hasSubmittedApplication
+  """column name"""
+  hatId
+  """column name"""
+  id
+  """column name"""
+  isAllocated
+  """column name"""
+  isApproved
+  """column name"""
+  isAwaitingApproval
+  """column name"""
+  isDistributed
+  """column name"""
+  isRejected
+  """column name"""
+  name
+  """column name"""
+  nonce
+  """column name"""
+  owner
+  """column name"""
+  pastNames
+  """column name"""
+  pastProfileIds
+  """column name"""
+  poolActive
+  """column name"""
+  poolFunded
+  """column name"""
+  poolId
+  """column name"""
+  profileId
+  """column name"""
+  profileMetadata_id
+  """column name"""
+  rejectedTime
+  """column name"""
+  shipAllocation
+  """column name"""
+  shipApplicationBytesData
+  """column name"""
+  shipContractAddress
+  """column name"""
+  shipLaunched
+  """column name"""
+  status
+  """column name"""
+  totalAllocated
+  """column name"""
+  totalDistributed
+  """column name"""
+  totalFundsReceived
+  """column name"""
+  totalRoundAmount
+}
+
+"""
+order by stddev() on columns of table "GrantShip"
+"""
+input GrantShip_stddev_order_by {
+  applicationSubmittedTime: order_by
+  approvedTime: order_by
+  balance: order_by
+  beaconLastUpdated: order_by
+  chainId: order_by
+  nonce: order_by
+  poolId: order_by
+  rejectedTime: order_by
+  shipAllocation: order_by
+  status: order_by
+  totalAllocated: order_by
+  totalDistributed: order_by
+  totalFundsReceived: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by stddev_pop() on columns of table "GrantShip"
+"""
+input GrantShip_stddev_pop_order_by {
+  applicationSubmittedTime: order_by
+  approvedTime: order_by
+  balance: order_by
+  beaconLastUpdated: order_by
+  chainId: order_by
+  nonce: order_by
+  poolId: order_by
+  rejectedTime: order_by
+  shipAllocation: order_by
+  status: order_by
+  totalAllocated: order_by
+  totalDistributed: order_by
+  totalFundsReceived: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by stddev_samp() on columns of table "GrantShip"
+"""
+input GrantShip_stddev_samp_order_by {
+  applicationSubmittedTime: order_by
+  approvedTime: order_by
+  balance: order_by
+  beaconLastUpdated: order_by
+  chainId: order_by
+  nonce: order_by
+  poolId: order_by
+  rejectedTime: order_by
+  shipAllocation: order_by
+  status: order_by
+  totalAllocated: order_by
+  totalDistributed: order_by
+  totalFundsReceived: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+Streaming cursor of the table "GrantShip"
+"""
+input GrantShip_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: GrantShip_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input GrantShip_stream_cursor_value_input {
+  alloProfileMembers_id: String
+  anchor: String
+  applicationReviewReason_id: String
+  applicationSubmittedTime: Int
+  approvedTime: Int
+  balance: numeric
+  beaconLastUpdated: Int
+  beaconMessage_id: String
+  chainId: Int
+  customApplication_id: String
+  db_write_timestamp: timestamp
+  gameManager_id: String
+  gameRound_id: String
+  hasEditedProfile: Boolean
+  hasSubmittedApplication: Boolean
+  hatId: String
+  id: String
+  isAllocated: Boolean
+  isApproved: Boolean
+  isAwaitingApproval: Boolean
+  isDistributed: Boolean
+  isRejected: Boolean
+  name: String
+  nonce: numeric
+  owner: String
+  pastNames: [String!]
+  pastProfileIds: [String!]
+  poolActive: Boolean
+  poolFunded: Boolean
+  poolId: numeric
+  profileId: String
+  profileMetadata_id: String
+  rejectedTime: Int
+  shipAllocation: numeric
+  shipApplicationBytesData: String
+  shipContractAddress: String
+  shipLaunched: Boolean
+  status: Int
+  totalAllocated: numeric
+  totalDistributed: numeric
+  totalFundsReceived: numeric
+  totalRoundAmount: numeric
+}
+
+"""
+order by sum() on columns of table "GrantShip"
+"""
+input GrantShip_sum_order_by {
+  applicationSubmittedTime: order_by
+  approvedTime: order_by
+  balance: order_by
+  beaconLastUpdated: order_by
+  chainId: order_by
+  nonce: order_by
+  poolId: order_by
+  rejectedTime: order_by
+  shipAllocation: order_by
+  status: order_by
+  totalAllocated: order_by
+  totalDistributed: order_by
+  totalFundsReceived: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by var_pop() on columns of table "GrantShip"
+"""
+input GrantShip_var_pop_order_by {
+  applicationSubmittedTime: order_by
+  approvedTime: order_by
+  balance: order_by
+  beaconLastUpdated: order_by
+  chainId: order_by
+  nonce: order_by
+  poolId: order_by
+  rejectedTime: order_by
+  shipAllocation: order_by
+  status: order_by
+  totalAllocated: order_by
+  totalDistributed: order_by
+  totalFundsReceived: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by var_samp() on columns of table "GrantShip"
+"""
+input GrantShip_var_samp_order_by {
+  applicationSubmittedTime: order_by
+  approvedTime: order_by
+  balance: order_by
+  beaconLastUpdated: order_by
+  chainId: order_by
+  nonce: order_by
+  poolId: order_by
+  rejectedTime: order_by
+  shipAllocation: order_by
+  status: order_by
+  totalAllocated: order_by
+  totalDistributed: order_by
+  totalFundsReceived: order_by
+  totalRoundAmount: order_by
+}
+
+"""
+order by variance() on columns of table "GrantShip"
+"""
+input GrantShip_variance_order_by {
+  applicationSubmittedTime: order_by
+  approvedTime: order_by
+  balance: order_by
+  beaconLastUpdated: order_by
+  chainId: order_by
+  nonce: order_by
+  poolId: order_by
+  rejectedTime: order_by
+  shipAllocation: order_by
+  status: order_by
+  totalAllocated: order_by
+  totalDistributed: order_by
+  totalFundsReceived: order_by
+  totalRoundAmount: order_by
+}
+
+"""
 columns and relationships of "GrantShipsVoting"
 """
 type GrantShipsVoting {
@@ -823,6 +3261,7 @@ type GrantShipsVoting {
   hatId: numeric!
   hatsAddress: String!
   id: String!
+  isDualToken: Boolean!
   isSBTVoting: Boolean!
   isVotingActive: Boolean!
   startTime: numeric
@@ -860,6 +3299,7 @@ input GrantShipsVoting_bool_exp {
   hatId: numeric_comparison_exp
   hatsAddress: String_comparison_exp
   id: String_comparison_exp
+  isDualToken: Boolean_comparison_exp
   isSBTVoting: Boolean_comparison_exp
   isVotingActive: Boolean_comparison_exp
   startTime: numeric_comparison_exp
@@ -880,6 +3320,7 @@ input GrantShipsVoting_order_by {
   hatId: order_by
   hatsAddress: order_by
   id: order_by
+  isDualToken: order_by
   isSBTVoting: order_by
   isVotingActive: order_by
   startTime: order_by
@@ -906,6 +3347,8 @@ enum GrantShipsVoting_select_column {
   hatsAddress
   """column name"""
   id
+  """column name"""
+  isDualToken
   """column name"""
   isSBTVoting
   """column name"""
@@ -940,6 +3383,7 @@ input GrantShipsVoting_stream_cursor_value_input {
   hatId: numeric
   hatsAddress: String
   id: String
+  isDualToken: Boolean
   isSBTVoting: Boolean
   isVotingActive: Boolean
   startTime: numeric
@@ -947,6 +3391,289 @@ input GrantShipsVoting_stream_cursor_value_input {
   voteDuration: numeric
   voteTokenAddress: String
   votingCheckpoint: numeric
+}
+
+"""
+order by aggregate values of table "Grant"
+"""
+input Grant_aggregate_order_by {
+  avg: Grant_avg_order_by
+  count: order_by
+  max: Grant_max_order_by
+  min: Grant_min_order_by
+  stddev: Grant_stddev_order_by
+  stddev_pop: Grant_stddev_pop_order_by
+  stddev_samp: Grant_stddev_samp_order_by
+  sum: Grant_sum_order_by
+  var_pop: Grant_var_pop_order_by
+  var_samp: Grant_var_samp_order_by
+  variance: Grant_variance_order_by
+}
+
+"""
+order by avg() on columns of table "Grant"
+"""
+input Grant_avg_order_by {
+  amount: order_by
+  amountAllocated: order_by
+  amountDistributed: order_by
+  lastUpdated: order_by
+  status: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "Grant". All fields are combined with a logical 'AND'.
+"""
+input Grant_bool_exp {
+  _and: [Grant_bool_exp!]
+  _not: Grant_bool_exp
+  _or: [Grant_bool_exp!]
+  allMilestonesApproved: Boolean_comparison_exp
+  amount: numeric_comparison_exp
+  amountAllocated: numeric_comparison_exp
+  amountDistributed: numeric_comparison_exp
+  applicationApproved: Boolean_comparison_exp
+  applications: Application_bool_exp
+  currentApplication: Application_bool_exp
+  currentApplication_id: String_comparison_exp
+  currentMilestones: MilestoneSet_bool_exp
+  currentMilestones_id: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  gameManager: GameManager_bool_exp
+  gameManager_id: String_comparison_exp
+  grantCompleted: Boolean_comparison_exp
+  hasPendingMilestones: Boolean_comparison_exp
+  hasRejectedMilestones: Boolean_comparison_exp
+  id: String_comparison_exp
+  isAllocated: Boolean_comparison_exp
+  lastUpdated: Int_comparison_exp
+  milestoneDrafts: MilestoneSet_bool_exp
+  project: Project_bool_exp
+  project_id: String_comparison_exp
+  requestingEarlyReview: Boolean_comparison_exp
+  ship: GrantShip_bool_exp
+  ship_id: String_comparison_exp
+  status: Int_comparison_exp
+}
+
+"""
+order by max() on columns of table "Grant"
+"""
+input Grant_max_order_by {
+  amount: order_by
+  amountAllocated: order_by
+  amountDistributed: order_by
+  currentApplication_id: order_by
+  currentMilestones_id: order_by
+  db_write_timestamp: order_by
+  gameManager_id: order_by
+  id: order_by
+  lastUpdated: order_by
+  project_id: order_by
+  ship_id: order_by
+  status: order_by
+}
+
+"""
+order by min() on columns of table "Grant"
+"""
+input Grant_min_order_by {
+  amount: order_by
+  amountAllocated: order_by
+  amountDistributed: order_by
+  currentApplication_id: order_by
+  currentMilestones_id: order_by
+  db_write_timestamp: order_by
+  gameManager_id: order_by
+  id: order_by
+  lastUpdated: order_by
+  project_id: order_by
+  ship_id: order_by
+  status: order_by
+}
+
+"""Ordering options when selecting data from "Grant"."""
+input Grant_order_by {
+  allMilestonesApproved: order_by
+  amount: order_by
+  amountAllocated: order_by
+  amountDistributed: order_by
+  applicationApproved: order_by
+  applications_aggregate: Application_aggregate_order_by
+  currentApplication: Application_order_by
+  currentApplication_id: order_by
+  currentMilestones: MilestoneSet_order_by
+  currentMilestones_id: order_by
+  db_write_timestamp: order_by
+  gameManager: GameManager_order_by
+  gameManager_id: order_by
+  grantCompleted: order_by
+  hasPendingMilestones: order_by
+  hasRejectedMilestones: order_by
+  id: order_by
+  isAllocated: order_by
+  lastUpdated: order_by
+  milestoneDrafts_aggregate: MilestoneSet_aggregate_order_by
+  project: Project_order_by
+  project_id: order_by
+  requestingEarlyReview: order_by
+  ship: GrantShip_order_by
+  ship_id: order_by
+  status: order_by
+}
+
+"""
+select columns of table "Grant"
+"""
+enum Grant_select_column {
+  """column name"""
+  allMilestonesApproved
+  """column name"""
+  amount
+  """column name"""
+  amountAllocated
+  """column name"""
+  amountDistributed
+  """column name"""
+  applicationApproved
+  """column name"""
+  currentApplication_id
+  """column name"""
+  currentMilestones_id
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  gameManager_id
+  """column name"""
+  grantCompleted
+  """column name"""
+  hasPendingMilestones
+  """column name"""
+  hasRejectedMilestones
+  """column name"""
+  id
+  """column name"""
+  isAllocated
+  """column name"""
+  lastUpdated
+  """column name"""
+  project_id
+  """column name"""
+  requestingEarlyReview
+  """column name"""
+  ship_id
+  """column name"""
+  status
+}
+
+"""
+order by stddev() on columns of table "Grant"
+"""
+input Grant_stddev_order_by {
+  amount: order_by
+  amountAllocated: order_by
+  amountDistributed: order_by
+  lastUpdated: order_by
+  status: order_by
+}
+
+"""
+order by stddev_pop() on columns of table "Grant"
+"""
+input Grant_stddev_pop_order_by {
+  amount: order_by
+  amountAllocated: order_by
+  amountDistributed: order_by
+  lastUpdated: order_by
+  status: order_by
+}
+
+"""
+order by stddev_samp() on columns of table "Grant"
+"""
+input Grant_stddev_samp_order_by {
+  amount: order_by
+  amountAllocated: order_by
+  amountDistributed: order_by
+  lastUpdated: order_by
+  status: order_by
+}
+
+"""
+Streaming cursor of the table "Grant"
+"""
+input Grant_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Grant_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Grant_stream_cursor_value_input {
+  allMilestonesApproved: Boolean
+  amount: numeric
+  amountAllocated: numeric
+  amountDistributed: numeric
+  applicationApproved: Boolean
+  currentApplication_id: String
+  currentMilestones_id: String
+  db_write_timestamp: timestamp
+  gameManager_id: String
+  grantCompleted: Boolean
+  hasPendingMilestones: Boolean
+  hasRejectedMilestones: Boolean
+  id: String
+  isAllocated: Boolean
+  lastUpdated: Int
+  project_id: String
+  requestingEarlyReview: Boolean
+  ship_id: String
+  status: Int
+}
+
+"""
+order by sum() on columns of table "Grant"
+"""
+input Grant_sum_order_by {
+  amount: order_by
+  amountAllocated: order_by
+  amountDistributed: order_by
+  lastUpdated: order_by
+  status: order_by
+}
+
+"""
+order by var_pop() on columns of table "Grant"
+"""
+input Grant_var_pop_order_by {
+  amount: order_by
+  amountAllocated: order_by
+  amountDistributed: order_by
+  lastUpdated: order_by
+  status: order_by
+}
+
+"""
+order by var_samp() on columns of table "Grant"
+"""
+input Grant_var_samp_order_by {
+  amount: order_by
+  amountAllocated: order_by
+  amountDistributed: order_by
+  lastUpdated: order_by
+  status: order_by
+}
+
+"""
+order by variance() on columns of table "Grant"
+"""
+input Grant_variance_order_by {
+  amount: order_by
+  amountAllocated: order_by
+  amountDistributed: order_by
+  lastUpdated: order_by
+  status: order_by
 }
 
 """
@@ -1178,6 +3905,487 @@ input LocalLog_stream_cursor_value_input {
 }
 
 """
+columns and relationships of "Milestone"
+"""
+type Milestone {
+  db_write_timestamp: timestamp
+  grant_id: String!
+  id: String!
+  index: Int!
+  metadata_id: String!
+  """An object relationship"""
+  milestoneSet: MilestoneSet
+  milestoneSet_id: String!
+  percentage: numeric!
+  status: Int!
+}
+
+"""
+columns and relationships of "MilestoneSet"
+"""
+type MilestoneSet {
+  db_write_timestamp: timestamp
+  grant_id: String!
+  id: String!
+  index: Int!
+  milestoneLength: Int!
+  """An array relationship"""
+  milestones(
+    """distinct select on columns"""
+    distinct_on: [Milestone_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Milestone_order_by!]
+    """filter the rows returned"""
+    where: Milestone_bool_exp
+  ): [Milestone!]!
+  milestonesCompleted: Int!
+  milestonesPending: Int!
+  milestonesRejected: Int!
+  status: Int!
+  timestamp: Int!
+}
+
+"""
+order by aggregate values of table "MilestoneSet"
+"""
+input MilestoneSet_aggregate_order_by {
+  avg: MilestoneSet_avg_order_by
+  count: order_by
+  max: MilestoneSet_max_order_by
+  min: MilestoneSet_min_order_by
+  stddev: MilestoneSet_stddev_order_by
+  stddev_pop: MilestoneSet_stddev_pop_order_by
+  stddev_samp: MilestoneSet_stddev_samp_order_by
+  sum: MilestoneSet_sum_order_by
+  var_pop: MilestoneSet_var_pop_order_by
+  var_samp: MilestoneSet_var_samp_order_by
+  variance: MilestoneSet_variance_order_by
+}
+
+"""
+order by avg() on columns of table "MilestoneSet"
+"""
+input MilestoneSet_avg_order_by {
+  index: order_by
+  milestoneLength: order_by
+  milestonesCompleted: order_by
+  milestonesPending: order_by
+  milestonesRejected: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "MilestoneSet". All fields are combined with a logical 'AND'.
+"""
+input MilestoneSet_bool_exp {
+  _and: [MilestoneSet_bool_exp!]
+  _not: MilestoneSet_bool_exp
+  _or: [MilestoneSet_bool_exp!]
+  db_write_timestamp: timestamp_comparison_exp
+  grant: Grant_bool_exp
+  grant_id: String_comparison_exp
+  id: String_comparison_exp
+  index: Int_comparison_exp
+  milestoneLength: Int_comparison_exp
+  milestones: Milestone_bool_exp
+  milestonesCompleted: Int_comparison_exp
+  milestonesPending: Int_comparison_exp
+  milestonesRejected: Int_comparison_exp
+  status: Int_comparison_exp
+  timestamp: Int_comparison_exp
+}
+
+"""
+order by max() on columns of table "MilestoneSet"
+"""
+input MilestoneSet_max_order_by {
+  db_write_timestamp: order_by
+  grant_id: order_by
+  id: order_by
+  index: order_by
+  milestoneLength: order_by
+  milestonesCompleted: order_by
+  milestonesPending: order_by
+  milestonesRejected: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by min() on columns of table "MilestoneSet"
+"""
+input MilestoneSet_min_order_by {
+  db_write_timestamp: order_by
+  grant_id: order_by
+  id: order_by
+  index: order_by
+  milestoneLength: order_by
+  milestonesCompleted: order_by
+  milestonesPending: order_by
+  milestonesRejected: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""Ordering options when selecting data from "MilestoneSet"."""
+input MilestoneSet_order_by {
+  db_write_timestamp: order_by
+  grant: Grant_order_by
+  grant_id: order_by
+  id: order_by
+  index: order_by
+  milestoneLength: order_by
+  milestonesCompleted: order_by
+  milestonesPending: order_by
+  milestonesRejected: order_by
+  milestones_aggregate: Milestone_aggregate_order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+select columns of table "MilestoneSet"
+"""
+enum MilestoneSet_select_column {
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  grant_id
+  """column name"""
+  id
+  """column name"""
+  index
+  """column name"""
+  milestoneLength
+  """column name"""
+  milestonesCompleted
+  """column name"""
+  milestonesPending
+  """column name"""
+  milestonesRejected
+  """column name"""
+  status
+  """column name"""
+  timestamp
+}
+
+"""
+order by stddev() on columns of table "MilestoneSet"
+"""
+input MilestoneSet_stddev_order_by {
+  index: order_by
+  milestoneLength: order_by
+  milestonesCompleted: order_by
+  milestonesPending: order_by
+  milestonesRejected: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by stddev_pop() on columns of table "MilestoneSet"
+"""
+input MilestoneSet_stddev_pop_order_by {
+  index: order_by
+  milestoneLength: order_by
+  milestonesCompleted: order_by
+  milestonesPending: order_by
+  milestonesRejected: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by stddev_samp() on columns of table "MilestoneSet"
+"""
+input MilestoneSet_stddev_samp_order_by {
+  index: order_by
+  milestoneLength: order_by
+  milestonesCompleted: order_by
+  milestonesPending: order_by
+  milestonesRejected: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+Streaming cursor of the table "MilestoneSet"
+"""
+input MilestoneSet_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: MilestoneSet_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input MilestoneSet_stream_cursor_value_input {
+  db_write_timestamp: timestamp
+  grant_id: String
+  id: String
+  index: Int
+  milestoneLength: Int
+  milestonesCompleted: Int
+  milestonesPending: Int
+  milestonesRejected: Int
+  status: Int
+  timestamp: Int
+}
+
+"""
+order by sum() on columns of table "MilestoneSet"
+"""
+input MilestoneSet_sum_order_by {
+  index: order_by
+  milestoneLength: order_by
+  milestonesCompleted: order_by
+  milestonesPending: order_by
+  milestonesRejected: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by var_pop() on columns of table "MilestoneSet"
+"""
+input MilestoneSet_var_pop_order_by {
+  index: order_by
+  milestoneLength: order_by
+  milestonesCompleted: order_by
+  milestonesPending: order_by
+  milestonesRejected: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by var_samp() on columns of table "MilestoneSet"
+"""
+input MilestoneSet_var_samp_order_by {
+  index: order_by
+  milestoneLength: order_by
+  milestonesCompleted: order_by
+  milestonesPending: order_by
+  milestonesRejected: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by variance() on columns of table "MilestoneSet"
+"""
+input MilestoneSet_variance_order_by {
+  index: order_by
+  milestoneLength: order_by
+  milestonesCompleted: order_by
+  milestonesPending: order_by
+  milestonesRejected: order_by
+  status: order_by
+  timestamp: order_by
+}
+
+"""
+order by aggregate values of table "Milestone"
+"""
+input Milestone_aggregate_order_by {
+  avg: Milestone_avg_order_by
+  count: order_by
+  max: Milestone_max_order_by
+  min: Milestone_min_order_by
+  stddev: Milestone_stddev_order_by
+  stddev_pop: Milestone_stddev_pop_order_by
+  stddev_samp: Milestone_stddev_samp_order_by
+  sum: Milestone_sum_order_by
+  var_pop: Milestone_var_pop_order_by
+  var_samp: Milestone_var_samp_order_by
+  variance: Milestone_variance_order_by
+}
+
+"""
+order by avg() on columns of table "Milestone"
+"""
+input Milestone_avg_order_by {
+  index: order_by
+  percentage: order_by
+  status: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "Milestone". All fields are combined with a logical 'AND'.
+"""
+input Milestone_bool_exp {
+  _and: [Milestone_bool_exp!]
+  _not: Milestone_bool_exp
+  _or: [Milestone_bool_exp!]
+  db_write_timestamp: timestamp_comparison_exp
+  grant: Grant_bool_exp
+  grant_id: String_comparison_exp
+  id: String_comparison_exp
+  index: Int_comparison_exp
+  metadata: RawMetadata_bool_exp
+  metadata_id: String_comparison_exp
+  milestoneSet: MilestoneSet_bool_exp
+  milestoneSet_id: String_comparison_exp
+  percentage: numeric_comparison_exp
+  status: Int_comparison_exp
+}
+
+"""
+order by max() on columns of table "Milestone"
+"""
+input Milestone_max_order_by {
+  db_write_timestamp: order_by
+  grant_id: order_by
+  id: order_by
+  index: order_by
+  metadata_id: order_by
+  milestoneSet_id: order_by
+  percentage: order_by
+  status: order_by
+}
+
+"""
+order by min() on columns of table "Milestone"
+"""
+input Milestone_min_order_by {
+  db_write_timestamp: order_by
+  grant_id: order_by
+  id: order_by
+  index: order_by
+  metadata_id: order_by
+  milestoneSet_id: order_by
+  percentage: order_by
+  status: order_by
+}
+
+"""Ordering options when selecting data from "Milestone"."""
+input Milestone_order_by {
+  db_write_timestamp: order_by
+  grant: Grant_order_by
+  grant_id: order_by
+  id: order_by
+  index: order_by
+  metadata: RawMetadata_order_by
+  metadata_id: order_by
+  milestoneSet: MilestoneSet_order_by
+  milestoneSet_id: order_by
+  percentage: order_by
+  status: order_by
+}
+
+"""
+select columns of table "Milestone"
+"""
+enum Milestone_select_column {
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  grant_id
+  """column name"""
+  id
+  """column name"""
+  index
+  """column name"""
+  metadata_id
+  """column name"""
+  milestoneSet_id
+  """column name"""
+  percentage
+  """column name"""
+  status
+}
+
+"""
+order by stddev() on columns of table "Milestone"
+"""
+input Milestone_stddev_order_by {
+  index: order_by
+  percentage: order_by
+  status: order_by
+}
+
+"""
+order by stddev_pop() on columns of table "Milestone"
+"""
+input Milestone_stddev_pop_order_by {
+  index: order_by
+  percentage: order_by
+  status: order_by
+}
+
+"""
+order by stddev_samp() on columns of table "Milestone"
+"""
+input Milestone_stddev_samp_order_by {
+  index: order_by
+  percentage: order_by
+  status: order_by
+}
+
+"""
+Streaming cursor of the table "Milestone"
+"""
+input Milestone_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Milestone_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Milestone_stream_cursor_value_input {
+  db_write_timestamp: timestamp
+  grant_id: String
+  id: String
+  index: Int
+  metadata_id: String
+  milestoneSet_id: String
+  percentage: numeric
+  status: Int
+}
+
+"""
+order by sum() on columns of table "Milestone"
+"""
+input Milestone_sum_order_by {
+  index: order_by
+  percentage: order_by
+  status: order_by
+}
+
+"""
+order by var_pop() on columns of table "Milestone"
+"""
+input Milestone_var_pop_order_by {
+  index: order_by
+  percentage: order_by
+  status: order_by
+}
+
+"""
+order by var_samp() on columns of table "Milestone"
+"""
+input Milestone_var_samp_order_by {
+  index: order_by
+  percentage: order_by
+  status: order_by
+}
+
+"""
+order by variance() on columns of table "Milestone"
+"""
+input Milestone_variance_order_by {
+  index: order_by
+  percentage: order_by
+  status: order_by
+}
+
+"""
 columns and relationships of "ModuleTemplate"
 """
 type ModuleTemplate {
@@ -1256,6 +4464,299 @@ input ModuleTemplate_stream_cursor_value_input {
   mdProtocol: numeric
   moduleName: String
   templateAddress: String
+}
+
+"""
+columns and relationships of "ProfileIdToAnchor"
+"""
+type ProfileIdToAnchor {
+  anchor: String!
+  db_write_timestamp: timestamp
+  id: String!
+  profileId: String!
+}
+
+"""
+Boolean expression to filter rows from the table "ProfileIdToAnchor". All fields are combined with a logical 'AND'.
+"""
+input ProfileIdToAnchor_bool_exp {
+  _and: [ProfileIdToAnchor_bool_exp!]
+  _not: ProfileIdToAnchor_bool_exp
+  _or: [ProfileIdToAnchor_bool_exp!]
+  anchor: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  profileId: String_comparison_exp
+}
+
+"""Ordering options when selecting data from "ProfileIdToAnchor"."""
+input ProfileIdToAnchor_order_by {
+  anchor: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  profileId: order_by
+}
+
+"""
+select columns of table "ProfileIdToAnchor"
+"""
+enum ProfileIdToAnchor_select_column {
+  """column name"""
+  anchor
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  profileId
+}
+
+"""
+Streaming cursor of the table "ProfileIdToAnchor"
+"""
+input ProfileIdToAnchor_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: ProfileIdToAnchor_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input ProfileIdToAnchor_stream_cursor_value_input {
+  anchor: String
+  db_write_timestamp: timestamp
+  id: String
+  profileId: String
+}
+
+"""
+columns and relationships of "ProfileMemberGroup"
+"""
+type ProfileMemberGroup {
+  addresses: [String!]!
+  db_write_timestamp: timestamp
+  id: String!
+  role: String!
+}
+
+"""
+Boolean expression to filter rows from the table "ProfileMemberGroup". All fields are combined with a logical 'AND'.
+"""
+input ProfileMemberGroup_bool_exp {
+  _and: [ProfileMemberGroup_bool_exp!]
+  _not: ProfileMemberGroup_bool_exp
+  _or: [ProfileMemberGroup_bool_exp!]
+  addresses: String_array_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  role: String_comparison_exp
+}
+
+"""Ordering options when selecting data from "ProfileMemberGroup"."""
+input ProfileMemberGroup_order_by {
+  addresses: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  role: order_by
+}
+
+"""
+select columns of table "ProfileMemberGroup"
+"""
+enum ProfileMemberGroup_select_column {
+  """column name"""
+  addresses
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  role
+}
+
+"""
+Streaming cursor of the table "ProfileMemberGroup"
+"""
+input ProfileMemberGroup_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: ProfileMemberGroup_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input ProfileMemberGroup_stream_cursor_value_input {
+  addresses: [String!]
+  db_write_timestamp: timestamp
+  id: String
+  role: String
+}
+
+"""
+Boolean expression to filter rows from the table "Project". All fields are combined with a logical 'AND'.
+"""
+input Project_bool_exp {
+  _and: [Project_bool_exp!]
+  _not: Project_bool_exp
+  _or: [Project_bool_exp!]
+  anchor: String_comparison_exp
+  chainId: Int_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  grants: Grant_bool_exp
+  hasEditedProfile: Boolean_comparison_exp
+  id: String_comparison_exp
+  members: ProfileMemberGroup_bool_exp
+  members_id: String_comparison_exp
+  metadata: RawMetadata_bool_exp
+  metadata_id: String_comparison_exp
+  name: String_comparison_exp
+  nonce: numeric_comparison_exp
+  owner: String_comparison_exp
+  pastNames: String_array_comparison_exp
+  pastProfileIds: String_array_comparison_exp
+  profileId: String_comparison_exp
+  status: Int_comparison_exp
+  totalAmountReceived: numeric_comparison_exp
+}
+
+"""Ordering options when selecting data from "Project"."""
+input Project_order_by {
+  anchor: order_by
+  chainId: order_by
+  db_write_timestamp: order_by
+  grants_aggregate: Grant_aggregate_order_by
+  hasEditedProfile: order_by
+  id: order_by
+  members: ProfileMemberGroup_order_by
+  members_id: order_by
+  metadata: RawMetadata_order_by
+  metadata_id: order_by
+  name: order_by
+  nonce: order_by
+  owner: order_by
+  pastNames: order_by
+  pastProfileIds: order_by
+  profileId: order_by
+  status: order_by
+  totalAmountReceived: order_by
+}
+
+"""
+select columns of table "Project"
+"""
+enum Project_select_column {
+  """column name"""
+  anchor
+  """column name"""
+  chainId
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  hasEditedProfile
+  """column name"""
+  id
+  """column name"""
+  members_id
+  """column name"""
+  metadata_id
+  """column name"""
+  name
+  """column name"""
+  nonce
+  """column name"""
+  owner
+  """column name"""
+  pastNames
+  """column name"""
+  pastProfileIds
+  """column name"""
+  profileId
+  """column name"""
+  status
+  """column name"""
+  totalAmountReceived
+}
+
+"""
+Streaming cursor of the table "Project"
+"""
+input Project_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Project_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Project_stream_cursor_value_input {
+  anchor: String
+  chainId: Int
+  db_write_timestamp: timestamp
+  hasEditedProfile: Boolean
+  id: String
+  members_id: String
+  metadata_id: String
+  name: String
+  nonce: numeric
+  owner: String
+  pastNames: [String!]
+  pastProfileIds: [String!]
+  profileId: String
+  status: Int
+  totalAmountReceived: numeric
+}
+
+"""
+Boolean expression to filter rows from the table "RawMetadata". All fields are combined with a logical 'AND'.
+"""
+input RawMetadata_bool_exp {
+  _and: [RawMetadata_bool_exp!]
+  _not: RawMetadata_bool_exp
+  _or: [RawMetadata_bool_exp!]
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  pointer: String_comparison_exp
+  protocol: numeric_comparison_exp
+}
+
+"""Ordering options when selecting data from "RawMetadata"."""
+input RawMetadata_order_by {
+  db_write_timestamp: order_by
+  id: order_by
+  pointer: order_by
+  protocol: order_by
+}
+
+"""
+select columns of table "RawMetadata"
+"""
+enum RawMetadata_select_column {
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  pointer
+  """column name"""
+  protocol
+}
+
+"""
+Streaming cursor of the table "RawMetadata"
+"""
+input RawMetadata_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: RawMetadata_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input RawMetadata_stream_cursor_value_input {
+  db_write_timestamp: timestamp
+  id: String
+  pointer: String
+  protocol: numeric
 }
 
 """
@@ -1516,6 +5017,134 @@ input SBTBalParams_stream_cursor_value_input {
 }
 
 """
+columns and relationships of "ScaffoldShaman"
+"""
+type ScaffoldShaman {
+  address: String!
+  """An object relationship"""
+  controlGate: Gate
+  controlGate_id: String!
+  dao: String!
+  db_write_timestamp: timestamp
+  id: String!
+  """An object relationship"""
+  lootToken: DAOToken
+  lootToken_id: String!
+  """An object relationship"""
+  managerGate: Gate
+  managerGate_id: String!
+  """An object relationship"""
+  minterGate: Gate
+  minterGate_id: String!
+  """An object relationship"""
+  sharesToken: DAOToken
+  sharesToken_id: String!
+  """An array relationship"""
+  templates(
+    """distinct select on columns"""
+    distinct_on: [BadgeTemplate_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [BadgeTemplate_order_by!]
+    """filter the rows returned"""
+    where: BadgeTemplate_bool_exp
+  ): [BadgeTemplate!]!
+}
+
+"""
+Boolean expression to filter rows from the table "ScaffoldShaman". All fields are combined with a logical 'AND'.
+"""
+input ScaffoldShaman_bool_exp {
+  _and: [ScaffoldShaman_bool_exp!]
+  _not: ScaffoldShaman_bool_exp
+  _or: [ScaffoldShaman_bool_exp!]
+  address: String_comparison_exp
+  controlGate: Gate_bool_exp
+  controlGate_id: String_comparison_exp
+  dao: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  lootToken: DAOToken_bool_exp
+  lootToken_id: String_comparison_exp
+  managerGate: Gate_bool_exp
+  managerGate_id: String_comparison_exp
+  minterGate: Gate_bool_exp
+  minterGate_id: String_comparison_exp
+  sharesToken: DAOToken_bool_exp
+  sharesToken_id: String_comparison_exp
+  templates: BadgeTemplate_bool_exp
+}
+
+"""Ordering options when selecting data from "ScaffoldShaman"."""
+input ScaffoldShaman_order_by {
+  address: order_by
+  controlGate: Gate_order_by
+  controlGate_id: order_by
+  dao: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  lootToken: DAOToken_order_by
+  lootToken_id: order_by
+  managerGate: Gate_order_by
+  managerGate_id: order_by
+  minterGate: Gate_order_by
+  minterGate_id: order_by
+  sharesToken: DAOToken_order_by
+  sharesToken_id: order_by
+  templates_aggregate: BadgeTemplate_aggregate_order_by
+}
+
+"""
+select columns of table "ScaffoldShaman"
+"""
+enum ScaffoldShaman_select_column {
+  """column name"""
+  address
+  """column name"""
+  controlGate_id
+  """column name"""
+  dao
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  lootToken_id
+  """column name"""
+  managerGate_id
+  """column name"""
+  minterGate_id
+  """column name"""
+  sharesToken_id
+}
+
+"""
+Streaming cursor of the table "ScaffoldShaman"
+"""
+input ScaffoldShaman_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: ScaffoldShaman_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input ScaffoldShaman_stream_cursor_value_input {
+  address: String
+  controlGate_id: String
+  dao: String
+  db_write_timestamp: timestamp
+  id: String
+  lootToken_id: String
+  managerGate_id: String
+  minterGate_id: String
+  sharesToken_id: String
+}
+
+"""
 columns and relationships of "ShipChoice"
 """
 type ShipChoice {
@@ -1524,6 +5153,8 @@ type ShipChoice {
   """An object relationship"""
   contest: GrantShipsVoting
   contest_id: String!
+  contextTokenTally: numeric!
+  daoTokenTally: numeric!
   db_write_timestamp: timestamp
   id: String!
   mdPointer: String!
@@ -1565,6 +5196,8 @@ input ShipChoice_aggregate_order_by {
 order by avg() on columns of table "ShipChoice"
 """
 input ShipChoice_avg_order_by {
+  contextTokenTally: order_by
+  daoTokenTally: order_by
   mdProtocol: order_by
   voteTally: order_by
 }
@@ -1580,6 +5213,8 @@ input ShipChoice_bool_exp {
   choiceData: String_comparison_exp
   contest: GrantShipsVoting_bool_exp
   contest_id: String_comparison_exp
+  contextTokenTally: numeric_comparison_exp
+  daoTokenTally: numeric_comparison_exp
   db_write_timestamp: timestamp_comparison_exp
   id: String_comparison_exp
   mdPointer: String_comparison_exp
@@ -1594,6 +5229,8 @@ order by max() on columns of table "ShipChoice"
 input ShipChoice_max_order_by {
   choiceData: order_by
   contest_id: order_by
+  contextTokenTally: order_by
+  daoTokenTally: order_by
   db_write_timestamp: order_by
   id: order_by
   mdPointer: order_by
@@ -1607,6 +5244,8 @@ order by min() on columns of table "ShipChoice"
 input ShipChoice_min_order_by {
   choiceData: order_by
   contest_id: order_by
+  contextTokenTally: order_by
+  daoTokenTally: order_by
   db_write_timestamp: order_by
   id: order_by
   mdPointer: order_by
@@ -1620,6 +5259,8 @@ input ShipChoice_order_by {
   choiceData: order_by
   contest: GrantShipsVoting_order_by
   contest_id: order_by
+  contextTokenTally: order_by
+  daoTokenTally: order_by
   db_write_timestamp: order_by
   id: order_by
   mdPointer: order_by
@@ -1639,6 +5280,10 @@ enum ShipChoice_select_column {
   """column name"""
   contest_id
   """column name"""
+  contextTokenTally
+  """column name"""
+  daoTokenTally
+  """column name"""
   db_write_timestamp
   """column name"""
   id
@@ -1654,6 +5299,8 @@ enum ShipChoice_select_column {
 order by stddev() on columns of table "ShipChoice"
 """
 input ShipChoice_stddev_order_by {
+  contextTokenTally: order_by
+  daoTokenTally: order_by
   mdProtocol: order_by
   voteTally: order_by
 }
@@ -1662,6 +5309,8 @@ input ShipChoice_stddev_order_by {
 order by stddev_pop() on columns of table "ShipChoice"
 """
 input ShipChoice_stddev_pop_order_by {
+  contextTokenTally: order_by
+  daoTokenTally: order_by
   mdProtocol: order_by
   voteTally: order_by
 }
@@ -1670,6 +5319,8 @@ input ShipChoice_stddev_pop_order_by {
 order by stddev_samp() on columns of table "ShipChoice"
 """
 input ShipChoice_stddev_samp_order_by {
+  contextTokenTally: order_by
+  daoTokenTally: order_by
   mdProtocol: order_by
   voteTally: order_by
 }
@@ -1689,6 +5340,8 @@ input ShipChoice_stream_cursor_value_input {
   active: Boolean
   choiceData: String
   contest_id: String
+  contextTokenTally: numeric
+  daoTokenTally: numeric
   db_write_timestamp: timestamp
   id: String
   mdPointer: String
@@ -1700,6 +5353,8 @@ input ShipChoice_stream_cursor_value_input {
 order by sum() on columns of table "ShipChoice"
 """
 input ShipChoice_sum_order_by {
+  contextTokenTally: order_by
+  daoTokenTally: order_by
   mdProtocol: order_by
   voteTally: order_by
 }
@@ -1708,6 +5363,8 @@ input ShipChoice_sum_order_by {
 order by var_pop() on columns of table "ShipChoice"
 """
 input ShipChoice_var_pop_order_by {
+  contextTokenTally: order_by
+  daoTokenTally: order_by
   mdProtocol: order_by
   voteTally: order_by
 }
@@ -1716,6 +5373,8 @@ input ShipChoice_var_pop_order_by {
 order by var_samp() on columns of table "ShipChoice"
 """
 input ShipChoice_var_samp_order_by {
+  contextTokenTally: order_by
+  daoTokenTally: order_by
   mdProtocol: order_by
   voteTally: order_by
 }
@@ -1724,8 +5383,83 @@ input ShipChoice_var_samp_order_by {
 order by variance() on columns of table "ShipChoice"
 """
 input ShipChoice_variance_order_by {
+  contextTokenTally: order_by
+  daoTokenTally: order_by
   mdProtocol: order_by
   voteTally: order_by
+}
+
+"""
+columns and relationships of "ShipContext"
+"""
+type ShipContext {
+  db_write_timestamp: timestamp
+  gameManager_id: String!
+  grantShip_id: String!
+  id: String!
+  shipAddress: String!
+}
+
+"""
+Boolean expression to filter rows from the table "ShipContext". All fields are combined with a logical 'AND'.
+"""
+input ShipContext_bool_exp {
+  _and: [ShipContext_bool_exp!]
+  _not: ShipContext_bool_exp
+  _or: [ShipContext_bool_exp!]
+  db_write_timestamp: timestamp_comparison_exp
+  gameManager: GameManager_bool_exp
+  gameManager_id: String_comparison_exp
+  grantShip: GrantShip_bool_exp
+  grantShip_id: String_comparison_exp
+  id: String_comparison_exp
+  shipAddress: String_comparison_exp
+}
+
+"""Ordering options when selecting data from "ShipContext"."""
+input ShipContext_order_by {
+  db_write_timestamp: order_by
+  gameManager: GameManager_order_by
+  gameManager_id: order_by
+  grantShip: GrantShip_order_by
+  grantShip_id: order_by
+  id: order_by
+  shipAddress: order_by
+}
+
+"""
+select columns of table "ShipContext"
+"""
+enum ShipContext_select_column {
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  gameManager_id
+  """column name"""
+  grantShip_id
+  """column name"""
+  id
+  """column name"""
+  shipAddress
+}
+
+"""
+Streaming cursor of the table "ShipContext"
+"""
+input ShipContext_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: ShipContext_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input ShipContext_stream_cursor_value_input {
+  db_write_timestamp: timestamp
+  gameManager_id: String
+  grantShip_id: String
+  id: String
+  shipAddress: String
 }
 
 """
@@ -1744,6 +5478,7 @@ type ShipVote {
   isRetractVote: Boolean!
   mdPointer: String!
   mdProtocol: numeric!
+  token: String!
   """An object relationship"""
   voter: GSVoter
   voter_id: String!
@@ -1791,6 +5526,7 @@ input ShipVote_bool_exp {
   isRetractVote: Boolean_comparison_exp
   mdPointer: String_comparison_exp
   mdProtocol: numeric_comparison_exp
+  token: String_comparison_exp
   voter: GSVoter_bool_exp
   voter_id: String_comparison_exp
 }
@@ -1806,6 +5542,7 @@ input ShipVote_max_order_by {
   id: order_by
   mdPointer: order_by
   mdProtocol: order_by
+  token: order_by
   voter_id: order_by
 }
 
@@ -1820,6 +5557,7 @@ input ShipVote_min_order_by {
   id: order_by
   mdPointer: order_by
   mdProtocol: order_by
+  token: order_by
   voter_id: order_by
 }
 
@@ -1835,6 +5573,7 @@ input ShipVote_order_by {
   isRetractVote: order_by
   mdPointer: order_by
   mdProtocol: order_by
+  token: order_by
   voter: GSVoter_order_by
   voter_id: order_by
 }
@@ -1859,6 +5598,8 @@ enum ShipVote_select_column {
   mdPointer
   """column name"""
   mdProtocol
+  """column name"""
+  token
   """column name"""
   voter_id
 }
@@ -1907,6 +5648,7 @@ input ShipVote_stream_cursor_value_input {
   isRetractVote: Boolean
   mdPointer: String
   mdProtocol: numeric
+  token: String
   voter_id: String
 }
 
@@ -2157,6 +5899,205 @@ input TVParams_stream_cursor_value_input {
 }
 
 """
+columns and relationships of "Transaction"
+"""
+type Transaction {
+  blockNumber: numeric!
+  db_write_timestamp: timestamp
+  id: String!
+  srcAddress: String!
+  timestamp: Int!
+  txHash: String!
+}
+
+"""
+Boolean expression to filter rows from the table "Transaction". All fields are combined with a logical 'AND'.
+"""
+input Transaction_bool_exp {
+  _and: [Transaction_bool_exp!]
+  _not: Transaction_bool_exp
+  _or: [Transaction_bool_exp!]
+  blockNumber: numeric_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  id: String_comparison_exp
+  srcAddress: String_comparison_exp
+  timestamp: Int_comparison_exp
+  txHash: String_comparison_exp
+}
+
+"""Ordering options when selecting data from "Transaction"."""
+input Transaction_order_by {
+  blockNumber: order_by
+  db_write_timestamp: order_by
+  id: order_by
+  srcAddress: order_by
+  timestamp: order_by
+  txHash: order_by
+}
+
+"""
+select columns of table "Transaction"
+"""
+enum Transaction_select_column {
+  """column name"""
+  blockNumber
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  id
+  """column name"""
+  srcAddress
+  """column name"""
+  timestamp
+  """column name"""
+  txHash
+}
+
+"""
+Streaming cursor of the table "Transaction"
+"""
+input Transaction_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Transaction_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Transaction_stream_cursor_value_input {
+  blockNumber: numeric
+  db_write_timestamp: timestamp
+  id: String
+  srcAddress: String
+  timestamp: Int
+  txHash: String
+}
+
+"""
+Boolean expression to filter rows from the table "Update". All fields are combined with a logical 'AND'.
+"""
+input Update_bool_exp {
+  _and: [Update_bool_exp!]
+  _not: Update_bool_exp
+  _or: [Update_bool_exp!]
+  chainId: Int_comparison_exp
+  content: RawMetadata_bool_exp
+  contentSchema: Int_comparison_exp
+  content_id: String_comparison_exp
+  db_write_timestamp: timestamp_comparison_exp
+  domain: GameManager_bool_exp
+  domain_id: String_comparison_exp
+  entityAddress: String_comparison_exp
+  entityMetadata: RawMetadata_bool_exp
+  entityMetadata_id: String_comparison_exp
+  hostEntityId: String_comparison_exp
+  id: String_comparison_exp
+  message: String_comparison_exp
+  playerType: Int_comparison_exp
+  postBlockNumber: Int_comparison_exp
+  postDecorator: Int_comparison_exp
+  postedBy: String_comparison_exp
+  scope: Int_comparison_exp
+  tag: String_comparison_exp
+  timestamp: Int_comparison_exp
+}
+
+"""Ordering options when selecting data from "Update"."""
+input Update_order_by {
+  chainId: order_by
+  content: RawMetadata_order_by
+  contentSchema: order_by
+  content_id: order_by
+  db_write_timestamp: order_by
+  domain: GameManager_order_by
+  domain_id: order_by
+  entityAddress: order_by
+  entityMetadata: RawMetadata_order_by
+  entityMetadata_id: order_by
+  hostEntityId: order_by
+  id: order_by
+  message: order_by
+  playerType: order_by
+  postBlockNumber: order_by
+  postDecorator: order_by
+  postedBy: order_by
+  scope: order_by
+  tag: order_by
+  timestamp: order_by
+}
+
+"""
+select columns of table "Update"
+"""
+enum Update_select_column {
+  """column name"""
+  chainId
+  """column name"""
+  contentSchema
+  """column name"""
+  content_id
+  """column name"""
+  db_write_timestamp
+  """column name"""
+  domain_id
+  """column name"""
+  entityAddress
+  """column name"""
+  entityMetadata_id
+  """column name"""
+  hostEntityId
+  """column name"""
+  id
+  """column name"""
+  message
+  """column name"""
+  playerType
+  """column name"""
+  postBlockNumber
+  """column name"""
+  postDecorator
+  """column name"""
+  postedBy
+  """column name"""
+  scope
+  """column name"""
+  tag
+  """column name"""
+  timestamp
+}
+
+"""
+Streaming cursor of the table "Update"
+"""
+input Update_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: Update_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input Update_stream_cursor_value_input {
+  chainId: Int
+  contentSchema: Int
+  content_id: String
+  db_write_timestamp: timestamp
+  domain_id: String
+  entityAddress: String
+  entityMetadata_id: String
+  hostEntityId: String
+  id: String
+  message: String
+  playerType: Int
+  postBlockNumber: Int
+  postDecorator: Int
+  postedBy: String
+  scope: Int
+  tag: String
+  timestamp: Int
+}
+
+"""
 columns and relationships of "chain_metadata"
 """
 type chain_metadata {
@@ -2290,11 +6231,15 @@ enum cursor_ordering {
 columns and relationships of "dynamic_contract_registry"
 """
 type dynamic_contract_registry {
-  block_timestamp: Int!
   chain_id: Int!
   contract_address: String!
   contract_type: contract_type!
-  event_id: numeric!
+  registering_event_block_number: Int!
+  registering_event_block_timestamp: Int!
+  registering_event_contract_name: String!
+  registering_event_log_index: Int!
+  registering_event_name: String!
+  registering_event_src_address: String!
 }
 
 """
@@ -2304,20 +6249,28 @@ input dynamic_contract_registry_bool_exp {
   _and: [dynamic_contract_registry_bool_exp!]
   _not: dynamic_contract_registry_bool_exp
   _or: [dynamic_contract_registry_bool_exp!]
-  block_timestamp: Int_comparison_exp
   chain_id: Int_comparison_exp
   contract_address: String_comparison_exp
   contract_type: contract_type_comparison_exp
-  event_id: numeric_comparison_exp
+  registering_event_block_number: Int_comparison_exp
+  registering_event_block_timestamp: Int_comparison_exp
+  registering_event_contract_name: String_comparison_exp
+  registering_event_log_index: Int_comparison_exp
+  registering_event_name: String_comparison_exp
+  registering_event_src_address: String_comparison_exp
 }
 
 """Ordering options when selecting data from "dynamic_contract_registry"."""
 input dynamic_contract_registry_order_by {
-  block_timestamp: order_by
   chain_id: order_by
   contract_address: order_by
   contract_type: order_by
-  event_id: order_by
+  registering_event_block_number: order_by
+  registering_event_block_timestamp: order_by
+  registering_event_contract_name: order_by
+  registering_event_log_index: order_by
+  registering_event_name: order_by
+  registering_event_src_address: order_by
 }
 
 """
@@ -2325,15 +6278,23 @@ select columns of table "dynamic_contract_registry"
 """
 enum dynamic_contract_registry_select_column {
   """column name"""
-  block_timestamp
-  """column name"""
   chain_id
   """column name"""
   contract_address
   """column name"""
   contract_type
   """column name"""
-  event_id
+  registering_event_block_number
+  """column name"""
+  registering_event_block_timestamp
+  """column name"""
+  registering_event_contract_name
+  """column name"""
+  registering_event_log_index
+  """column name"""
+  registering_event_name
+  """column name"""
+  registering_event_src_address
 }
 
 """
@@ -2348,11 +6309,80 @@ input dynamic_contract_registry_stream_cursor_input {
 
 """Initial value of the column from where the streaming should start"""
 input dynamic_contract_registry_stream_cursor_value_input {
-  block_timestamp: Int
   chain_id: Int
   contract_address: String
   contract_type: contract_type
-  event_id: numeric
+  registering_event_block_number: Int
+  registering_event_block_timestamp: Int
+  registering_event_contract_name: String
+  registering_event_log_index: Int
+  registering_event_name: String
+  registering_event_src_address: String
+}
+
+"""
+columns and relationships of "end_of_block_range_scanned_data"
+"""
+type end_of_block_range_scanned_data {
+  block_hash: String!
+  block_number: Int!
+  block_timestamp: Int!
+  chain_id: Int!
+}
+
+"""
+Boolean expression to filter rows from the table "end_of_block_range_scanned_data". All fields are combined with a logical 'AND'.
+"""
+input end_of_block_range_scanned_data_bool_exp {
+  _and: [end_of_block_range_scanned_data_bool_exp!]
+  _not: end_of_block_range_scanned_data_bool_exp
+  _or: [end_of_block_range_scanned_data_bool_exp!]
+  block_hash: String_comparison_exp
+  block_number: Int_comparison_exp
+  block_timestamp: Int_comparison_exp
+  chain_id: Int_comparison_exp
+}
+
+"""
+Ordering options when selecting data from "end_of_block_range_scanned_data".
+"""
+input end_of_block_range_scanned_data_order_by {
+  block_hash: order_by
+  block_number: order_by
+  block_timestamp: order_by
+  chain_id: order_by
+}
+
+"""
+select columns of table "end_of_block_range_scanned_data"
+"""
+enum end_of_block_range_scanned_data_select_column {
+  """column name"""
+  block_hash
+  """column name"""
+  block_number
+  """column name"""
+  block_timestamp
+  """column name"""
+  chain_id
+}
+
+"""
+Streaming cursor of the table "end_of_block_range_scanned_data"
+"""
+input end_of_block_range_scanned_data_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: end_of_block_range_scanned_data_stream_cursor_value_input!
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input end_of_block_range_scanned_data_stream_cursor_value_input {
+  block_hash: String
+  block_number: Int
+  block_timestamp: Int
+  chain_id: Int
 }
 
 """
@@ -2370,7 +6400,7 @@ type entity_history {
   params(
     """JSON select path"""
     path: String
-  ): json
+  ): jsonb
   previous_block_number: Int
   previous_block_timestamp: Int
   previous_chain_id: Int
@@ -2422,7 +6452,7 @@ input entity_history_bool_exp {
   entity_type: entity_type_comparison_exp
   event: raw_events_bool_exp
   log_index: Int_comparison_exp
-  params: json_comparison_exp
+  params: jsonb_comparison_exp
   previous_block_number: Int_comparison_exp
   previous_block_timestamp: Int_comparison_exp
   previous_chain_id: Int_comparison_exp
@@ -2444,12 +6474,12 @@ type entity_history_filter {
   new_val(
     """JSON select path"""
     path: String
-  ): json
+  ): jsonb
   old_val(
     """JSON select path"""
     path: String
-  ): json
-  previous_block_number: Int!
+  ): jsonb
+  previous_block_number: Int
   previous_log_index: Int!
 }
 
@@ -2467,8 +6497,8 @@ input entity_history_filter_bool_exp {
   entity_type: entity_type_comparison_exp
   event: raw_events_bool_exp
   log_index: Int_comparison_exp
-  new_val: json_comparison_exp
-  old_val: json_comparison_exp
+  new_val: jsonb_comparison_exp
+  old_val: jsonb_comparison_exp
   previous_block_number: Int_comparison_exp
   previous_log_index: Int_comparison_exp
 }
@@ -2532,8 +6562,8 @@ input entity_history_filter_stream_cursor_value_input {
   entity_id: String
   entity_type: entity_type
   log_index: Int
-  new_val: json
-  old_val: json
+  new_val: jsonb
+  old_val: jsonb
   previous_block_number: Int
   previous_log_index: Int
 }
@@ -2674,7 +6704,7 @@ input entity_history_stream_cursor_value_input {
   entity_id: String
   entity_type: entity_type
   log_index: Int
-  params: json
+  params: jsonb
   previous_block_number: Int
   previous_block_timestamp: Int
   previous_chain_id: Int
@@ -2761,8 +6791,8 @@ type event_sync_state {
   block_number: Int!
   block_timestamp: Int!
   chain_id: Int!
+  is_pre_registering_dynamic_contracts: Boolean!
   log_index: Int!
-  transaction_index: Int!
 }
 
 """
@@ -2775,8 +6805,8 @@ input event_sync_state_bool_exp {
   block_number: Int_comparison_exp
   block_timestamp: Int_comparison_exp
   chain_id: Int_comparison_exp
+  is_pre_registering_dynamic_contracts: Boolean_comparison_exp
   log_index: Int_comparison_exp
-  transaction_index: Int_comparison_exp
 }
 
 """Ordering options when selecting data from "event_sync_state"."""
@@ -2784,8 +6814,8 @@ input event_sync_state_order_by {
   block_number: order_by
   block_timestamp: order_by
   chain_id: order_by
+  is_pre_registering_dynamic_contracts: order_by
   log_index: order_by
-  transaction_index: order_by
 }
 
 """
@@ -2799,9 +6829,9 @@ enum event_sync_state_select_column {
   """column name"""
   chain_id
   """column name"""
-  log_index
+  is_pre_registering_dynamic_contracts
   """column name"""
-  transaction_index
+  log_index
 }
 
 """
@@ -2819,25 +6849,8 @@ input event_sync_state_stream_cursor_value_input {
   block_number: Int
   block_timestamp: Int
   chain_id: Int
+  is_pre_registering_dynamic_contracts: Boolean
   log_index: Int
-  transaction_index: Int
-}
-
-scalar event_type
-
-"""
-Boolean expression to compare columns of type "event_type". All fields are combined with logical 'AND'.
-"""
-input event_type_comparison_exp {
-  _eq: event_type
-  _gt: event_type
-  _gte: event_type
-  _in: [event_type!]
-  _is_null: Boolean
-  _lt: event_type
-  _lte: event_type
-  _neq: event_type
-  _nin: [event_type!]
 }
 
 input get_entity_history_filter_args {
@@ -2851,21 +6864,36 @@ input get_entity_history_filter_args {
   start_timestamp: Int
 }
 
-scalar json
+scalar jsonb
+
+input jsonb_cast_exp {
+  String: String_comparison_exp
+}
 
 """
-Boolean expression to compare columns of type "json". All fields are combined with logical 'AND'.
+Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'.
 """
-input json_comparison_exp {
-  _eq: json
-  _gt: json
-  _gte: json
-  _in: [json!]
+input jsonb_comparison_exp {
+  _cast: jsonb_cast_exp
+  """is the column contained in the given json value"""
+  _contained_in: jsonb
+  """does the column contain the given json value at the top level"""
+  _contains: jsonb
+  _eq: jsonb
+  _gt: jsonb
+  _gte: jsonb
+  """does the string exist as a top-level key in the column"""
+  _has_key: String
+  """do all of these strings exist as top-level keys in the column"""
+  _has_keys_all: [String!]
+  """do any of these strings exist as top-level keys in the column"""
+  _has_keys_any: [String!]
+  _in: [jsonb!]
   _is_null: Boolean
-  _lt: json
-  _lte: json
-  _neq: json
-  _nin: [json!]
+  _lt: jsonb
+  _lte: jsonb
+  _neq: jsonb
+  _nin: [jsonb!]
 }
 
 scalar numeric
@@ -2997,6 +7025,74 @@ input persisted_state_stream_cursor_value_input {
 
 type query_root {
   """
+  fetch data from the table: "Application"
+  """
+  Application(
+    """distinct select on columns"""
+    distinct_on: [Application_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Application_order_by!]
+    """filter the rows returned"""
+    where: Application_bool_exp
+  ): [Application!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "Application" using primary key columns"""
+  Application_by_pk(id: String!): Application
+  """
+  fetch data from the table: "Badge"
+  """
+  Badge(
+    """distinct select on columns"""
+    distinct_on: [Badge_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Badge_order_by!]
+    """filter the rows returned"""
+    where: Badge_bool_exp
+  ): [Badge!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """
+  fetch data from the table: "BadgeHolder"
+  """
+  BadgeHolder(
+    """distinct select on columns"""
+    distinct_on: [BadgeHolder_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [BadgeHolder_order_by!]
+    """filter the rows returned"""
+    where: BadgeHolder_bool_exp
+  ): [BadgeHolder!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "BadgeHolder" using primary key columns"""
+  BadgeHolder_by_pk(id: String!): BadgeHolder
+  """
+  fetch data from the table: "BadgeTemplate"
+  """
+  BadgeTemplate(
+    """distinct select on columns"""
+    distinct_on: [BadgeTemplate_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [BadgeTemplate_order_by!]
+    """filter the rows returned"""
+    where: BadgeTemplate_bool_exp
+  ): [BadgeTemplate!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "BadgeTemplate" using primary key columns"""
+  BadgeTemplate_by_pk(id: String!): BadgeTemplate
+  """fetch data from the table: "Badge" using primary key columns"""
+  Badge_by_pk(id: String!): Badge
+  """
   fetch data from the table: "Contest"
   """
   Contest(
@@ -3010,7 +7106,7 @@ type query_root {
     order_by: [Contest_order_by!]
     """filter the rows returned"""
     where: Contest_bool_exp
-  ): [Contest!]!
+  ): [Contest!]! @merge(keyField: "id", keyArg: "where.id_in")
   """
   fetch data from the table: "ContestClone"
   """
@@ -3025,7 +7121,7 @@ type query_root {
     order_by: [ContestClone_order_by!]
     """filter the rows returned"""
     where: ContestClone_bool_exp
-  ): [ContestClone!]!
+  ): [ContestClone!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "ContestClone" using primary key columns"""
   ContestClone_by_pk(id: String!): ContestClone
   """
@@ -3042,11 +7138,66 @@ type query_root {
     order_by: [ContestTemplate_order_by!]
     """filter the rows returned"""
     where: ContestTemplate_bool_exp
-  ): [ContestTemplate!]!
+  ): [ContestTemplate!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "ContestTemplate" using primary key columns"""
   ContestTemplate_by_pk(id: String!): ContestTemplate
   """fetch data from the table: "Contest" using primary key columns"""
   Contest_by_pk(id: String!): Contest
+  """
+  fetch data from the table: "DAOToken"
+  """
+  DAOToken(
+    """distinct select on columns"""
+    distinct_on: [DAOToken_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [DAOToken_order_by!]
+    """filter the rows returned"""
+    where: DAOToken_bool_exp
+  ): [DAOToken!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "DAOToken" using primary key columns"""
+  DAOToken_by_pk(id: String!): DAOToken
+  """
+  fetch data from the table: "DualTokenPointsParams"
+  """
+  DualTokenPointsParams(
+    """distinct select on columns"""
+    distinct_on: [DualTokenPointsParams_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [DualTokenPointsParams_order_by!]
+    """filter the rows returned"""
+    where: DualTokenPointsParams_bool_exp
+  ): [DualTokenPointsParams!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """
+  fetch data from the table: "DualTokenPointsParams" using primary key columns
+  """
+  DualTokenPointsParams_by_pk(id: String!): DualTokenPointsParams
+  """
+  fetch data from the table: "DualTokenTVParams"
+  """
+  DualTokenTVParams(
+    """distinct select on columns"""
+    distinct_on: [DualTokenTVParams_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [DualTokenTVParams_order_by!]
+    """filter the rows returned"""
+    where: DualTokenTVParams_bool_exp
+  ): [DualTokenTVParams!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """
+  fetch data from the table: "DualTokenTVParams" using primary key columns
+  """
+  DualTokenTVParams_by_pk(id: String!): DualTokenTVParams
   """
   fetch data from the table: "ERCPointParams"
   """
@@ -3061,7 +7212,7 @@ type query_root {
     order_by: [ERCPointParams_order_by!]
     """filter the rows returned"""
     where: ERCPointParams_bool_exp
-  ): [ERCPointParams!]!
+  ): [ERCPointParams!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "ERCPointParams" using primary key columns"""
   ERCPointParams_by_pk(id: String!): ERCPointParams
   """
@@ -3078,7 +7229,7 @@ type query_root {
     order_by: [EnvioTX_order_by!]
     """filter the rows returned"""
     where: EnvioTX_bool_exp
-  ): [EnvioTX!]!
+  ): [EnvioTX!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "EnvioTX" using primary key columns"""
   EnvioTX_by_pk(id: String!): EnvioTX
   """
@@ -3095,7 +7246,7 @@ type query_root {
     order_by: [EventPost_order_by!]
     """filter the rows returned"""
     where: EventPost_bool_exp
-  ): [EventPost!]!
+  ): [EventPost!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "EventPost" using primary key columns"""
   EventPost_by_pk(id: String!): EventPost
   """
@@ -3112,11 +7263,79 @@ type query_root {
     order_by: [FactoryEventsSummary_order_by!]
     """filter the rows returned"""
     where: FactoryEventsSummary_bool_exp
-  ): [FactoryEventsSummary!]!
+  ): [FactoryEventsSummary!]! @merge(keyField: "id", keyArg: "where.id_in")
   """
   fetch data from the table: "FactoryEventsSummary" using primary key columns
   """
   FactoryEventsSummary_by_pk(id: String!): FactoryEventsSummary
+  """
+  fetch data from the table: "FeedCard"
+  """
+  FeedCard(
+    """distinct select on columns"""
+    distinct_on: [FeedCard_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FeedCard_order_by!]
+    """filter the rows returned"""
+    where: FeedCard_bool_exp
+  ): [FeedCard!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "FeedCard" using primary key columns"""
+  FeedCard_by_pk(id: String!): FeedCard
+  """
+  fetch data from the table: "FeedItemEmbed"
+  """
+  FeedItemEmbed(
+    """distinct select on columns"""
+    distinct_on: [FeedItemEmbed_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FeedItemEmbed_order_by!]
+    """filter the rows returned"""
+    where: FeedItemEmbed_bool_exp
+  ): [FeedItemEmbed!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "FeedItemEmbed" using primary key columns"""
+  FeedItemEmbed_by_pk(id: String!): FeedItemEmbed
+  """
+  fetch data from the table: "FeedItemEntity"
+  """
+  FeedItemEntity(
+    """distinct select on columns"""
+    distinct_on: [FeedItemEntity_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FeedItemEntity_order_by!]
+    """filter the rows returned"""
+    where: FeedItemEntity_bool_exp
+  ): [FeedItemEntity!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "FeedItemEntity" using primary key columns"""
+  FeedItemEntity_by_pk(id: String!): FeedItemEntity
+  """
+  fetch data from the table: "GMInitParams"
+  """
+  GMInitParams(
+    """distinct select on columns"""
+    distinct_on: [GMInitParams_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [GMInitParams_order_by!]
+    """filter the rows returned"""
+    where: GMInitParams_bool_exp
+  ): [GMInitParams!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "GMInitParams" using primary key columns"""
+  GMInitParams_by_pk(id: String!): GMInitParams
   """
   fetch data from the table: "GSVoter"
   """
@@ -3131,9 +7350,81 @@ type query_root {
     order_by: [GSVoter_order_by!]
     """filter the rows returned"""
     where: GSVoter_bool_exp
-  ): [GSVoter!]!
+  ): [GSVoter!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "GSVoter" using primary key columns"""
   GSVoter_by_pk(id: String!): GSVoter
+  """
+  fetch data from the table: "GameManagerFactory"
+  """
+  GameManagerFactory(
+    """distinct select on columns"""
+    distinct_on: [GameManagerFactory_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [GameManagerFactory_order_by!]
+    """filter the rows returned"""
+    where: GameManagerFactory_bool_exp
+  ): [GameManagerFactory!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """
+  fetch data from the table: "GameManagerFactory" using primary key columns
+  """
+  GameManagerFactory_by_pk(id: String!): GameManagerFactory
+  """
+  fetch data from the table: "GameManagerTemplate"
+  """
+  GameManagerTemplate(
+    """distinct select on columns"""
+    distinct_on: [GameManagerTemplate_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [GameManagerTemplate_order_by!]
+    """filter the rows returned"""
+    where: GameManagerTemplate_bool_exp
+  ): [GameManagerTemplate!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """
+  fetch data from the table: "GameManagerTemplate" using primary key columns
+  """
+  GameManagerTemplate_by_pk(id: String!): GameManagerTemplate
+  """
+  fetch data from the table: "GameRound"
+  """
+  GameRound(
+    """distinct select on columns"""
+    distinct_on: [GameRound_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [GameRound_order_by!]
+    """filter the rows returned"""
+    where: GameRound_bool_exp
+  ): [GameRound!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "GameRound" using primary key columns"""
+  GameRound_by_pk(id: String!): GameRound
+  """
+  fetch data from the table: "Gate"
+  """
+  Gate(
+    """distinct select on columns"""
+    distinct_on: [Gate_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Gate_order_by!]
+    """filter the rows returned"""
+    where: Gate_bool_exp
+  ): [Gate!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "Gate" using primary key columns"""
+  Gate_by_pk(id: String!): Gate
   """
   fetch data from the table: "GrantShipsVoting"
   """
@@ -3148,7 +7439,7 @@ type query_root {
     order_by: [GrantShipsVoting_order_by!]
     """filter the rows returned"""
     where: GrantShipsVoting_bool_exp
-  ): [GrantShipsVoting!]!
+  ): [GrantShipsVoting!]! @merge(keyField: "id", keyArg: "where.id_in")
   """
   fetch data from the table: "GrantShipsVoting" using primary key columns
   """
@@ -3167,7 +7458,7 @@ type query_root {
     order_by: [HALParams_order_by!]
     """filter the rows returned"""
     where: HALParams_bool_exp
-  ): [HALParams!]!
+  ): [HALParams!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "HALParams" using primary key columns"""
   HALParams_by_pk(id: String!): HALParams
   """
@@ -3184,7 +7475,7 @@ type query_root {
     order_by: [HatsPoster_order_by!]
     """filter the rows returned"""
     where: HatsPoster_bool_exp
-  ): [HatsPoster!]!
+  ): [HatsPoster!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "HatsPoster" using primary key columns"""
   HatsPoster_by_pk(id: String!): HatsPoster
   """
@@ -3201,9 +7492,43 @@ type query_root {
     order_by: [LocalLog_order_by!]
     """filter the rows returned"""
     where: LocalLog_bool_exp
-  ): [LocalLog!]!
+  ): [LocalLog!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "LocalLog" using primary key columns"""
   LocalLog_by_pk(id: String!): LocalLog
+  """
+  fetch data from the table: "Milestone"
+  """
+  Milestone(
+    """distinct select on columns"""
+    distinct_on: [Milestone_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Milestone_order_by!]
+    """filter the rows returned"""
+    where: Milestone_bool_exp
+  ): [Milestone!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """
+  fetch data from the table: "MilestoneSet"
+  """
+  MilestoneSet(
+    """distinct select on columns"""
+    distinct_on: [MilestoneSet_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [MilestoneSet_order_by!]
+    """filter the rows returned"""
+    where: MilestoneSet_bool_exp
+  ): [MilestoneSet!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "MilestoneSet" using primary key columns"""
+  MilestoneSet_by_pk(id: String!): MilestoneSet
+  """fetch data from the table: "Milestone" using primary key columns"""
+  Milestone_by_pk(id: String!): Milestone
   """
   fetch data from the table: "ModuleTemplate"
   """
@@ -3218,9 +7543,47 @@ type query_root {
     order_by: [ModuleTemplate_order_by!]
     """filter the rows returned"""
     where: ModuleTemplate_bool_exp
-  ): [ModuleTemplate!]!
+  ): [ModuleTemplate!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "ModuleTemplate" using primary key columns"""
   ModuleTemplate_by_pk(id: String!): ModuleTemplate
+  """
+  fetch data from the table: "ProfileIdToAnchor"
+  """
+  ProfileIdToAnchor(
+    """distinct select on columns"""
+    distinct_on: [ProfileIdToAnchor_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [ProfileIdToAnchor_order_by!]
+    """filter the rows returned"""
+    where: ProfileIdToAnchor_bool_exp
+  ): [ProfileIdToAnchor!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """
+  fetch data from the table: "ProfileIdToAnchor" using primary key columns
+  """
+  ProfileIdToAnchor_by_pk(id: String!): ProfileIdToAnchor
+  """
+  fetch data from the table: "ProfileMemberGroup"
+  """
+  ProfileMemberGroup(
+    """distinct select on columns"""
+    distinct_on: [ProfileMemberGroup_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [ProfileMemberGroup_order_by!]
+    """filter the rows returned"""
+    where: ProfileMemberGroup_bool_exp
+  ): [ProfileMemberGroup!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """
+  fetch data from the table: "ProfileMemberGroup" using primary key columns
+  """
+  ProfileMemberGroup_by_pk(id: String!): ProfileMemberGroup
   """
   fetch data from the table: "Record"
   """
@@ -3235,7 +7598,7 @@ type query_root {
     order_by: [Record_order_by!]
     """filter the rows returned"""
     where: Record_bool_exp
-  ): [Record!]!
+  ): [Record!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "Record" using primary key columns"""
   Record_by_pk(id: String!): Record
   """
@@ -3252,9 +7615,26 @@ type query_root {
     order_by: [SBTBalParams_order_by!]
     """filter the rows returned"""
     where: SBTBalParams_bool_exp
-  ): [SBTBalParams!]!
+  ): [SBTBalParams!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "SBTBalParams" using primary key columns"""
   SBTBalParams_by_pk(id: String!): SBTBalParams
+  """
+  fetch data from the table: "ScaffoldShaman"
+  """
+  ScaffoldShaman(
+    """distinct select on columns"""
+    distinct_on: [ScaffoldShaman_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [ScaffoldShaman_order_by!]
+    """filter the rows returned"""
+    where: ScaffoldShaman_bool_exp
+  ): [ScaffoldShaman!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "ScaffoldShaman" using primary key columns"""
+  ScaffoldShaman_by_pk(id: String!): ScaffoldShaman
   """
   fetch data from the table: "ShipChoice"
   """
@@ -3269,9 +7649,26 @@ type query_root {
     order_by: [ShipChoice_order_by!]
     """filter the rows returned"""
     where: ShipChoice_bool_exp
-  ): [ShipChoice!]!
+  ): [ShipChoice!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "ShipChoice" using primary key columns"""
   ShipChoice_by_pk(id: String!): ShipChoice
+  """
+  fetch data from the table: "ShipContext"
+  """
+  ShipContext(
+    """distinct select on columns"""
+    distinct_on: [ShipContext_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [ShipContext_order_by!]
+    """filter the rows returned"""
+    where: ShipContext_bool_exp
+  ): [ShipContext!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "ShipContext" using primary key columns"""
+  ShipContext_by_pk(id: String!): ShipContext
   """
   fetch data from the table: "ShipVote"
   """
@@ -3286,7 +7683,7 @@ type query_root {
     order_by: [ShipVote_order_by!]
     """filter the rows returned"""
     where: ShipVote_bool_exp
-  ): [ShipVote!]!
+  ): [ShipVote!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "ShipVote" using primary key columns"""
   ShipVote_by_pk(id: String!): ShipVote
   """
@@ -3303,7 +7700,7 @@ type query_root {
     order_by: [StemModule_order_by!]
     """filter the rows returned"""
     where: StemModule_bool_exp
-  ): [StemModule!]!
+  ): [StemModule!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "StemModule" using primary key columns"""
   StemModule_by_pk(id: String!): StemModule
   """
@@ -3320,9 +7717,26 @@ type query_root {
     order_by: [TVParams_order_by!]
     """filter the rows returned"""
     where: TVParams_bool_exp
-  ): [TVParams!]!
+  ): [TVParams!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "TVParams" using primary key columns"""
   TVParams_by_pk(id: String!): TVParams
+  """
+  fetch data from the table: "Transaction"
+  """
+  Transaction(
+    """distinct select on columns"""
+    distinct_on: [Transaction_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Transaction_order_by!]
+    """filter the rows returned"""
+    where: Transaction_bool_exp
+  ): [Transaction!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """fetch data from the table: "Transaction" using primary key columns"""
+  Transaction_by_pk(id: String!): Transaction
   """
   fetch data from the table: "chain_metadata"
   """
@@ -3337,7 +7751,7 @@ type query_root {
     order_by: [chain_metadata_order_by!]
     """filter the rows returned"""
     where: chain_metadata_bool_exp
-  ): [chain_metadata!]!
+  ): [chain_metadata!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "chain_metadata" using primary key columns"""
   chain_metadata_by_pk(chain_id: Int!): chain_metadata
   """
@@ -3354,11 +7768,30 @@ type query_root {
     order_by: [dynamic_contract_registry_order_by!]
     """filter the rows returned"""
     where: dynamic_contract_registry_bool_exp
-  ): [dynamic_contract_registry!]!
+  ): [dynamic_contract_registry!]! @merge(keyField: "id", keyArg: "where.id_in")
   """
   fetch data from the table: "dynamic_contract_registry" using primary key columns
   """
   dynamic_contract_registry_by_pk(chain_id: Int!, contract_address: String!): dynamic_contract_registry
+  """
+  fetch data from the table: "end_of_block_range_scanned_data"
+  """
+  end_of_block_range_scanned_data(
+    """distinct select on columns"""
+    distinct_on: [end_of_block_range_scanned_data_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [end_of_block_range_scanned_data_order_by!]
+    """filter the rows returned"""
+    where: end_of_block_range_scanned_data_bool_exp
+  ): [end_of_block_range_scanned_data!]! @merge(keyField: "id", keyArg: "where.id_in")
+  """
+  fetch data from the table: "end_of_block_range_scanned_data" using primary key columns
+  """
+  end_of_block_range_scanned_data_by_pk(block_number: Int!, chain_id: Int!): end_of_block_range_scanned_data
   """
   fetch data from the table: "entity_history"
   """
@@ -3373,7 +7806,7 @@ type query_root {
     order_by: [entity_history_order_by!]
     """filter the rows returned"""
     where: entity_history_bool_exp
-  ): [entity_history!]!
+  ): [entity_history!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "entity_history" using primary key columns"""
   entity_history_by_pk(block_number: Int!, block_timestamp: Int!, chain_id: Int!, entity_id: String!, entity_type: entity_type!, log_index: Int!): entity_history
   """
@@ -3390,11 +7823,11 @@ type query_root {
     order_by: [entity_history_filter_order_by!]
     """filter the rows returned"""
     where: entity_history_filter_bool_exp
-  ): [entity_history_filter!]!
+  ): [entity_history_filter!]! @merge(keyField: "id", keyArg: "where.id_in")
   """
   fetch data from the table: "entity_history_filter" using primary key columns
   """
-  entity_history_filter_by_pk(block_number: Int!, chain_id: Int!, entity_id: String!, log_index: Int!, previous_block_number: Int!, previous_log_index: Int!): entity_history_filter
+  entity_history_filter_by_pk(block_number: Int!, block_timestamp: Int!, chain_id: Int!, entity_id: String!, entity_type: entity_type!, log_index: Int!, previous_log_index: Int!): entity_history_filter
   """
   fetch data from the table: "event_sync_state"
   """
@@ -3409,7 +7842,7 @@ type query_root {
     order_by: [event_sync_state_order_by!]
     """filter the rows returned"""
     where: event_sync_state_bool_exp
-  ): [event_sync_state!]!
+  ): [event_sync_state!]! @merge(keyField: "id", keyArg: "where.id_in")
   """
   fetch data from the table: "event_sync_state" using primary key columns
   """
@@ -3430,7 +7863,7 @@ type query_root {
     order_by: [entity_history_filter_order_by!]
     """filter the rows returned"""
     where: entity_history_filter_bool_exp
-  ): [entity_history_filter!]!
+  ): [entity_history_filter!]! @merge(keyField: "id", keyArg: "where.id_in")
   """
   fetch data from the table: "persisted_state"
   """
@@ -3445,7 +7878,7 @@ type query_root {
     order_by: [persisted_state_order_by!]
     """filter the rows returned"""
     where: persisted_state_bool_exp
-  ): [persisted_state!]!
+  ): [persisted_state!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "persisted_state" using primary key columns"""
   persisted_state_by_pk(id: Int!): persisted_state
   """
@@ -3462,7 +7895,7 @@ type query_root {
     order_by: [raw_events_order_by!]
     """filter the rows returned"""
     where: raw_events_bool_exp
-  ): [raw_events!]!
+  ): [raw_events!]! @merge(keyField: "id", keyArg: "where.id_in")
   """fetch data from the table: "raw_events" using primary key columns"""
   raw_events_by_pk(chain_id: Int!, event_id: numeric!): raw_events
 }
@@ -3471,10 +7904,15 @@ type query_root {
 columns and relationships of "raw_events"
 """
 type raw_events {
+  block_fields(
+    """JSON select path"""
+    path: String
+  ): jsonb!
   block_hash: String!
   block_number: Int!
   block_timestamp: Int!
   chain_id: Int!
+  contract_name: String!
   db_write_timestamp: timestamp
   """An array relationship"""
   event_history(
@@ -3490,15 +7928,17 @@ type raw_events {
     where: entity_history_bool_exp
   ): [entity_history!]!
   event_id: numeric!
-  event_type: event_type!
+  event_name: String!
   log_index: Int!
   params(
     """JSON select path"""
     path: String
-  ): json!
+  ): jsonb!
   src_address: String!
-  transaction_hash: String!
-  transaction_index: Int!
+  transaction_fields(
+    """JSON select path"""
+    path: String
+  ): jsonb!
 }
 
 """
@@ -3508,42 +7948,46 @@ input raw_events_bool_exp {
   _and: [raw_events_bool_exp!]
   _not: raw_events_bool_exp
   _or: [raw_events_bool_exp!]
+  block_fields: jsonb_comparison_exp
   block_hash: String_comparison_exp
   block_number: Int_comparison_exp
   block_timestamp: Int_comparison_exp
   chain_id: Int_comparison_exp
+  contract_name: String_comparison_exp
   db_write_timestamp: timestamp_comparison_exp
   event_history: entity_history_bool_exp
   event_id: numeric_comparison_exp
-  event_type: event_type_comparison_exp
+  event_name: String_comparison_exp
   log_index: Int_comparison_exp
-  params: json_comparison_exp
+  params: jsonb_comparison_exp
   src_address: String_comparison_exp
-  transaction_hash: String_comparison_exp
-  transaction_index: Int_comparison_exp
+  transaction_fields: jsonb_comparison_exp
 }
 
 """Ordering options when selecting data from "raw_events"."""
 input raw_events_order_by {
+  block_fields: order_by
   block_hash: order_by
   block_number: order_by
   block_timestamp: order_by
   chain_id: order_by
+  contract_name: order_by
   db_write_timestamp: order_by
   event_history_aggregate: entity_history_aggregate_order_by
   event_id: order_by
-  event_type: order_by
+  event_name: order_by
   log_index: order_by
   params: order_by
   src_address: order_by
-  transaction_hash: order_by
-  transaction_index: order_by
+  transaction_fields: order_by
 }
 
 """
 select columns of table "raw_events"
 """
 enum raw_events_select_column {
+  """column name"""
+  block_fields
   """column name"""
   block_hash
   """column name"""
@@ -3553,11 +7997,13 @@ enum raw_events_select_column {
   """column name"""
   chain_id
   """column name"""
+  contract_name
+  """column name"""
   db_write_timestamp
   """column name"""
   event_id
   """column name"""
-  event_type
+  event_name
   """column name"""
   log_index
   """column name"""
@@ -3565,9 +8011,7 @@ enum raw_events_select_column {
   """column name"""
   src_address
   """column name"""
-  transaction_hash
-  """column name"""
-  transaction_index
+  transaction_fields
 }
 
 """
@@ -3582,21 +8026,134 @@ input raw_events_stream_cursor_input {
 
 """Initial value of the column from where the streaming should start"""
 input raw_events_stream_cursor_value_input {
+  block_fields: jsonb
   block_hash: String
   block_number: Int
   block_timestamp: Int
   chain_id: Int
+  contract_name: String
   db_write_timestamp: timestamp
   event_id: numeric
-  event_type: event_type
+  event_name: String
   log_index: Int
-  params: json
+  params: jsonb
   src_address: String
-  transaction_hash: String
-  transaction_index: Int
+  transaction_fields: jsonb
 }
 
 type subscription_root {
+  """
+  fetch data from the table: "Application"
+  """
+  Application(
+    """distinct select on columns"""
+    distinct_on: [Application_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Application_order_by!]
+    """filter the rows returned"""
+    where: Application_bool_exp
+  ): [Application!]!
+  """fetch data from the table: "Application" using primary key columns"""
+  Application_by_pk(id: String!): Application
+  """
+  fetch data from the table in a streaming manner: "Application"
+  """
+  Application_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [Application_stream_cursor_input]!
+    """filter the rows returned"""
+    where: Application_bool_exp
+  ): [Application!]!
+  """
+  fetch data from the table: "Badge"
+  """
+  Badge(
+    """distinct select on columns"""
+    distinct_on: [Badge_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Badge_order_by!]
+    """filter the rows returned"""
+    where: Badge_bool_exp
+  ): [Badge!]!
+  """
+  fetch data from the table: "BadgeHolder"
+  """
+  BadgeHolder(
+    """distinct select on columns"""
+    distinct_on: [BadgeHolder_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [BadgeHolder_order_by!]
+    """filter the rows returned"""
+    where: BadgeHolder_bool_exp
+  ): [BadgeHolder!]!
+  """fetch data from the table: "BadgeHolder" using primary key columns"""
+  BadgeHolder_by_pk(id: String!): BadgeHolder
+  """
+  fetch data from the table in a streaming manner: "BadgeHolder"
+  """
+  BadgeHolder_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [BadgeHolder_stream_cursor_input]!
+    """filter the rows returned"""
+    where: BadgeHolder_bool_exp
+  ): [BadgeHolder!]!
+  """
+  fetch data from the table: "BadgeTemplate"
+  """
+  BadgeTemplate(
+    """distinct select on columns"""
+    distinct_on: [BadgeTemplate_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [BadgeTemplate_order_by!]
+    """filter the rows returned"""
+    where: BadgeTemplate_bool_exp
+  ): [BadgeTemplate!]!
+  """fetch data from the table: "BadgeTemplate" using primary key columns"""
+  BadgeTemplate_by_pk(id: String!): BadgeTemplate
+  """
+  fetch data from the table in a streaming manner: "BadgeTemplate"
+  """
+  BadgeTemplate_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [BadgeTemplate_stream_cursor_input]!
+    """filter the rows returned"""
+    where: BadgeTemplate_bool_exp
+  ): [BadgeTemplate!]!
+  """fetch data from the table: "Badge" using primary key columns"""
+  Badge_by_pk(id: String!): Badge
+  """
+  fetch data from the table in a streaming manner: "Badge"
+  """
+  Badge_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [Badge_stream_cursor_input]!
+    """filter the rows returned"""
+    where: Badge_bool_exp
+  ): [Badge!]!
   """
   fetch data from the table: "Contest"
   """
@@ -3681,6 +8238,94 @@ type subscription_root {
     """filter the rows returned"""
     where: Contest_bool_exp
   ): [Contest!]!
+  """
+  fetch data from the table: "DAOToken"
+  """
+  DAOToken(
+    """distinct select on columns"""
+    distinct_on: [DAOToken_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [DAOToken_order_by!]
+    """filter the rows returned"""
+    where: DAOToken_bool_exp
+  ): [DAOToken!]!
+  """fetch data from the table: "DAOToken" using primary key columns"""
+  DAOToken_by_pk(id: String!): DAOToken
+  """
+  fetch data from the table in a streaming manner: "DAOToken"
+  """
+  DAOToken_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [DAOToken_stream_cursor_input]!
+    """filter the rows returned"""
+    where: DAOToken_bool_exp
+  ): [DAOToken!]!
+  """
+  fetch data from the table: "DualTokenPointsParams"
+  """
+  DualTokenPointsParams(
+    """distinct select on columns"""
+    distinct_on: [DualTokenPointsParams_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [DualTokenPointsParams_order_by!]
+    """filter the rows returned"""
+    where: DualTokenPointsParams_bool_exp
+  ): [DualTokenPointsParams!]!
+  """
+  fetch data from the table: "DualTokenPointsParams" using primary key columns
+  """
+  DualTokenPointsParams_by_pk(id: String!): DualTokenPointsParams
+  """
+  fetch data from the table in a streaming manner: "DualTokenPointsParams"
+  """
+  DualTokenPointsParams_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [DualTokenPointsParams_stream_cursor_input]!
+    """filter the rows returned"""
+    where: DualTokenPointsParams_bool_exp
+  ): [DualTokenPointsParams!]!
+  """
+  fetch data from the table: "DualTokenTVParams"
+  """
+  DualTokenTVParams(
+    """distinct select on columns"""
+    distinct_on: [DualTokenTVParams_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [DualTokenTVParams_order_by!]
+    """filter the rows returned"""
+    where: DualTokenTVParams_bool_exp
+  ): [DualTokenTVParams!]!
+  """
+  fetch data from the table: "DualTokenTVParams" using primary key columns
+  """
+  DualTokenTVParams_by_pk(id: String!): DualTokenTVParams
+  """
+  fetch data from the table in a streaming manner: "DualTokenTVParams"
+  """
+  DualTokenTVParams_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [DualTokenTVParams_stream_cursor_input]!
+    """filter the rows returned"""
+    where: DualTokenTVParams_bool_exp
+  ): [DualTokenTVParams!]!
   """
   fetch data from the table: "ERCPointParams"
   """
@@ -3796,6 +8441,118 @@ type subscription_root {
     where: FactoryEventsSummary_bool_exp
   ): [FactoryEventsSummary!]!
   """
+  fetch data from the table: "FeedCard"
+  """
+  FeedCard(
+    """distinct select on columns"""
+    distinct_on: [FeedCard_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FeedCard_order_by!]
+    """filter the rows returned"""
+    where: FeedCard_bool_exp
+  ): [FeedCard!]!
+  """fetch data from the table: "FeedCard" using primary key columns"""
+  FeedCard_by_pk(id: String!): FeedCard
+  """
+  fetch data from the table in a streaming manner: "FeedCard"
+  """
+  FeedCard_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [FeedCard_stream_cursor_input]!
+    """filter the rows returned"""
+    where: FeedCard_bool_exp
+  ): [FeedCard!]!
+  """
+  fetch data from the table: "FeedItemEmbed"
+  """
+  FeedItemEmbed(
+    """distinct select on columns"""
+    distinct_on: [FeedItemEmbed_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FeedItemEmbed_order_by!]
+    """filter the rows returned"""
+    where: FeedItemEmbed_bool_exp
+  ): [FeedItemEmbed!]!
+  """fetch data from the table: "FeedItemEmbed" using primary key columns"""
+  FeedItemEmbed_by_pk(id: String!): FeedItemEmbed
+  """
+  fetch data from the table in a streaming manner: "FeedItemEmbed"
+  """
+  FeedItemEmbed_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [FeedItemEmbed_stream_cursor_input]!
+    """filter the rows returned"""
+    where: FeedItemEmbed_bool_exp
+  ): [FeedItemEmbed!]!
+  """
+  fetch data from the table: "FeedItemEntity"
+  """
+  FeedItemEntity(
+    """distinct select on columns"""
+    distinct_on: [FeedItemEntity_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [FeedItemEntity_order_by!]
+    """filter the rows returned"""
+    where: FeedItemEntity_bool_exp
+  ): [FeedItemEntity!]!
+  """fetch data from the table: "FeedItemEntity" using primary key columns"""
+  FeedItemEntity_by_pk(id: String!): FeedItemEntity
+  """
+  fetch data from the table in a streaming manner: "FeedItemEntity"
+  """
+  FeedItemEntity_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [FeedItemEntity_stream_cursor_input]!
+    """filter the rows returned"""
+    where: FeedItemEntity_bool_exp
+  ): [FeedItemEntity!]!
+  """
+  fetch data from the table: "GMInitParams"
+  """
+  GMInitParams(
+    """distinct select on columns"""
+    distinct_on: [GMInitParams_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [GMInitParams_order_by!]
+    """filter the rows returned"""
+    where: GMInitParams_bool_exp
+  ): [GMInitParams!]!
+  """fetch data from the table: "GMInitParams" using primary key columns"""
+  GMInitParams_by_pk(id: String!): GMInitParams
+  """
+  fetch data from the table in a streaming manner: "GMInitParams"
+  """
+  GMInitParams_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [GMInitParams_stream_cursor_input]!
+    """filter the rows returned"""
+    where: GMInitParams_bool_exp
+  ): [GMInitParams!]!
+  """
   fetch data from the table: "GSVoter"
   """
   GSVoter(
@@ -3823,6 +8580,122 @@ type subscription_root {
     """filter the rows returned"""
     where: GSVoter_bool_exp
   ): [GSVoter!]!
+  """
+  fetch data from the table: "GameManagerFactory"
+  """
+  GameManagerFactory(
+    """distinct select on columns"""
+    distinct_on: [GameManagerFactory_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [GameManagerFactory_order_by!]
+    """filter the rows returned"""
+    where: GameManagerFactory_bool_exp
+  ): [GameManagerFactory!]!
+  """
+  fetch data from the table: "GameManagerFactory" using primary key columns
+  """
+  GameManagerFactory_by_pk(id: String!): GameManagerFactory
+  """
+  fetch data from the table in a streaming manner: "GameManagerFactory"
+  """
+  GameManagerFactory_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [GameManagerFactory_stream_cursor_input]!
+    """filter the rows returned"""
+    where: GameManagerFactory_bool_exp
+  ): [GameManagerFactory!]!
+  """
+  fetch data from the table: "GameManagerTemplate"
+  """
+  GameManagerTemplate(
+    """distinct select on columns"""
+    distinct_on: [GameManagerTemplate_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [GameManagerTemplate_order_by!]
+    """filter the rows returned"""
+    where: GameManagerTemplate_bool_exp
+  ): [GameManagerTemplate!]!
+  """
+  fetch data from the table: "GameManagerTemplate" using primary key columns
+  """
+  GameManagerTemplate_by_pk(id: String!): GameManagerTemplate
+  """
+  fetch data from the table in a streaming manner: "GameManagerTemplate"
+  """
+  GameManagerTemplate_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [GameManagerTemplate_stream_cursor_input]!
+    """filter the rows returned"""
+    where: GameManagerTemplate_bool_exp
+  ): [GameManagerTemplate!]!
+  """
+  fetch data from the table: "GameRound"
+  """
+  GameRound(
+    """distinct select on columns"""
+    distinct_on: [GameRound_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [GameRound_order_by!]
+    """filter the rows returned"""
+    where: GameRound_bool_exp
+  ): [GameRound!]!
+  """fetch data from the table: "GameRound" using primary key columns"""
+  GameRound_by_pk(id: String!): GameRound
+  """
+  fetch data from the table in a streaming manner: "GameRound"
+  """
+  GameRound_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [GameRound_stream_cursor_input]!
+    """filter the rows returned"""
+    where: GameRound_bool_exp
+  ): [GameRound!]!
+  """
+  fetch data from the table: "Gate"
+  """
+  Gate(
+    """distinct select on columns"""
+    distinct_on: [Gate_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Gate_order_by!]
+    """filter the rows returned"""
+    where: Gate_bool_exp
+  ): [Gate!]!
+  """fetch data from the table: "Gate" using primary key columns"""
+  Gate_by_pk(id: String!): Gate
+  """
+  fetch data from the table in a streaming manner: "Gate"
+  """
+  Gate_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [Gate_stream_cursor_input]!
+    """filter the rows returned"""
+    where: Gate_bool_exp
+  ): [Gate!]!
   """
   fetch data from the table: "GrantShipsVoting"
   """
@@ -3938,6 +8811,62 @@ type subscription_root {
     where: LocalLog_bool_exp
   ): [LocalLog!]!
   """
+  fetch data from the table: "Milestone"
+  """
+  Milestone(
+    """distinct select on columns"""
+    distinct_on: [Milestone_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Milestone_order_by!]
+    """filter the rows returned"""
+    where: Milestone_bool_exp
+  ): [Milestone!]!
+  """
+  fetch data from the table: "MilestoneSet"
+  """
+  MilestoneSet(
+    """distinct select on columns"""
+    distinct_on: [MilestoneSet_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [MilestoneSet_order_by!]
+    """filter the rows returned"""
+    where: MilestoneSet_bool_exp
+  ): [MilestoneSet!]!
+  """fetch data from the table: "MilestoneSet" using primary key columns"""
+  MilestoneSet_by_pk(id: String!): MilestoneSet
+  """
+  fetch data from the table in a streaming manner: "MilestoneSet"
+  """
+  MilestoneSet_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [MilestoneSet_stream_cursor_input]!
+    """filter the rows returned"""
+    where: MilestoneSet_bool_exp
+  ): [MilestoneSet!]!
+  """fetch data from the table: "Milestone" using primary key columns"""
+  Milestone_by_pk(id: String!): Milestone
+  """
+  fetch data from the table in a streaming manner: "Milestone"
+  """
+  Milestone_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [Milestone_stream_cursor_input]!
+    """filter the rows returned"""
+    where: Milestone_bool_exp
+  ): [Milestone!]!
+  """
   fetch data from the table: "ModuleTemplate"
   """
   ModuleTemplate(
@@ -3965,6 +8894,66 @@ type subscription_root {
     """filter the rows returned"""
     where: ModuleTemplate_bool_exp
   ): [ModuleTemplate!]!
+  """
+  fetch data from the table: "ProfileIdToAnchor"
+  """
+  ProfileIdToAnchor(
+    """distinct select on columns"""
+    distinct_on: [ProfileIdToAnchor_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [ProfileIdToAnchor_order_by!]
+    """filter the rows returned"""
+    where: ProfileIdToAnchor_bool_exp
+  ): [ProfileIdToAnchor!]!
+  """
+  fetch data from the table: "ProfileIdToAnchor" using primary key columns
+  """
+  ProfileIdToAnchor_by_pk(id: String!): ProfileIdToAnchor
+  """
+  fetch data from the table in a streaming manner: "ProfileIdToAnchor"
+  """
+  ProfileIdToAnchor_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [ProfileIdToAnchor_stream_cursor_input]!
+    """filter the rows returned"""
+    where: ProfileIdToAnchor_bool_exp
+  ): [ProfileIdToAnchor!]!
+  """
+  fetch data from the table: "ProfileMemberGroup"
+  """
+  ProfileMemberGroup(
+    """distinct select on columns"""
+    distinct_on: [ProfileMemberGroup_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [ProfileMemberGroup_order_by!]
+    """filter the rows returned"""
+    where: ProfileMemberGroup_bool_exp
+  ): [ProfileMemberGroup!]!
+  """
+  fetch data from the table: "ProfileMemberGroup" using primary key columns
+  """
+  ProfileMemberGroup_by_pk(id: String!): ProfileMemberGroup
+  """
+  fetch data from the table in a streaming manner: "ProfileMemberGroup"
+  """
+  ProfileMemberGroup_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [ProfileMemberGroup_stream_cursor_input]!
+    """filter the rows returned"""
+    where: ProfileMemberGroup_bool_exp
+  ): [ProfileMemberGroup!]!
   """
   fetch data from the table: "Record"
   """
@@ -4022,6 +9011,34 @@ type subscription_root {
     where: SBTBalParams_bool_exp
   ): [SBTBalParams!]!
   """
+  fetch data from the table: "ScaffoldShaman"
+  """
+  ScaffoldShaman(
+    """distinct select on columns"""
+    distinct_on: [ScaffoldShaman_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [ScaffoldShaman_order_by!]
+    """filter the rows returned"""
+    where: ScaffoldShaman_bool_exp
+  ): [ScaffoldShaman!]!
+  """fetch data from the table: "ScaffoldShaman" using primary key columns"""
+  ScaffoldShaman_by_pk(id: String!): ScaffoldShaman
+  """
+  fetch data from the table in a streaming manner: "ScaffoldShaman"
+  """
+  ScaffoldShaman_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [ScaffoldShaman_stream_cursor_input]!
+    """filter the rows returned"""
+    where: ScaffoldShaman_bool_exp
+  ): [ScaffoldShaman!]!
+  """
   fetch data from the table: "ShipChoice"
   """
   ShipChoice(
@@ -4049,6 +9066,34 @@ type subscription_root {
     """filter the rows returned"""
     where: ShipChoice_bool_exp
   ): [ShipChoice!]!
+  """
+  fetch data from the table: "ShipContext"
+  """
+  ShipContext(
+    """distinct select on columns"""
+    distinct_on: [ShipContext_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [ShipContext_order_by!]
+    """filter the rows returned"""
+    where: ShipContext_bool_exp
+  ): [ShipContext!]!
+  """fetch data from the table: "ShipContext" using primary key columns"""
+  ShipContext_by_pk(id: String!): ShipContext
+  """
+  fetch data from the table in a streaming manner: "ShipContext"
+  """
+  ShipContext_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [ShipContext_stream_cursor_input]!
+    """filter the rows returned"""
+    where: ShipContext_bool_exp
+  ): [ShipContext!]!
   """
   fetch data from the table: "ShipVote"
   """
@@ -4134,6 +9179,34 @@ type subscription_root {
     where: TVParams_bool_exp
   ): [TVParams!]!
   """
+  fetch data from the table: "Transaction"
+  """
+  Transaction(
+    """distinct select on columns"""
+    distinct_on: [Transaction_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [Transaction_order_by!]
+    """filter the rows returned"""
+    where: Transaction_bool_exp
+  ): [Transaction!]!
+  """fetch data from the table: "Transaction" using primary key columns"""
+  Transaction_by_pk(id: String!): Transaction
+  """
+  fetch data from the table in a streaming manner: "Transaction"
+  """
+  Transaction_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [Transaction_stream_cursor_input]!
+    """filter the rows returned"""
+    where: Transaction_bool_exp
+  ): [Transaction!]!
+  """
   fetch data from the table: "chain_metadata"
   """
   chain_metadata(
@@ -4192,6 +9265,36 @@ type subscription_root {
     where: dynamic_contract_registry_bool_exp
   ): [dynamic_contract_registry!]!
   """
+  fetch data from the table: "end_of_block_range_scanned_data"
+  """
+  end_of_block_range_scanned_data(
+    """distinct select on columns"""
+    distinct_on: [end_of_block_range_scanned_data_select_column!]
+    """limit the number of rows returned"""
+    limit: Int
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+    """sort the rows by one or more columns"""
+    order_by: [end_of_block_range_scanned_data_order_by!]
+    """filter the rows returned"""
+    where: end_of_block_range_scanned_data_bool_exp
+  ): [end_of_block_range_scanned_data!]!
+  """
+  fetch data from the table: "end_of_block_range_scanned_data" using primary key columns
+  """
+  end_of_block_range_scanned_data_by_pk(block_number: Int!, chain_id: Int!): end_of_block_range_scanned_data
+  """
+  fetch data from the table in a streaming manner: "end_of_block_range_scanned_data"
+  """
+  end_of_block_range_scanned_data_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+    """cursor to stream the results returned by the query"""
+    cursor: [end_of_block_range_scanned_data_stream_cursor_input]!
+    """filter the rows returned"""
+    where: end_of_block_range_scanned_data_bool_exp
+  ): [end_of_block_range_scanned_data!]!
+  """
   fetch data from the table: "entity_history"
   """
   entity_history(
@@ -4226,7 +9329,7 @@ type subscription_root {
   """
   fetch data from the table: "entity_history_filter" using primary key columns
   """
-  entity_history_filter_by_pk(block_number: Int!, chain_id: Int!, entity_id: String!, log_index: Int!, previous_block_number: Int!, previous_log_index: Int!): entity_history_filter
+  entity_history_filter_by_pk(block_number: Int!, block_timestamp: Int!, chain_id: Int!, entity_id: String!, entity_type: entity_type!, log_index: Int!, previous_log_index: Int!): entity_history_filter
   """
   fetch data from the table in a streaming manner: "entity_history_filter"
   """

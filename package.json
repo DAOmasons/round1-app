@@ -29,6 +29,8 @@
   },
   "devDependencies": {
     "@graphprotocol/client-cli": "^3.0.0",
+    "@graphql-mesh/transform-filter-schema": "^0.102.12",
+    "@graphql-mesh/transform-rename": "^0.102.12",
     "@types/node": "^20.11.5",
     "@types/react": "^18.2.36",
     "@types/react-dom": "^18.2.14",
@@ -36,6 +38,7 @@
     "@typescript-eslint/parser": "^6.9.1",
     "@vitejs/plugin-react": "^4.2.1",
     "axios": "^1.6.5",
+    "concurrently": "^9.1.0",
     "eslint": "^8.53.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",

@@ -6,7 +6,17 @@ sources:
   - name: gs-voting
     handler: 
       graphql: 
-        # endpoint: http://localhost:8080/v1/graphql
-        endpoint: https://indexer.bigdevenergy.link/c8f8ea8/v1/graphql
+        endpoint: https://indexer.dev.hyperindex.xyz/6410aa4/v1/graphql
+    transforms:
+      - filterSchema:
+          filters:
+            - "!Grant"
+            - "!Project"
+            - "!GrantShip"
+            - "!GameManager"
+            - "!RawMetadata"
+            - "!Update"
+      - autoTypeMerging: true
+      # - autoTypeMerging: true
 documents: 
   - './src/**/*.graphql'
